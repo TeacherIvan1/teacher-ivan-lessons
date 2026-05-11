@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson 1: Daily Routines - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-primario);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--naranja-vibrante);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+        .grammar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;}
+        .grammar-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;}
+        .grammar-card font { font-size: 2rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 40px; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; }
+        .exercise-section h3 span { background: var(--azul-primario); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+
+        .question { margin-bottom: 15px; font-size: 1.1rem; }
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: center;
+        }
+        input[type="text"]:focus { border-color: var(--naranja-vibrante); }
+
+        /* Multiple Choice */
+        .mcq-options { display: flex; gap: 15px; margin-top: 10px; }
+        .mcq-label {
+            background: #eee; padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 0.95rem; border: 2px solid transparent;
+        }
+        .mcq-label:hover { background: var(--gris-claro); }
+        input[type="radio"] { display: none; }
+        input[type="radio"]:checked + .mcq-label {
+            background: var(--azul-primario); color: white; font-weight: bold;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 40px; border-top: 2px solid #eee; padding-top: 20px; }
+        button {
+            padding: 12px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        /* Result Box */
+        #result-box {
+            display: none; margin-top: 20px; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; font-size: 1.2rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .actions, .btn-check, .btn-print, #result-box { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Level A2: Daily Routines</h1>
+            <p>Unit 1 - Lesson 1 | Grammar & Vocabulary Practice</p>
+        </div>
+
+        <div class="grammar-box">
+            <h2>📘 Quick Review: Present Simple</h2>
+            <p>We use the Present Simple to talk about habits, routines, and permanent situations. Remember to add <strong>-s</strong> or <strong>-es</strong> for <em>He, She, It</em>.</p>
+            
+            <div class="grammar-grid">
+                <div class="grammar-card">
+                    <div style="font-size: 2.5rem;">🏃‍♂️</div>
+                    <strong>I / You / We / They</strong><br>
+                    "I usually wake up at 5:30 am."
+                </div>
+                <div class="grammar-card">
+                    <div style="font-size: 2.5rem;">🏋️‍♀️</div>
+                    <strong>He / She / It</strong><br>
+                    "He does CrossFit in the evening."
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Fill in the blanks</h3>
+            <p>Complete the sentences with the correct form of the verbs in brackets.</p>
+            
+            <div class="question">
+                1. Santiago Gonzales <input type="text" id="q1" data-answer="studies"> (study) at Colegio Fielding every morning.
+            </div>
+            <div class="question">
+                2. I <input type="text" id="q2" data-answer="don't eat|do not eat"> (not/eat) fast food; I prefer healthy breakfasts like oats and avocado.
+            </div>
+            <div class="question">
+                3. Tatiana Thompson always <input type="text" id="q3" data-answer="does"> (do) her English homework on time.
+            </div>
+            <div class="question">
+                4. Teacher Ivan <input type="text" id="q4" data-answer="goes"> (go) running before going to school.
+            </div>
+            <div class="question">
+                5. My cat sometimes <input type="text" id="q5" data-answer="breaks"> (break) the plants in the living room.
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Choose the correct option</h3>
+            <p>Select the correct frequency adverb or verb form.</p>
+
+            <div class="question">
+                6. Cristopher Ramos ____________ video games on weekdays. He is very busy.
+                <div class="mcq-options">
+                    <label><input type="radio" name="q6" value="wrong"> <span class="mcq-label">doesn't never play</span></label>
+                    <label><input type="radio" name="q6" value="correct"> <span class="mcq-label">doesn't play</span></label>
+                    <label><input type="radio" name="q6" value="wrong"> <span class="mcq-label">don't play</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                7. We ____________ CrossFit on Thursdays at 18:00.
+                <div class="mcq-options">
+                    <label><input type="radio" name="q7" value="correct"> <span class="mcq-label">usually do</span></label>
+                    <label><input type="radio" name="q7" value="wrong"> <span class="mcq-label">do usually</span></label>
+                    <label><input type="radio" name="q7" value="wrong"> <span class="mcq-label">are usually doing</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                8. How often ____________ goat cheese with eggs?
+                <div class="mcq-options">
+                    <label><input type="radio" name="q8" value="wrong"> <span class="mcq-label">you eat</span></label>
+                    <label><input type="radio" name="q8" value="wrong"> <span class="mcq-label">does you eat</span></label>
+                    <label><input type="radio" name="q8" value="correct"> <span class="mcq-label">do you eat</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-box"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">✅ Check Answers</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const totalQuestions = 8;
+            
+            // Evaluar inputs de texto (Preguntas 1 a 5)
+            for(let i=1; i<=5; i++) {
+                let inputElement = document.getElementById('q' + i);
+                let userAnswer = inputElement.value.toLowerCase().trim();
+                let correctAnswers = inputElement.getAttribute('data-answer').split('|');
+                
+                if(correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    inputElement.style.borderColor = "var(--verde-correcto)";
+                    inputElement.style.backgroundColor = "#e8f5e9";
+                    score++;
+                } else {
+                    inputElement.style.borderColor = "var(--rojo-error)";
+                    inputElement.style.backgroundColor = "#ffebee";
+                }
+            }
+
+            // Evaluar Multiple Choice (Preguntas 6 a 8)
+            for(let i=6; i<=8; i++) {
+                let options = document.getElementsByName('q' + i);
+                let answered = false;
+                options.forEach(opt => {
+                    let label = opt.nextElementSibling;
+                    if(opt.checked) {
+                        answered = true;
+                        if(opt.value === 'correct') {
+                            label.style.border = "2px solid var(--verde-correcto)";
+                            label.style.backgroundColor = "#e8f5e9";
+                            score++;
+                        } else {
+                            label.style.border = "2px solid var(--rojo-error)";
+                            label.style.backgroundColor = "#ffebee";
+                        }
+                    } else if (opt.value === 'correct') {
+                        // Mostrar la correcta si se equivocó
+                        label.style.border = "2px dashed var(--verde-correcto)";
+                    }
+                });
+            }
+
+            // Calcular sistema de evaluación "Hacer" (40 puntos)
+            let scorePercentage = (score / totalQuestions);
+            let dimensionHacer = Math.round(scorePercentage * 40);
+
+            // Mostrar resultados
+            let resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            
+            if(score === totalQuestions) {
+                resultBox.style.backgroundColor = "#e8f5e9";
+                resultBox.style.color = "var(--verde-correcto)";
+                resultBox.innerHTML = `🌟 Excellent! Score: ${score}/${totalQuestions}.<br>This worksheet gives you ${dimensionHacer}/40 points for the 'Hacer' dimension.`;
+            } else if(score >= totalQuestions / 2) {
+                resultBox.style.backgroundColor = "#fff3e0";
+                resultBox.style.color = "#ff9800";
+                resultBox.innerHTML = `👍 Good job, but keep practicing! Score: ${score}/${totalQuestions}.<br>This worksheet gives you ${dimensionHacer}/40 points for the 'Hacer' dimension.`;
+            } else {
+                resultBox.style.backgroundColor = "#ffebee";
+                resultBox.style.color = "var(--rojo-error)";
+                resultBox.innerHTML = `📚 You need to review the grammar. Score: ${score}/${totalQuestions}.<br>This worksheet gives you ${dimensionHacer}/40 points for the 'Hacer' dimension.`;
+            }
+        }
+    </script>
+</body>
+</html>

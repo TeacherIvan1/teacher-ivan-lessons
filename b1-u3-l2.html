@@ -9,11 +9,11 @@
         :root {
             --azul-primario: #0A468C; 
             --naranja-vibrante: #F56E1E; 
-            --morado-b1: #9C27B0; /* Identificador B1 */
             --blanco-nieve: #FAFAF0; 
             --gris-claro: #f0f4f8;
             --verde-correcto: #4CAF50;
             --rojo-error: #F44336;
+            --purpura-b1: #9C27B0; /* Color distintivo nivel B1 */
         }
 
         body {
@@ -33,38 +33,39 @@
             padding: 40px 50px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
-            border-top: 8px solid var(--morado-b1);
+            border-top: 8px solid var(--purpura-b1);
         }
 
         /* Header */
         .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
         .header img { height: 60px; margin-bottom: 10px; }
-        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--purpura-b1); }
         .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
-        .level-badge { display: inline-block; background: var(--morado-b1); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; }
 
-        /* Vocab Box */
-        .vocab-box {
+        /* Grammar Box */
+        .grammar-box {
             background-color: var(--gris-claro);
-            border-left: 5px solid var(--morado-b1);
-            padding: 20px;
+            border-left: 5px solid var(--purpura-b1);
+            padding: 25px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
         }
-        .vocab-list {
-            display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;
-        }
-        .vocab-item {
-            background: white; padding: 8px 15px; border-radius: 5px; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: var(--azul-primario);
-        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--purpura-b1); }
+        .grammar-rule code { background: #eee; padding: 2px 6px; border-radius: 4px; color: #d32f2f; font-weight: bold; }
 
         /* Exercises */
         .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
-        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--morado-b1); }
-        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--purpura-b1); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
         .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
 
-        .question { margin-bottom: 18px; font-size: 1.05rem; }
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
         
         input[type="text"] {
             font-family: 'Open Sans', sans-serif;
@@ -78,16 +79,16 @@
             color: #333;
             font-weight: 600;
         }
-        input[type="text"]:focus { border-color: var(--morado-b1); box-shadow: 0 0 5px rgba(156, 39, 176, 0.2); }
+        input[type="text"]:focus { border-color: var(--purpura-b1); box-shadow: 0 0 5px rgba(156, 39, 176, 0.3); }
         
-        .short-input { width: 130px; text-align: center; }
-        .medium-input { width: 200px; text-align: center; }
+        .medium-input { width: 140px; text-align: center; }
+        .long-input { width: 90%; display: block; margin-top: 10px; font-style: italic; }
 
         /* Reading Box */
         .reading-box {
-            line-height: 2.2;
-            font-size: 1.05rem;
-            padding: 25px;
+            line-height: 2;
+            font-size: 1.1rem;
+            padding: 20px;
             background: white;
             border-radius: 8px;
             border: 1px solid #ddd;
@@ -98,8 +99,8 @@
         button {
             padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
         }
-        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
-        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-check { background-color: var(--purpura-b1); color: white; box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3); }
+        .btn-check:hover { background-color: #7b1fa2; transform: translateY(-2px); }
         .btn-print { background-color: #4A5568; color: white; }
         .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
 
@@ -121,75 +122,76 @@
         
         <div class="header">
             <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
-            <br>
-            <span class="level-badge">Level B1</span>
             <h1>Apps & Digital Tools</h1>
-            <p>Unit 3 - Lesson 2 | Vocabulary Building Technology</p>
+            <p>Level B1 | Unit 3 - Lesson 2 | Unless & As long as</p>
         </div>
 
-        <div class="vocab-box">
-            <h2>💻 Core Tech Vocabulary</h2>
-            <p>Review these essential terms before starting the exercises. You will need them to complete the worksheet.</p>
-            <div class="vocab-list">
-                <span class="vocab-item">Dashboard</span>
-                <span class="vocab-item">Glitch / Bug</span>
-                <span class="vocab-item">Launch</span>
-                <span class="vocab-item">User-friendly</span>
-                <span class="vocab-item">Cloud storage</span>
-                <span class="vocab-item">Interface</span>
-                <span class="vocab-item">Update</span>
-                <span class="vocab-item">Freelance</span>
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">💻</div>
+            <div class="grammar-content">
+                <h2>Advanced Conditionals</h2>
+                <p>To talk about conditions in technology and automation, we often use alternatives to "If".</p>
+                
+                <div class="grammar-rule">
+                    <h4>1. UNLESS (If ... not)</h4>
+                    <p>It means "except if". The verb following 'unless' is usually affirmative.<br>
+                    <code>Unless</code> you save the HTML file, the website will crash.<br>
+                    <em>(If you don't save the HTML file...)</em></p>
+                </div>
+
+                <div class="grammar-rule">
+                    <h4>2. AS LONG AS / PROVIDED THAT (Only if)</h4>
+                    <p>It emphasizes that one thing will happen <strong>only on the condition</strong> that another thing happens.<br>
+                    The Google Apps Script will work <code>as long as</code> the code has no bugs.</p>
+                </div>
             </div>
         </div>
 
         <div class="exercise-section">
-            <h3><span>A</span> Tech Definitions</h3>
-            <p class="instructions">Read the definitions carefully and type the correct vocabulary word from the box above.</p>
+            <h3><span>A</span> Digital Automation</h3>
+            <p class="instructions">Complete the sentences by typing <strong>unless</strong> or <strong>as long as</strong> in the gaps.</p>
             
             <div class="question">
-                1. A visual control panel that displays important data and metrics: <input type="text" class="medium-input" data-answer="dashboard">
+                1. You can build a functioning app on Glide <input type="text" class="medium-input" data-answer="as long as"> your Google Sheets database is well organized.
             </div>
             <div class="question">
-                2. A system where you can save and access your files over the internet, like Google Drive: <input type="text" class="medium-input" data-answer="cloud storage|cloud">
+                2. Your freelance profile on Upwork won't attract clients <input type="text" class="medium-input" data-answer="unless"> you highlight your specific tech skills.
             </div>
             <div class="question">
-                3. A sudden, usually temporary malfunction or error in software: <input type="text" class="medium-input" data-answer="glitch|bug">
+                3. I will share the interactive grammar dashboard with you, <input type="text" class="medium-input" data-answer="as long as"> you don't delete the background formulas.
             </div>
             <div class="question">
-                4. Software or a website that is easy to understand and use for beginners: <input type="text" class="medium-input" data-answer="user-friendly|user friendly">
+                4. The script will automatically send emails to the students <input type="text" class="medium-input" data-answer="unless"> there is a server error.
             </div>
             <div class="question">
-                5. To officially release a new website or mobile application to the public: <input type="text" class="medium-input" data-answer="launch">
+                5. <input type="text" class="medium-input" data-answer="unless"> you debug the code, the game "Grammaropoly" will continue to crash.
             </div>
         </div>
 
         <div class="exercise-section">
-            <h3><span>B</span> Developing the "Health & Fitness App"</h3>
-            <p class="instructions">Read the text about a real software development project. Fill in the blanks with the correct words based on context.</p>
+            <h3><span>B</span> Rewrite the Code</h3>
+            <p class="instructions">Rewrite the sentences using the word in brackets so that it means the same as the first sentence. <strong>Do not change the word in brackets.</strong></p>
+            
+            <div class="question">
+                1. If you don't update your password, you will be locked out of the system. <strong>(UNLESS)</strong>
+                <input type="text" class="long-input" data-answer="unless you update your password, you will be locked out of the system.|you will be locked out of the system unless you update your password.">
+            </div>
+            <div class="question">
+                2. We can launch the fitness habit-tracker app today if the server is stable. <strong>(AS LONG AS)</strong>
+                <input type="text" class="long-input" data-answer="we can launch the fitness habit-tracker app today as long as the server is stable.|as long as the server is stable, we can launch the fitness habit-tracker app today.">
+            </div>
+            <div class="question">
+                3. I won't use that digital tool if it isn't free. <strong>(UNLESS)</strong>
+                <input type="text" class="long-input" data-answer="i won't use that digital tool unless it is free.|unless it is free, i won't use that digital tool.">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Freelance Developer</h3>
+            <p class="instructions">Read the paragraph and fill in the missing <strong>tech vocabulary</strong> or <strong>conditional connectors</strong>. <br><small>Word Bank: <em>bugs / unless / dashboard / as long as / spreadsheet</em></small></p>
             
             <div class="reading-box">
-                Recently, we decided to build a Health & Fitness tracking application for the students at Colegio Fielding. The main goal was to organize their workout routines and morning runs. First, we designed the visual <input type="text" class="short-input" data-answer="interface"> (1) using HTML and Glide to make sure it looked great on mobile phones. 
-                <br><br>
-                Instead of using complex local databases, we linked the app directly to Google Sheets, utilizing it as our <input type="text" class="medium-input" data-answer="cloud storage"> (2). This allowed us to manage the student data efficiently through a main <input type="text" class="medium-input" data-answer="dashboard"> (3).
-                <br><br>
-                During the testing phase, a student reported a critical <input type="text" class="short-input" data-answer="bug|glitch"> (4); the app was crashing when they tried to input their CrossFit results. Our developer immediately wrote some Google Apps Script to fix it and pushed a new software <input type="text" class="short-input" data-answer="update"> (5). 
-                <br><br>
-                Now that the app is highly intuitive and <input type="text" class="medium-input" data-answer="user-friendly|user friendly"> (6), we are finally ready to <input type="text" class="short-input" data-answer="launch"> (7) it next Monday!
-            </div>
-        </div>
-
-        <div class="exercise-section">
-            <h3><span>C</span> Professional Scenarios</h3>
-            <p class="instructions">Complete the sentences by writing the correct missing word. Think about the professional context of remote work and tech.</p>
-
-            <div class="question">
-                1. If you want to work as a <input type="text" class="short-input" data-answer="freelance|freelancer"> developer on platforms like Upwork, you must know how to communicate clearly with international clients.
-            </div>
-            <div class="question">
-                2. Don't forget to <input type="text" class="short-input" data-answer="update"> your operating system tonight; the new version contains important security patches.
-            </div>
-            <div class="question">
-                3. The web <input type="text" class="short-input" data-answer="interface"> is too complicated. Users are getting confused and closing the page.
+                Working as a freelance developer is great <input type="text" class="medium-input" data-answer="as long as"> (1) you stay organized. Right now, I am building an interactive <input type="text" class="medium-input" data-answer="dashboard"> (2) for a school. The data is pulled directly from a Google <input type="text" class="medium-input" data-answer="spreadsheet"> (3). However, the client won't pay the final invoice <input type="text" class="medium-input" data-answer="unless"> (4) I fix all the technical <input type="text" class="medium-input" data-answer="bugs"> (5) in the system. Everything needs to run perfectly before Monday!
             </div>
         </div>
 
@@ -197,7 +199,7 @@
 
         <div class="actions">
             <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
-            <button class="btn-check" onclick="checkAnswers()">💻 Run Diagnostics (Check)</button>
+            <button class="btn-check" onclick="checkAnswers()">💻 Run Check</button>
         </div>
 
     </div>
@@ -208,10 +210,12 @@
             let allCorrect = true;
 
             inputs.forEach(input => {
-                let userAnswer = input.value.toLowerCase().trim();
-                userAnswer = userAnswer.replace(/\s+/g, ' '); 
+                // Normalizar respuesta del usuario: minúsculas y sin dobles espacios o puntos finales
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ').replace(/\.$/, '');
                 
                 let correctAnswers = input.getAttribute('data-answer').split('|');
+                // Normalizar las respuestas correctas por si acaso
+                correctAnswers = correctAnswers.map(ans => ans.replace(/\.$/, ''));
                 
                 if (userAnswer === "") {
                     input.style.borderColor = "var(--rojo-error)";
@@ -235,11 +239,11 @@
             if (allCorrect) {
                 feedback.style.backgroundColor = "#e8f5e9";
                 feedback.style.color = "var(--verde-correcto)";
-                feedback.innerHTML = "✅ Diagnostics Complete: 0 Errors found. Excellent coding!";
+                feedback.innerHTML = "✅ ¡Código compilado con éxito! Todas tus respuestas son correctas.";
             } else {
                 feedback.style.backgroundColor = "#fff3e0";
                 feedback.style.color = "#ff9800";
-                feedback.innerHTML = "⚠️ System Warning: Bugs detected in your answers (marked in red). Debug and try again!";
+                feedback.innerHTML = "⚠️ Se detectaron errores de sintaxis (marcados en rojo). ¡Depura tus respuestas e intenta de nuevo!";
             }
         }
     </script>

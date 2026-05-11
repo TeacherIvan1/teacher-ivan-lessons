@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: Apps & Digital Tools - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --morado-b1: #9C27B0; /* Identificador B1 */
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--morado-b1);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+        .level-badge { display: inline-block; background: var(--morado-b1); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; }
+
+        /* Vocab Box */
+        .vocab-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--morado-b1);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+        }
+        .vocab-list {
+            display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;
+        }
+        .vocab-item {
+            background: white; padding: 8px 15px; border-radius: 5px; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: var(--azul-primario);
+        }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--morado-b1); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 18px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--morado-b1); box-shadow: 0 0 5px rgba(156, 39, 176, 0.2); }
+        
+        .short-input { width: 130px; text-align: center; }
+        .medium-input { width: 200px; text-align: center; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <br>
+            <span class="level-badge">Level B1</span>
+            <h1>Apps & Digital Tools</h1>
+            <p>Unit 3 - Lesson 2 | Vocabulary Building Technology</p>
+        </div>
+
+        <div class="vocab-box">
+            <h2>💻 Core Tech Vocabulary</h2>
+            <p>Review these essential terms before starting the exercises. You will need them to complete the worksheet.</p>
+            <div class="vocab-list">
+                <span class="vocab-item">Dashboard</span>
+                <span class="vocab-item">Glitch / Bug</span>
+                <span class="vocab-item">Launch</span>
+                <span class="vocab-item">User-friendly</span>
+                <span class="vocab-item">Cloud storage</span>
+                <span class="vocab-item">Interface</span>
+                <span class="vocab-item">Update</span>
+                <span class="vocab-item">Freelance</span>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Tech Definitions</h3>
+            <p class="instructions">Read the definitions carefully and type the correct vocabulary word from the box above.</p>
+            
+            <div class="question">
+                1. A visual control panel that displays important data and metrics: <input type="text" class="medium-input" data-answer="dashboard">
+            </div>
+            <div class="question">
+                2. A system where you can save and access your files over the internet, like Google Drive: <input type="text" class="medium-input" data-answer="cloud storage|cloud">
+            </div>
+            <div class="question">
+                3. A sudden, usually temporary malfunction or error in software: <input type="text" class="medium-input" data-answer="glitch|bug">
+            </div>
+            <div class="question">
+                4. Software or a website that is easy to understand and use for beginners: <input type="text" class="medium-input" data-answer="user-friendly|user friendly">
+            </div>
+            <div class="question">
+                5. To officially release a new website or mobile application to the public: <input type="text" class="medium-input" data-answer="launch">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Developing the "Health & Fitness App"</h3>
+            <p class="instructions">Read the text about a real software development project. Fill in the blanks with the correct words based on context.</p>
+            
+            <div class="reading-box">
+                Recently, we decided to build a Health & Fitness tracking application for the students at Colegio Fielding. The main goal was to organize their workout routines and morning runs. First, we designed the visual <input type="text" class="short-input" data-answer="interface"> (1) using HTML and Glide to make sure it looked great on mobile phones. 
+                <br><br>
+                Instead of using complex local databases, we linked the app directly to Google Sheets, utilizing it as our <input type="text" class="medium-input" data-answer="cloud storage"> (2). This allowed us to manage the student data efficiently through a main <input type="text" class="medium-input" data-answer="dashboard"> (3).
+                <br><br>
+                During the testing phase, a student reported a critical <input type="text" class="short-input" data-answer="bug|glitch"> (4); the app was crashing when they tried to input their CrossFit results. Our developer immediately wrote some Google Apps Script to fix it and pushed a new software <input type="text" class="short-input" data-answer="update"> (5). 
+                <br><br>
+                Now that the app is highly intuitive and <input type="text" class="medium-input" data-answer="user-friendly|user friendly"> (6), we are finally ready to <input type="text" class="short-input" data-answer="launch"> (7) it next Monday!
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> Professional Scenarios</h3>
+            <p class="instructions">Complete the sentences by writing the correct missing word. Think about the professional context of remote work and tech.</p>
+
+            <div class="question">
+                1. If you want to work as a <input type="text" class="short-input" data-answer="freelance|freelancer"> developer on platforms like Upwork, you must know how to communicate clearly with international clients.
+            </div>
+            <div class="question">
+                2. Don't forget to <input type="text" class="short-input" data-answer="update"> your operating system tonight; the new version contains important security patches.
+            </div>
+            <div class="question">
+                3. The web <input type="text" class="short-input" data-answer="interface"> is too complicated. Users are getting confused and closing the page.
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">💻 Run Diagnostics (Check)</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                let userAnswer = input.value.toLowerCase().trim();
+                userAnswer = userAnswer.replace(/\s+/g, ' '); 
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "✅ Diagnostics Complete: 0 Errors found. Excellent coding!";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ System Warning: Bugs detected in your answers (marked in red). Debug and try again!";
+            }
+        }
+    </script>
+</body>
+</html>

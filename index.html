@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheets Repository - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --blanco-puro: #FFFFFF;
+            
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+            
+            --card-shadow: 0 10px 30px rgba(10, 70, 140, 0.08);
+
+            /* Colores por Nivel */
+            --color-a1: #4CAF50; /* Verde */
+            --color-a2: #2196F3; /* Azul */
+            --color-b1: #9C27B0; /* Púrpura */
+            --color-b2: #E91E63; /* Rosa/Rojo */
+            --color-ielts: #FF9800; /* Naranja */
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3, .logo-container, .card-tag { font-family: var(--font-titulares); margin: 0; }
+        
+        /* --- Hero Section --- */
+        .hero {
+            padding: 3rem 4rem;
+            display: flex; flex-direction: column; align-items: center;
+            background-image: linear-gradient(rgba(10, 70, 140, 0.9), rgba(10, 70, 140, 1)), url('https://i.imgur.com/AIOtoMn.jpeg');
+            background-size: cover; background-position: center;
+            color: var(--blanco-nieve);
+            text-align: center;
+        }
+
+        .logo-img { height: 80px; width: auto; margin-bottom: 1.5rem; }
+
+        .hero-title {
+            font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .hero-title span { color: var(--naranja-vibrante); }
+
+        /* --- Filtros por Nivel --- */
+        .filter-section {
+            background-color: var(--blanco-puro);
+            padding: 1.5rem;
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex; justify-content: center;
+        }
+
+        .filter-container { display: flex; flex-wrap: wrap; gap: 10px; max-width: 1200px; }
+
+        .filter-btn {
+            background: transparent; border: 2px solid var(--azul-primario);
+            padding: 8px 20px; border-radius: 50px;
+            font-weight: 700; color: var(--azul-primario);
+            cursor: pointer; transition: all 0.3s;
+            text-transform: uppercase; font-size: 0.85rem;
+        }
+
+        .filter-btn:hover { background: rgba(10, 70, 140, 0.05); }
+
+        .filter-btn.active {
+            background: var(--azul-primario); color: var(--blanco-puro);
+            box-shadow: 0 4px 10px rgba(10, 70, 140, 0.2);
+        }
+
+        /* --- Contenedor de Lecciones --- */
+        .content-wrapper { flex: 1; padding: 3rem 2rem; display: flex; justify-content: center; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px; width: 100%; max-width: 1200px;
+        }
+
+        /* Estilo de Tarjeta Vacía / Maqueta */
+        .card {
+            background: var(--blanco-puro); border-radius: 10px;
+            padding: 2rem; box-shadow: var(--card-shadow);
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(200, 205, 210, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        /* Indicadores de Nivel en Tarjetas */
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; }
+        .lvl-a1::before { background: var(--color-a1); }
+        .lvl-a2::before { background: var(--color-a2); }
+        .lvl-b1::before { background: var(--color-b1); }
+        .lvl-b2::before { background: var(--color-b2); }
+        .lvl-ielts::before { background: var(--color-ielts); }
+
+        .card-tag { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .lvl-a1 .card-tag { color: var(--color-a1); }
+        .lvl-a2 .card-tag { color: var(--color-a2); }
+        .lvl-b1 .card-tag { color: var(--color-b1); }
+        .lvl-b2 .card-tag { color: var(--color-b2); }
+        .lvl-ielts .card-tag { color: var(--color-ielts); }
+
+        .card h3 { color: var(--azul-primario); font-size: 1.3rem; margin-bottom: 10px; }
+        .card p { color: #555; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; }
+
+        .card-link {
+            background: var(--naranja-vibrante); color: white;
+            text-decoration: none; padding: 10px; text-align: center;
+            border-radius: 5px; font-weight: 700; font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+        .card-link:hover { background: #e05e15; }
+
+        /* Mensaje de Repositorio Vacío */
+        .empty-state {
+            grid-column: 1 / -1; text-align: center; padding: 4rem;
+            color: var(--gris-neutro); font-style: italic;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--azul-primario); color: white;
+            text-align: center; padding: 1.5rem; border-top: 4px solid var(--naranja-vibrante);
+        }
+
+        /* Lógica de Filtrado */
+        .filter-item { display: none; }
+        .show { display: flex; animation: fadeIn 0.4s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="https://i.imgur.com/s05NqFM.png" alt="Logo" class="logo-img">
+        <h1 class="hero-title">REPOSITORIO POR <span>NIVELES</span></h1>
+        <p>Selecciona tu nivel actual para acceder a las worksheets y recursos interactivos.</p>
+    </section>
+
+    <div class="filter-section">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterSelection('all')">Ver Todo</button>
+            <button class="filter-btn" onclick="filterSelection('lvl-a1')">A1 (Beginner)</button>
+            <button class="filter-btn" onclick="filterSelection('lvl-a2')">A2 (Elementary)</button>
+            <button class="filter-btn" onclick="filterSelection('lvl-b1')">B1 (Intermediate)</button>
+            <button class="filter-btn" onclick="filterSelection('lvl-b2')">B2 (Upper Int)</button>
+            <button class="filter-btn" onclick="filterSelection('lvl-ielts')">IELTS Preparation</button>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="grid-container" id="lessonGrid">
+            
+            <div id="noLessons" class="empty-state">
+                <p>No hay lecciones publicadas en esta categoría todavía. <br> ¡Teacher Ivan está preparando nuevo material!</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB | Repositorio Educativo</p>
+    </footer>
+
+    <script>
+        function filterSelection(c) {
+            var x, i, hasItems = false;
+            x = document.getElementsByClassName("filter-item");
+            if (c == "all") c = "";
+            
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.remove("show");
+                if (x[i].className.indexOf(c) > -1) {
+                    x[i].classList.add("show");
+                    hasItems = true;
+                }
+            }
+
+            // Gestionar botones
+            var btns = document.getElementsByClassName("filter-btn");
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if (btns[i].getAttribute("onclick").includes("'" + (c || 'all') + "'")) {
+                    btns[i].classList.add("active");
+                }
+            }
+
+            // Mostrar/Ocultar mensaje de vacío
+            document.getElementById("noLessons").style.display = hasItems ? "none" : "block";
+        }
+
+        // Inicializar
+        window.onload = function() {
+            filterSelection('all');
+        };
+    </script>
+</body>
+</html>

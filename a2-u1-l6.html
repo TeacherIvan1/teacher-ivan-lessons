@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson 6: We didn't stay at home - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>We didn't stay at home</h1>
+            <p>Level A2 | Unit 1 - Lesson 6 | Negative Past Simple</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🛑</div>
+            <div class="grammar-content">
+                <h2>The Negative Past Simple</h2>
+                <p>To talk about things you did <strong>not</strong> do in the past, we use the auxiliary verb <strong>didn't</strong> (did not).</p>
+                
+                <div class="grammar-rule">
+                    <h4>Structure:</h4>
+                    <p style="font-size: 1.1rem;"><strong>Subject + didn't + Base Verb</strong></p>
+                    <p><em>Example:</em> We <strong>didn't stay</strong> at home.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ THE GOLDEN RULE:</strong><br>
+                    When you use <em>didn't</em>, the main verb <strong>returns to its normal base form</strong>! Do not use "-ed" or irregular past forms.<br>
+                    ✔️ I didn't play. <br>
+                    ❌ <s>I didn't played.</s>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Change the Reality</h3>
+            <p class="instructions">Rewrite the affirmative sentences into negative sentences. Remember the golden rule!</p>
+            
+            <div class="question">
+                1. They travelled to Santa Cruz on Friday.
+                <input type="text" class="long-input" data-answer="they didn't travel to santa cruz on friday.|they did not travel to santa cruz on friday.">
+            </div>
+            <div class="question">
+                2. She watched a movie last night.
+                <input type="text" class="long-input" data-answer="she didn't watch a movie last night.|she did not watch a movie last night.">
+            </div>
+            <div class="question">
+                3. The students studied History of Bolivia yesterday.
+                <input type="text" class="long-input" data-answer="the students didn't study history of bolivia yesterday.|the students did not study history of bolivia yesterday.">
+            </div>
+            <div class="question">
+                4. I ate a burger for lunch.
+                <input type="text" class="long-input" data-answer="i didn't eat a burger for lunch.|i did not eat a burger for lunch.">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> A Busy Weekend</h3>
+            <p class="instructions">Complete the sentences using the negative past simple form of the verbs in brackets.</p>
+            
+            <div class="question">
+                1. We <input type="text" class="medium-input" data-answer="didn't stay|did not stay"> (not/stay) at home on Saturday. We went to the gym.
+            </div>
+            <div class="question">
+                2. Lau <input type="text" class="medium-input" data-answer="didn't do|did not do"> (not/do) the AMRAP workout with me because she was tired.
+            </div>
+            <div class="question">
+                3. I <input type="text" class="medium-input" data-answer="didn't eat|did not eat"> (not/eat) Hawaiian pizza for dinner; I had a healthy salad instead.
+            </div>
+            <div class="question">
+                4. The teacher <input type="text" class="medium-input" data-answer="didn't go|did not go"> (not/go) running at 5:30 AM because it was raining.
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Trip to Uyuni</h3>
+            <p class="instructions">Read the story about a recent trip. Fill in the gaps using <strong>didn't + the verb in brackets</strong>.</p>
+            
+            <div class="reading-box">
+                Last month, my partner and I decided to take a trip. We <input type="text" class="medium-input" data-answer="didn't stay|did not stay"> (1. not/stay) in Sucre for the holidays. Instead, we travelled to Uyuni. We <input type="text" class="medium-input" data-answer="didn't sleep|did not sleep"> (2. not/sleep) in a tent; we stayed at Hotel CESARE. 
+                <br><br>
+                The weather was extremely cold at the salt flats, so we <input type="text" class="medium-input" data-answer="didn't wear|did not wear"> (3. not/wear) t-shirts and shorts. We needed heavy jackets! However, we <input type="text" class="medium-input" data-answer="didn't forget|did not forget"> (4. not/forget) to take a lot of beautiful perspective photos with our camera. It was an unforgettable experience.
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Debug the Mistakes</h3>
+            <p class="instructions">Find the grammar mistake in each sentence and rewrite it correctly.</p>
+
+            <div class="question">
+                1. I didn't went to the supermarket yesterday.
+                <input type="text" class="long-input" data-answer="i didn't go to the supermarket yesterday.|i did not go to the supermarket yesterday.">
+            </div>
+            <div class="question">
+                2. We not played video games on Sunday.
+                <input type="text" class="long-input" data-answer="we didn't play video games on sunday.|we did not play video games on sunday.">
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check Answers</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "🌟 ¡Excelente! Has dominado la regla de oro del Past Simple en su forma negativa.";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ Tienes algunos errores (marcados en rojo). Recuerda: con 'didn't', el verbo vuelve a su forma original sin '-ed' ni formas irregulares.";
+            }
+        }
+    </script>
+</body>
+</html>

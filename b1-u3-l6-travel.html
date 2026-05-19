@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: Did you travel last year? - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --purpura-b1: #9C27B0; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--purpura-b1);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--purpura-b1); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--purpura-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--purpura-b1); font-size: 1.1rem; }
+        .grammar-rule code { background: #eee; padding: 4px 8px; border-radius: 4px; color: var(--azul-primario); font-weight: bold; font-size: 0.95rem; }
+
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--purpura-b1); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--purpura-b1); box-shadow: 0 0 5px rgba(156, 39, 176, 0.3); }
+        
+        .short-input { width: 80px; text-align: center; }
+        .medium-input { width: 140px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.4;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .speaker { font-weight: bold; color: var(--azul-primario); }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 15px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--purpura-b1); color: white; box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3); }
+        .btn-check:hover { background-color: #7b1fa2; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Did you travel last year?</h1>
+            <p>Level B1 | Unit 3 - Lesson 6 | Past Simple Questions</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">✈️</div>
+            <div class="grammar-content">
+                <h2>Asking about Past Experiences</h2>
+                <p>To ask questions in the Past Simple (for all verbs except <em>To Be</em>), we must use the auxiliary verb <strong>DID</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Yes/No Questions</h4>
+                    <p><code>Did + Subject + Base Verb + Complement?</code><br>
+                    <em>Example:</em> <strong>Did</strong> you <strong>book</strong> the flight tickets?</p>
+                </div>
+
+                <div class="grammar-rule">
+                    <h4>Information Questions (Wh-)</h4>
+                    <p><code>Wh- Word + did + Subject + Base Verb?</code><br>
+                    <em>Example:</em> <strong>Where did</strong> they <strong>stay</strong> in Europe?</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ THE GOLDEN RULE:</strong><br>
+                    When you use the auxiliary <em>Did</em>, the main verb <strong>never changes</strong> to the past form!<br>
+                    ✔️ Did she travel abroad?<br>
+                    ❌ <s>Did she travelled abroad?</s>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> At the Travel Agency</h3>
+            <p class="instructions">Complete the questions using <strong>Did</strong> and the <strong>base form</strong> of the verb in brackets.</p>
+            
+            <div class="question">
+                1. <input type="text" class="short-input" data-answer="did"> you <input type="text" class="short-input" data-answer="pack"> (pack) your suitcase last night?
+            </div>
+            <div class="question">
+                2. Where <input type="text" class="short-input" data-answer="did"> they <input type="text" class="short-input" data-answer="stay"> (stay) when they visited Italy?
+            </div>
+            <div class="question">
+                3. <input type="text" class="short-input" data-answer="did"> the travel agent <input type="text" class="short-input" data-answer="cancel"> (cancel) the accommodation?
+            </div>
+            <div class="question">
+                4. How much money <input type="text" class="short-input" data-answer="did"> she <input type="text" class="short-input" data-answer="spend"> (spend) on souvenirs?
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Unscramble the Itinerary</h3>
+            <p class="instructions">Put the words in the correct order to form questions about a trip. Don't forget the question mark (?)</p>
+            
+            <div class="question">
+                1. travel / did / abroad / you / last year / ?
+                <input type="text" class="long-input" data-answer="did you travel abroad last year?">
+            </div>
+            <div class="question">
+                2. what / eat / in / you / did / Japan / ?
+                <input type="text" class="long-input" data-answer="what did you eat in japan?">
+            </div>
+            <div class="question">
+                3. the / did / enjoy / guided tour / they / ?
+                <input type="text" class="long-input" data-answer="did they enjoy the guided tour?">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Trip to Aomori</h3>
+            <p class="instructions">Read the interview with Teacher Ivan about his vacation in Japan. Fill in the gaps using <strong>Did + the verb in brackets</strong>.</p>
+            
+            <div class="reading-box">
+                <span class="speaker">Student:</span> Teacher, <input type="text" class="short-input" data-answer="did"> you <input type="text" class="short-input" data-answer="travel"> (1. travel) to Asia recently?<br><br>
+                <span class="speaker">Teacher Ivan:</span> Yes, I did! I went to Aomori, Japan, with my partner Lau.<br><br>
+                <span class="speaker">Student:</span> Wow! How many nights <input type="text" class="short-input" data-answer="did"> you <input type="text" class="short-input" data-answer="stay"> (2. stay) there?<br><br>
+                <span class="speaker">Teacher Ivan:</span> We stayed for nine nights at the Dormy Inn Natural Hot Spring.<br><br>
+                <span class="speaker">Student:</span> <input type="text" class="short-input" data-answer="did"> you <input type="text" class="short-input" data-answer="try"> (3. try) the local food while you were there?<br><br>
+                <span class="speaker">Teacher Ivan:</span> Yes! We had local specialties. It was breathtaking.<br><br>
+                <span class="speaker">Student:</span> What <input type="text" class="short-input" data-answer="did"> you <input type="text" class="short-input" data-answer="like"> (4. like) the most about the trip?<br><br>
+                <span class="speaker">Teacher Ivan:</span> Definitely the culture and the hot springs. We had a great time!
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Debug the Questions</h3>
+            <p class="instructions">There is a grammar mistake in each question. Rewrite the question correctly.</p>
+
+            <div class="question">
+                1. Did you went to the museum?
+                <input type="text" class="long-input" data-answer="did you go to the museum?">
+            </div>
+            <div class="question">
+                2. Where did they travelled?
+                <input type="text" class="long-input" data-answer="where did they travel?">
+            </div>
+            <div class="question">
+                3. Did she bought the flight tickets online?
+                <input type="text" class="long-input" data-answer="did she buy the flight tickets online?">
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">✈️ Check Flight</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                // Normalizar respuesta del usuario
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                // Quitar puntos finales (pero no signos de interrogación)
+                if(!userAnswer.includes("?")) {
+                   userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "✅ ¡Excelente! Tu gramática está lista para viajar por el mundo.";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ ¡Cuidado con el equipaje! Tienes errores marcados en rojo. Recuerda la regla de oro: el verbo principal NO cambia al usar 'Did'.";
+            }
+        }
+    </script>
+</body>
+</html>

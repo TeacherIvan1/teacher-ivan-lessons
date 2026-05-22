@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Unit 3 Review - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --purpura-b1: #9C27B0; 
+            --oro-review: #FFD700;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--purpura-b1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon for Review */
+        .ribbon {
+            position: absolute; top: 20px; right: -35px; background: var(--oro-review);
+            color: #333; padding: 5px 40px; font-weight: bold; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 0.9rem;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--purpura-b1); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+
+        /* Grammar Box (Summary) */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--purpura-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--purpura-b1); font-size: 1.1rem; }
+        
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--purpura-b1); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--purpura-b1); box-shadow: 0 0 5px rgba(156, 39, 176, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.4;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 15px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--purpura-b1); color: white; box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3); }
+        .btn-check:hover { background-color: #7b1fa2; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message, .ribbon { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <div class="ribbon">FINAL EXAM</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Unit 3: The Ultimate Review</h1>
+            <p>Level B1 | Mastery Check: Conditionals, Rel. Clauses & Future Forms</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏆</div>
+            <div class="grammar-content">
+                <h2>Are you ready?</h2>
+                <p>This worksheet tests everything you have learned in Unit 3. Use this quick reference guide to remember the core structures before you begin:</p>
+                
+                <div class="summary-grid">
+                    <div class="grammar-rule">
+                        <h4>Conditionals</h4>
+                        <ul style="margin:0; padding-left: 20px; font-size: 0.9rem;">
+                            <li><strong>2nd:</strong> If + Past, would + V1</li>
+                            <li><strong>3rd:</strong> If + Past Perf, would have + V3</li>
+                            <li><strong>Unless:</strong> If not</li>
+                            <li><strong>Provided that:</strong> Only if</li>
+                        </ul>
+                    </div>
+                    <div class="grammar-rule">
+                        <h4>Relative & Future</h4>
+                        <ul style="margin:0; padding-left: 20px; font-size: 0.9rem;">
+                            <li><strong>Who/That:</strong> People</li>
+                            <li><strong>Which/That:</strong> Things</li>
+                            <li><strong>Whose:</strong> Possession</li>
+                            <li><strong>Future Cont:</strong> will be + V-ing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> The Conditional Challenge</h3>
+            <p class="instructions">Read carefully. Are we talking about a hypothetical present (2nd) or an impossible past (3rd)? Complete the sentences with the correct structure.</p>
+            
+            <div class="question">
+                1. If I <input type="text" class="short-input" data-answer="were"> (be) the Headmaster of Colegio Fielding, I would organize more sports events. <em>(Hypothetical Present)</em>
+            </div>
+            <div class="question">
+                2. We <input type="text" class="medium-input" data-answer="would have won|'d have won"> (win) the debate competition if we had prepared more arguments. <em>(Impossible Past)</em>
+            </div>
+            <div class="question">
+                3. If the developers <input type="text" class="medium-input" data-answer="had checked"> (check) the code yesterday, the app wouldn't have crashed. <em>(Impossible Past)</em>
+            </div>
+            <div class="question">
+                4. I won't share the password with you <input type="text" class="short-input" data-answer="unless"> you promise to keep it a secret. <em>(Use: unless / provided that)</em>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Connecting Ideas</h3>
+            <p class="instructions">Combine the sentences using the correct relative pronoun (<strong>who, which, where, whose</strong>).</p>
+            
+            <div class="question">
+                1. That is the student. His application won the first prize at the Tech Fair.
+                <input type="text" class="long-input" data-answer="that is the student whose application won the first prize at the tech fair.|that is the student whose application won the first prize.">
+            </div>
+            <div class="question">
+                2. We study in the new laboratory. The computers are incredibly fast there.
+                <input type="text" class="long-input" data-answer="we study in the new laboratory where the computers are incredibly fast.|we study in the new laboratory where the computers are incredibly fast there.">
+            </div>
+            <div class="question">
+                3. I bought a new smartwatch. It calculates my heart rate during CrossFit.
+                <input type="text" class="long-input" data-answer="i bought a new smartwatch which calculates my heart rate during crossfit.|i bought a new smartwatch that calculates my heart rate during crossfit.">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> Projecting the Future</h3>
+            <p class="instructions">Complete the sentences using <strong>will</strong>, <strong>might</strong>, or the <strong>Future Continuous</strong> form of the verbs.</p>
+            
+            <div class="question">
+                1. Please be quiet tomorrow at 9:00 AM. The students <input type="text" class="medium-input" data-answer="will be taking"> (take) their IELTS mock exam.
+            </div>
+            <div class="question">
+                2. I am not completely sure, but I <input type="text" class="short-input" data-answer="might"> study Information Technology at university next year.
+            </div>
+            <div class="question">
+                3. Don't worry about the bugs in the code. I promise I <input type="text" class="medium-input" data-answer="will fix|'ll fix"> (fix) them before Monday.
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> The Fielding Tech Fair 2027</h3>
+            <p class="instructions">Read the text. Fill in the blanks combining all the grammar from Unit 3. Pay attention to the clues in brackets!</p>
+            
+            <div class="reading-box">
+                Next week, Colegio Fielding <input type="text" class="medium-input" data-answer="will be hosting"> (1. host - <em>Future Continuous</em>) its annual Tech Fair. The student <input type="text" class="short-input" data-answer="whose"> (2. <em>Relative Pronoun for possession</em>) project wins first place will receive a brand new laptop. 
+                <br><br>
+                Last year was a disaster for my team. If we had tested our robot before the presentation, it <input type="text" class="medium-input" data-answer="wouldn't have exploded|would not have exploded"> (3. not/explode - <em>Third Conditional</em>). Anyway, if I <input type="text" class="short-input" data-answer="were"> (4. be - <em>Second Conditional</em>) the judge this year, I would give the prize to Tatiana. Her app is amazing! You can come and watch the presentations <input type="text" class="medium-input" data-answer="provided that|as long as"> (5. <em>Condition: only if</em>) you bring your student ID.
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Exam</button>
+            <button class="btn-check" onclick="checkAnswers()">🏅 Submit Final Review</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const total = inputs.length;
+
+            inputs.forEach(input => {
+                // Normalizar respuesta del usuario
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (score === total) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = `🏆 ¡CALIFICACIÓN PERFECTA! (${score}/${total}). Eres un maestro absoluto del Nivel B1. Estás listo para el Nivel B2.`;
+            } else if (score >= total * 0.7) {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = `👍 ¡Muy buen trabajo! (${score}/${total}). Tienes un gran dominio de la Unidad 3, pero revisa tus errores en rojo para alcanzar la perfección.`;
+            } else {
+                feedback.style.backgroundColor = "#ffebee";
+                feedback.style.color = "var(--rojo-error)";
+                feedback.innerHTML = `⚠️ Necesitas repasar. (${score}/${total}). Vuelve a leer la caja de gramática y los apuntes de las lecciones anteriores de la Unidad 3.`;
+            }
+        }
+    </script>
+</body>
+</html>

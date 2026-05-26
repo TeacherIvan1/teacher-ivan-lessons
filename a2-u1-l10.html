@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Project: My Best Trip - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Project Brief Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .step-box { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .step-box h4 { margin: 0 0 10px 0; color: var(--azul-primario); font-size: 1.1rem; }
+
+        /* Exercises / Inputs */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"], textarea {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 10px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 8px;
+        }
+        input[type="text"]:focus, textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        textarea { resize: vertical; min-height: 120px; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; margin-top: 20px; font-size: 1.05rem; padding: 20px; border-radius: 8px; background: #e8f5e9; border: 1px solid var(--verde-correcto); }
+        #script-preview { font-style: italic; background: white; padding: 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--azul-primario); white-space: pre-wrap;}
+
+        /* Tips Box */
+        .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .tip-card { background: #fff3e0; padding: 15px; border-radius: 8px; border: 1px solid #ffe0b2; font-size: 0.95rem; }
+        .tip-card h4 { margin: 0 0 5px 0; color: var(--naranja-vibrante); }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print { display: none !important; }
+            input[type="text"], textarea { border: 1px solid black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Project: My Best Trip</h1>
+            <p>Level A2 | Unit 1 | Script Builder & Recording Guide</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🎬</div>
+            <div class="grammar-content">
+                <h2>Your Final Mission</h2>
+                <p>It's time to show what you know! Your final project is to record a short video or audio telling a story about your best holiday. Use this worksheet to write your script.</p>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h4>🎯 Grammar Checklist</h4>
+                        • Past Simple (Regular & Irregular verbs)<br>
+                        • Verb To Be (Was / Were)<br>
+                        • Time Expressions (Last year, ago...)
+                    </div>
+                    <div class="tip-card">
+                        <h4>🗣️ Recording Tips</h4>
+                        • Speak loud and clear!<br>
+                        • Remember the -ed pronunciation (/t/, /d/, /id/).<br>
+                        • Smile while you speak!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Brainstorming -->
+        <div class="exercise-section">
+            <h3><span>1</span> Brainstorming (Wh- Questions)</h3>
+            <p class="instructions">Answer these questions with short sentences. This will give you the ideas for your story.</p>
+            
+            <div class="question">
+                <strong>Where</strong> did you go and <strong>When</strong> did you travel?
+                <input type="text" placeholder="Example: I went to La Paz last year.">
+            </div>
+            <div class="question">
+                <strong>Who</strong> did you go with?
+                <input type="text" placeholder="Example: I travelled with my family and my dog.">
+            </div>
+            <div class="question">
+                <strong>How</strong> was the weather and the place? (Use adjectives)
+                <input type="text" placeholder="Example: The weather was freezing, but the city was beautiful.">
+            </div>
+            <div class="question">
+                <strong>What</strong> did you do there? (Name 2 or 3 activities)
+                <input type="text" placeholder="Example: We visited the Teleférico and ate salteñas.">
+            </div>
+        </div>
+
+        <!-- Step 2: Drafting the Script -->
+        <div class="exercise-section">
+            <h3><span>2</span> Write your Script</h3>
+            <p class="instructions">Now, connect your ideas from Step 1 to write your full story. Remember to use <strong>Sequencing Words</strong> (First, Next, Then, After that, Finally).</p>
+
+            <div class="question">
+                <strong>Introduction:</strong> (Say hello, say where and when you went, and who was with you)
+                <textarea id="intro-text" placeholder="Hello everyone! Today I want to tell you about my best trip. Last year, I..."></textarea>
+            </div>
+
+            <div class="question">
+                <strong>Body:</strong> (Tell the story. Use sequencing words and irregular verbs. Explain what you did and didn't do)
+                <textarea id="body-text" placeholder="First, we arrived at... Then, we saw... After that, we didn't..."></textarea>
+            </div>
+
+            <div class="question">
+                <strong>Conclusion:</strong> (Give your final opinion using travel adjectives)
+                <textarea id="conclusion-text" placeholder="Finally, we went back home. It was an awesome holiday because..."></textarea>
+            </div>
+        </div>
+
+        <!-- Feedback & Review Section -->
+        <div id="feedback-message">
+            <h3 style="margin-top: 0; color: var(--verde-correcto);">🔍 AI Script Analyzer</h3>
+            <p id="analysis-text">Here is the analysis of your script:</p>
+            <ul id="checklist" style="line-height: 1.8;"></ul>
+            <h4>Your Complete Script:</h4>
+            <div id="script-preview"></div>
+            <p style="margin-bottom: 0; font-weight: bold; color: var(--azul-primario);">Now, practice reading it out loud 3 times before recording!</p>
+        </div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Save as PDF</button>
+            <button class="btn-check" onclick="analyzeScript()">🚀 Analyze My Script</button>
+        </div>
+
+    </div>
+
+    <script>
+        function analyzeScript() {
+            // Obtener textos
+            const intro = document.getElementById('intro-text').value.trim();
+            const body = document.getElementById('body-text').value.trim();
+            const conclusion = document.getElementById('conclusion-text').value.trim();
+            
+            const fullScript = intro + "\n\n" + body + "\n\n" + conclusion;
+            const fullScriptLower = fullScript.toLowerCase();
+
+            // Referencias DOM
+            const feedbackBox = document.getElementById('feedback-message');
+            const previewBox = document.getElementById('script-preview');
+            const checklist = document.getElementById('checklist');
+
+            if (fullScript.length < 20) {
+                alert("Please write your script before analyzing it!");
+                return;
+            }
+
+            // Análisis de palabras clave (Nivel A2 Unidad 1)
+            const verbsPast = ['went', 'saw', 'ate', 'took', 'was', 'were', 'had', 'did', 'bought', 'travelled', 'visited', 'played', 'walked'];
+            const negatives = ["didn't", "did not", "wasn't", "was not", "weren't", "were not"];
+            const sequencers = ['first', 'next', 'then', 'after that', 'finally'];
+            const timeMarkers = ['last', 'yesterday', 'ago', 'in', 'on'];
+
+            let foundVerbs = verbsPast.filter(v => fullScriptLower.includes(v));
+            let foundNegs = negatives.filter(n => fullScriptLower.includes(n));
+            let foundSeq = sequencers.filter(s => fullScriptLower.includes(s));
+            let foundTime = timeMarkers.filter(t => fullScriptLower.includes(t));
+
+            // Construir lista de retroalimentación
+            checklist.innerHTML = "";
+
+            // Check Verbos en Pasado
+            if (foundVerbs.length > 0) {
+                checklist.innerHTML += `<li>✅ <strong>Past Simple:</strong> Good job! You used verbs like <em>${foundVerbs.slice(0,3).join(", ")}</em>.</li>`;
+            } else {
+                checklist.innerHTML += `<li>⚠️ <strong>Past Simple:</strong> I can't find common past verbs (went, saw, was). Make sure you are telling a story in the past!</li>`;
+            }
+
+            // Check Negativos
+            if (foundNegs.length > 0) {
+                checklist.innerHTML += `<li>✅ <strong>Negative Forms:</strong> Great! You included things you didn't do.</li>`;
+            } else {
+                checklist.innerHTML += `<li>💡 <strong>Tip:</strong> Try to add a negative sentence (e.g., "We didn't stay at the hotel").</li>`;
+            }
+
+            // Check Secuencias
+            if (foundSeq.length > 1) {
+                checklist.innerHTML += `<li>✅ <strong>Sequencing Words:</strong> Perfect story structure! You used <em>${foundSeq.join(", ")}</em>.</li>`;
+            } else {
+                checklist.innerHTML += `<li>⚠️ <strong>Sequencing Words:</strong> Your story needs better organization. Add words like <em>First, Then, Finally</em>.</li>`;
+            }
+
+            // Check Marcadores de tiempo
+            if (foundTime.length > 0) {
+                checklist.innerHTML += `<li>✅ <strong>Time Expressions:</strong> You successfully specified WHEN the story happened.</li>`;
+            } else {
+                checklist.innerHTML += `<li>💡 <strong>Tip:</strong> Tell us exactly when this happened using <em>Last year, two months ago...</em></li>`;
+            }
+
+            // Mostrar el texto final
+            previewBox.innerText = fullScript;
+            feedbackBox.style.display = "block";
+
+            // Hacer scroll suave hacia el feedback
+            feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>

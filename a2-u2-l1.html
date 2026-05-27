@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: I love running - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --verde-a2: #28A745; 
+            --verde-claro: #d4edda;
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #28A745; /* Color A2 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario A2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--verde-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática: Verbs of Preference + ING */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: var(--verde-claro); color: #155724; font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a2-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a2 { color: var(--a2-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--verde-claro); background-color: rgba(40, 167, 69, 0.05); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 2 • Lesson 1</span>
+            <h1 class="lesson-title">I love running</h1>
+            <p class="lesson-objective">Objective: Express hobbies, likes, and dislikes using verbs of preference + ING.</p>
+        </div>
+
+        <!-- Sección 1: Vocabulario -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Hobbies & Activities</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these action verbs to talk about the activities you do in your free time.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏃‍♂️</span>
+                    <span class="vocab-en">Run</span>
+                    <span class="vocab-es">Correr</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--a2-color);">Activity: Running</span>
+                    <button class="audio-btn" onclick="playSound('Run. Running')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🌅</span>
+                    <span class="vocab-en">Wake up</span>
+                    <span class="vocab-es">Despertar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--a2-color);">Activity: Waking up</span>
+                    <button class="audio-btn" onclick="playSound('Wake up. Waking up')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">👟</span>
+                    <span class="vocab-en">Research</span>
+                    <span class="vocab-es">Investigar (en internet)</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--a2-color);">Activity: Researching</span>
+                    <button class="audio-btn" onclick="playSound('Research. Researching')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🛋️</span>
+                    <span class="vocab-en">Sleep</span>
+                    <span class="vocab-es">Dormir</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--a2-color);">Activity: Sleeping</span>
+                    <button class="audio-btn" onclick="playSound('Sleep. Sleeping')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Gramática -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Like / Love / Hate + ING</h2>
+            
+            <div class="grammar-box">
+                <p>When you talk about activities you like or dislike in general, you must add <strong>-ING</strong> to the action verb. It turns the action into a "thing" (a noun).</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">The Rule</div>
+                        <div class="comp-formula">Subject + Love / Like / Hate / Enjoy + Verb-ING</div>
+                        <p style="font-size: 0.9rem; color: #555;">Use this to talk about your hobbies and daily preferences.</p>
+                        <div class="comp-example">"I <span class="highlight-blue">love</span> <span class="highlight-a2">reading</span> books." (Amo leer libros).</div>
+                        <div class="comp-example">"She <span class="highlight-blue">enjoys</span> <span class="highlight-a2">playing</span> games." (Ella disfruta jugar).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE SPANISH TRAP</div>
+                <p>In Spanish, we use the base verb: "Me gusta correr". Do NOT say "I like run" in English. This is a very common A1 mistake. In A2, you must say "I like <strong>running</strong>".</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">I love wake up early.</span><br>
+                    ✅ <span style="color: #155724;">I love <strong>waking</strong> up early.</span>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #555;"><em>Note: You can also say "I like TO run", but using -ING is much more natural when talking about general hobbies, especially after the verb "Enjoy".</em></p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The 5:30 AM Routine</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"I have a very energetic morning routine. I <span class="highlight-blue">love</span> <span class="highlight-a2">waking up</span> early. Every day, I <span class="highlight-blue">enjoy</span> <span class="highlight-a2">running</span> at 5:30 AM before my classes at Colegio Fielding. It helps me prepare for the day!"</p>
+                <p>"Because I run so much, I <span class="highlight-blue">like</span> <span class="highlight-a2">researching</span> high-performance shoes. I love wearing my Brooks Hyperion Elite 4 on the track. However, I <span class="highlight-blue">hate</span> <span class="highlight-a2">running</span> in bad weather without my Nike Pegasus Trail 5 Gore-Tex."</p>
+                <p>"At home, things are very different. Perlita the cat absolutely <span class="highlight-blue">hates</span> <span class="highlight-a2">exercising</span>. She <span class="highlight-blue">enjoys</span> <span class="highlight-a2">sleeping</span> on the sofa all day and <span class="highlight-a2">watching</span> me come back tired. We definitely have different hobbies!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('I have a very energetic morning routine. I love waking up early. Every day, I enjoy running at 5:30 AM before my classes at Colegio Fielding. It helps me prepare for the day! Because I run so much, I like researching high-performance shoes. I love wearing my Brooks Hyperion Elite 4 on the track. However, I hate running in bad weather without my Nike Pegasus Trail 5 Gore-Tex. At home, things are very different. Perlita the cat absolutely hates exercising. She enjoys sleeping on the sofa all day and watching me come back tired. We definitely have different hobbies!')">🔊 Listen to the text</button>
+            </div>
+        </section>
+
+        <!-- Sección 3: Evaluación (Gatekeeper) -->
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> A2 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Show what you like! Score 5/5 to unlock Lesson 2.</p>
+
+            <form id="eval-form">
+                <!-- Q1 -->
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Trap:</strong> "Teacher Ivan loves __________ at 5:30 AM."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="run" class="eval-radio"><label for="q1a" class="eval-label">run</label>
+                        <input type="radio" name="q1" id="q1b" value="runs" class="eval-radio"><label for="q1b" class="eval-label">runs</label>
+                        <input type="radio" name="q1" id="q1c" value="running" class="eval-radio"><label for="q1c" class="eval-label">running</label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="eval-question">
+                    <p>2. <strong>Grammar:</strong> "Perlita enjoys __________ on the sofa."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="sleeping" class="eval-radio"><label for="q2a" class="eval-label">sleeping</label>
+                        <input type="radio" name="q2" id="q2b" value="sleep" class="eval-radio"><label for="q2b" class="eval-label">sleep</label>
+                        <input type="radio" name="q2" id="q2c" value="sleeps" class="eval-radio"><label for="q2c" class="eval-label">sleeps</label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="eval-question">
+                    <p>3. <strong>Vocabulary:</strong> What does "Researching" mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="sleep" class="eval-radio"><label for="q3a" class="eval-label">To sleep a lot</label>
+                        <input type="radio" name="q3" id="q3b" value="find" class="eval-radio"><label for="q3b" class="eval-label">To look for information (investigar)</label>
+                        <input type="radio" name="q3" id="q3c" value="run" class="eval-radio"><label for="q3c" class="eval-label">To run in the rain</label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What shoes does Teacher Ivan like researching?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="school" class="eval-radio"><label for="q4a" class="eval-label">School shoes for the students</label>
+                        <input type="radio" name="q4" id="q4b" value="running" class="eval-radio"><label for="q4b" class="eval-label">Brooks Hyperion and Nike Pegasus running shoes</label>
+                        <input type="radio" name="q4" id="q4c" value="boots" class="eval-radio"><label for="q4c" class="eval-label">Winter boots</label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="eval-question">
+                    <p>5. <strong>The Trap Check:</strong> Which sentence is mathematically CORRECT in English?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="bad" class="eval-radio"><label for="q5a" class="eval-label">I enjoy wake up early.</label>
+                        <input type="radio" name="q5" id="q5b" value="bad2" class="eval-radio"><label for="q5b" class="eval-label">I like play video games.</label>
+                        <input type="radio" name="q5" id="q5c" value="good" class="eval-radio"><label for="q5c" class="eval-label">I hate running in bad weather.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job! Moving to Lesson 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'running', q2: 'sleeping', q3: 'find', q4: 'running', q5: 'good' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully learned how to use verbs of preference.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: After LOVE, LIKE, HATE, and ENJOY, always use the -ING form of the verb! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

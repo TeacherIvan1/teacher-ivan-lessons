@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: How often do you train? - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
+        
+        .scale-box { display: flex; justify-content: space-between; background: white; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #ddd; font-weight: bold; }
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.4;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>How often do you train?</h1>
+            <p>Level A2 | Unit 2 - Lesson 2 | Adverbs of Frequency</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏋️</div>
+            <div class="grammar-content">
+                <h2>Consistency & Frequency</h2>
+                <p>We use Adverbs of Frequency to describe <strong>how often</strong> we do an activity or a routine.</p>
+                
+                <div class="scale-box">
+                    <span>100% Always</span>
+                    <span>80% Usually</span>
+                    <span>50% Sometimes</span>
+                    <span>10% Rarely</span>
+                    <span>0% Never</span>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ THE POSITION RULE:</strong><br>
+                    <strong>1. Before Main Verbs:</strong> Subject + Adverb + Verb.<br>
+                    ✔️ I <em>always</em> train at 6 AM. (❌ <s>I train always</s>)<br><br>
+                    <strong>2. AFTER the verb To Be:</strong> Subject + Am/Is/Are + Adverb.<br>
+                    ✔️ He is <em>never</em> late to the gym. (❌ <s>He never is late</s>)
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 1: The Scale -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Frequency Scale</h3>
+            <p class="instructions">Look at the percentages in brackets. Complete the sentences with the correct Adverb of Frequency.</p>
+            
+            <div class="question">
+                1. I <input type="text" class="short-input" data-answer="always"> <strong>(100%)</strong> warm up before lifting weights.
+            </div>
+            <div class="question">
+                2. My gym partner <input type="text" class="short-input" data-answer="usually"> <strong>(80%)</strong> drinks a protein shake after the workout.
+            </div>
+            <div class="question">
+                3. We <input type="text" class="short-input" data-answer="sometimes"> <strong>(50%)</strong> run in the park on Sundays.
+            </div>
+            <div class="question">
+                4. Teacher Ivan <input type="text" class="short-input" data-answer="never"> <strong>(0%)</strong> skips a training session.
+            </div>
+        </div>
+
+        <!-- Exercise 2: Unscramble the order -->
+        <div class="exercise-section">
+            <h3><span>B</span> Put it in Order</h3>
+            <p class="instructions">Unscramble the words to make correct sentences. Remember the position rule! Pay attention to the verb "To Be".</p>
+            
+            <div class="question">
+                1. always / the / train / I / morning / in / .
+                <input type="text" class="long-input" data-answer="i always train in the morning.">
+            </div>
+            <div class="question">
+                2. late / never / CrossFit / for / she / is / class / .
+                <input type="text" class="long-input" data-answer="she is never late for crossfit class.|she is never late for crossfit class">
+            </div>
+            <div class="question">
+                3. they / tired / the / usually / workout / after / are / .
+                <input type="text" class="long-input" data-answer="they are usually tired after the workout.|they are usually tired after the workout">
+            </div>
+        </div>
+
+        <!-- Exercise 3: Reading Context -->
+        <div class="exercise-section">
+            <h3><span>C</span> Carlos's Fitness Routine</h3>
+            <p class="instructions">Read about Carlos. Fill in the blanks with the correct Adverb of Frequency using the percentages as a guide.</p>
+            
+            <div class="reading-box">
+                Carlos is very disciplined with his fitness routine. He <input type="text" class="medium-input" data-answer="always"> (1. 100%) wakes up at 5:00 AM. He is <input type="text" class="medium-input" data-answer="never"> (2. 0%) lazy when it comes to exercise! At the gym, he <input type="text" class="medium-input" data-answer="usually"> (3. 80%) focuses on lifting kettlebells and doing squats. Because his diet is very strict, he <input type="text" class="medium-input" data-answer="rarely"> (4. 10%) eats junk food during the week. However, he <input type="text" class="medium-input" data-answer="sometimes"> (5. 50%) eats a delicious pizza on Sundays as a cheat meal!
+            </div>
+        </div>
+
+        <!-- Exercise 4: Spot the Mistake -->
+        <div class="exercise-section">
+            <h3><span>D</span> Debug the Routine</h3>
+            <p class="instructions">There is a mistake with the position of the adverb in each sentence. Rewrite the sentence correctly.</p>
+
+            <div class="question">
+                1. I run sometimes in the evening.
+                <input type="text" class="long-input" data-answer="i sometimes run in the evening.">
+            </div>
+            <div class="question">
+                2. My coach usually is energetic.
+                <input type="text" class="long-input" data-answer="my coach is usually energetic.">
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check Frequency</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "🌟 ¡Excelente! Has dominado las reglas de posición de los Adverbios de Frecuencia.";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ ¡Cuidado con la regla de posición! (Errores marcados en rojo). Recuerda: Antes del verbo de acción, pero DESPUÉS del verbo To Be.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A2 Lesson: CrossFit Equipment - Teacher Ivan</title>
+    <title>A2 Lesson: CrossFit Equipment & Comparisons - Teacher Ivan</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -42,7 +42,7 @@
         .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
         .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
 
-        /* Vocab Box */
+        /* Grammar Box */
         .grammar-box {
             background-color: var(--gris-claro);
             border-left: 5px solid var(--azul-a2);
@@ -55,11 +55,11 @@
         }
         
         .grammar-content { flex: 1; }
+        .grammar-table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; font-size: 0.95rem; }
+        .grammar-table th, .grammar-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        .grammar-table th { background-color: var(--azul-primario); color: white; }
         
-        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
-        .vocab-item { background: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd; display: flex; align-items: center; gap: 10px; }
-        .vocab-item span { font-size: 1.5rem; }
-        .vocab-item strong { color: var(--naranja-vibrante); font-size: 1.1rem; }
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
 
         /* Exercises */
         .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
@@ -84,7 +84,8 @@
         input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
         
         .short-input { width: 120px; text-align: center; }
-        .medium-input { width: 160px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
 
         /* Reading Box */
         .reading-box {
@@ -125,87 +126,118 @@
         <div class="header">
             <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
             <h1>CrossFit Equipment</h1>
-            <p>Level A2 | Unit 2 - Lesson 3 | Vocabulary Building</p>
+            <p>Level A2 | Unit 2 - Lesson 3 | Comparatives & Superlatives</p>
         </div>
 
         <div class="grammar-box">
-            <div style="font-size: 3.5rem;">🏋️‍♀️</div>
+            <div style="font-size: 3.5rem;">⚖️</div>
             <div class="grammar-content">
-                <h2>The Gym Dictionary</h2>
-                <p>To understand a fitness routine or a CrossFit WOD (Workout of the Day), you need to know the correct names for the equipment.</p>
+                <h2>Comparing the Gear</h2>
+                <p>We use <strong>Comparatives</strong> to compare two objects, and <strong>Superlatives</strong> to describe the extreme limit of a group (the maximum or minimum).</p>
                 
-                <div class="vocab-grid">
-                    <div class="vocab-item">
-                        <span>🎱</span>
-                        <div><strong>Kettlebell</strong><br><small>A heavy iron ball with a handle.</small></div>
-                    </div>
-                    <div class="vocab-item">
-                        <span>🪢</span>
-                        <div><strong>Jump Rope</strong><br><small>Used for cardio and double-unders.</small></div>
-                    </div>
-                    <div class="vocab-item">
-                        <span>🏋️</span>
-                        <div><strong>Barbell</strong><br><small>A long metal bar for heavy lifting.</small></div>
-                    </div>
-                    <div class="vocab-item">
-                        <span>🧱</span>
-                        <div><strong>Box</strong><br><small>A wooden box used for jumping.</small></div>
-                    </div>
-                    <div class="vocab-item">
-                        <span>💪</span>
-                        <div><strong>Dumbbell</strong><br><small>A short bar with weights for one hand.</small></div>
-                    </div>
-                    <div class="vocab-item">
-                        <span>🧗</span>
-                        <div><strong>Pull-up Bar</strong><br><small>A high metal bar to lift your body.</small></div>
-                    </div>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Adjective Type</th>
+                        <th>Comparative (A vs B)</th>
+                        <th>Superlative (The extreme)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Short</strong> (fast, heavy)</td>
+                        <td>Add <strong>-er</strong> + than<br><em>heavier than</em></td>
+                        <td><strong>the</strong> + Add <strong>-est</strong><br><em>the heaviest</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Long</strong> (expensive, difficult)</td>
+                        <td><strong>more</strong> + adj + than<br><em>more expensive than</em></td>
+                        <td><strong>the most</strong> + adj<br><em>the most expensive</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Irregulars</strong> (good / bad)</td>
+                        <td>better than / worse than</td>
+                        <td>the best / the worst</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ Spelling Rule:</strong><br>
+                    If a short adjective ends in <strong>-y</strong> (like heavy), change the 'y' to 'i' before adding the ending: heav<strong>ier</strong> / the heav<strong>iest</strong>.
                 </div>
             </div>
         </div>
 
-        <!-- Exercise 1: Identify the equipment -->
+        <!-- Exercise 1: Form the words -->
         <div class="exercise-section">
-            <h3><span>A</span> Name that object!</h3>
-            <p class="instructions">Read the descriptions and type the correct piece of gym equipment from the vocabulary box.</p>
+            <h3><span>A</span> Build the Adjectives</h3>
+            <p class="instructions">Write the Comparative and Superlative forms for these gym-related adjectives.</p>
             
-            <div class="question">
-                1. You use this object to do cardio by swinging a cord under your feet: <br><input type="text" class="medium-input" data-answer="jump rope">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; font-weight: bold; margin-bottom: 10px;">
+                <div>Adjective</div>
+                <div>Comparative</div>
+                <div>Superlative</div>
             </div>
-            <div class="question">
-                2. It looks like a cannonball with a handle. You swing it with both hands: <br><input type="text" class="medium-input" data-answer="kettlebell">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; align-items: center; margin-bottom: 10px;">
+                <div>1. heavy</div>
+                <div><input type="text" class="short-input" data-answer="heavier"></div>
+                <div><input type="text" class="short-input" data-answer="the heaviest"></div>
             </div>
-            <div class="question">
-                3. You hold one of these in each hand to do bicep curls. It is smaller than a barbell: <br><input type="text" class="medium-input" data-answer="dumbbell|dumbbells">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; align-items: center; margin-bottom: 10px;">
+                <div>2. dangerous</div>
+                <div><input type="text" class="short-input" data-answer="more dangerous"></div>
+                <div><input type="text" class="short-input" data-answer="the most dangerous"></div>
             </div>
-            <div class="question">
-                4. A tall, sturdy wooden object. You jump on top of it: <br><input type="text" class="medium-input" data-answer="box">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; align-items: center; margin-bottom: 10px;">
+                <div>3. good</div>
+                <div><input type="text" class="short-input" data-answer="better"></div>
+                <div><input type="text" class="short-input" data-answer="the best"></div>
             </div>
         </div>
 
-        <!-- Exercise 2: Contextualizing -->
+        <!-- Exercise 2: Comparatives -->
         <div class="exercise-section">
-            <h3><span>B</span> What do you need?</h3>
-            <p class="instructions">Choose the correct equipment to complete these fitness actions.</p>
+            <h3><span>B</span> Kettlebell vs. Dumbbell</h3>
+            <p class="instructions">Compare the two pieces of equipment. Complete the sentences with the <strong>Comparative</strong> form of the adjective + <strong>than</strong>.</p>
             
             <div class="question">
-                1. I want to lift 100 kilos with both hands for a back squat. I need a <input type="text" class="short-input" data-answer="barbell">.
+                1. The black barbell is <input type="text" class="medium-input" data-answer="heavier than"> (heavy) the red dumbbells.
             </div>
             <div class="question">
-                2. I need to hang from the ceiling to exercise my back. I need the <input type="text" class="short-input" data-answer="pull-up bar|pull up bar">.
+                2. CrossFit is <input type="text" class="medium-input" data-answer="more difficult than"> (difficult) running on a treadmill.
             </div>
             <div class="question">
-                3. Today's WOD requires 50 box jumps, so please grab a <input type="text" class="short-input" data-answer="box">.
+                3. This carbon fiber jump rope is <input type="text" class="medium-input" data-answer="faster than"> (fast) the plastic one.
+            </div>
+            <div class="question">
+                4. For my back injuries, swimming is <input type="text" class="medium-input" data-answer="better than"> (good) lifting weights.
             </div>
         </div>
 
-        <!-- Exercise 3: Reading the WOD -->
+        <!-- Exercise 3: Superlatives -->
         <div class="exercise-section">
-            <h3><span>C</span> The WOD Description</h3>
-            <p class="instructions">Read the coach's instructions for today's Workout of the Day. Fill in the gaps with the correct equipment.<br>
-            <small><strong>Options:</strong> <em>jump rope / kettlebell / dumbbells / pull-up bar</em></small></p>
+            <h3><span>C</span> Pushing to the Limit</h3>
+            <p class="instructions">Describe the extremes of the gym. Complete the sentences with the <strong>Superlative</strong> form of the adjective in brackets. (Don't forget "the"!).</p>
+            
+            <div class="question">
+                1. That 100kg iron ball is <input type="text" class="medium-input" data-answer="the heaviest"> (heavy) kettlebell in the gym.
+            </div>
+            <div class="question">
+                2. Doing 100 burpees is <input type="text" class="medium-input" data-answer="the most exhausting"> (exhausting) exercise in today's routine.
+            </div>
+            <div class="question">
+                3. The wooden box is <input type="text" class="medium-input" data-answer="the cheapest"> (cheap) piece of equipment we have.
+            </div>
+            <div class="question">
+                4. Yesterday I dropped a weight on my foot. It was <input type="text" class="medium-input" data-answer="the worst"> (bad) day of my life!
+            </div>
+        </div>
 
+        <!-- Exercise 4: Reading Context -->
+        <div class="exercise-section">
+            <h3><span>D</span> The WOD Briefing</h3>
+            <p class="instructions">Read the coach's message. Fill in the gaps using the comparative or superlative form of the words in brackets.</p>
+            
             <div class="reading-box">
-                "Alright team, listen up! Today's WOD is intense. We will start with a quick cardio session, so grab your <input type="text" class="medium-input" data-answer="jump rope"> (1) and do 100 single jumps. After that, we move to the heavy stuff. Take one <input type="text" class="medium-input" data-answer="kettlebell"> (2) and do 20 Russian swings. Next, grab two heavy <input type="text" class="medium-input" data-answer="dumbbells"> (3) to do walking lunges across the room. Finally, jump up to the <input type="text" class="medium-input" data-answer="pull-up bar|pull up bar"> (4) and do 10 strict reps to finish the round. Let's go!"
+                "Okay team, today's Workout of the Day is <input type="text" class="medium-input" data-answer="harder than"> (1. hard) yesterday's routine. We are using barbells. Please remember that safety is <input type="text" class="medium-input" data-answer="the most important"> (2. important) rule here. If the 50kg bar is too heavy for you, choose a <input type="text" class="medium-input" data-answer="lighter"> (3. light) one! Do not try to lift <input type="text" class="medium-input" data-answer="the heaviest"> (4. heavy) weight if your technique is bad. A good technique is always <input type="text" class="medium-input" data-answer="better than"> (5. good) lifting a lot of kilos with a bad posture."
             </div>
         </div>
 
@@ -213,7 +245,7 @@
 
         <div class="actions">
             <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
-            <button class="btn-check" onclick="checkAnswers()">🔍 Check Equipment</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check the Weights</button>
         </div>
 
     </div>
@@ -252,11 +284,11 @@
             if (allCorrect) {
                 feedback.style.backgroundColor = "#e8f5e9";
                 feedback.style.color = "var(--verde-correcto)";
-                feedback.innerHTML = "🌟 ¡Excelente! Conoces todo el equipamiento del gimnasio. ¡Estás listo para tu próximo WOD!";
+                feedback.innerHTML = "🌟 ¡Excelente! Ahora puedes comparar pesos, dificultades y equipos como un verdadero atleta de CrossFit.";
             } else {
                 feedback.style.backgroundColor = "#fff3e0";
                 feedback.style.color = "#ff9800";
-                feedback.innerHTML = "⚠️ Cuidado (errores marcados en rojo). Revisa la caja de vocabulario y comprueba cómo se escribe cada objeto.";
+                feedback.innerHTML = "⚠️ ¡Cuidado con el peso! Tienes algunos errores gramaticales (marcados en rojo). Recuerda incluir 'than' en los comparativos y 'the' en los superlativos.";
             }
         }
     </script>

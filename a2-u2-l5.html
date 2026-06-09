@@ -55,9 +55,8 @@
         }
         
         .grammar-content { flex: 1; }
-        .grammar-table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; font-size: 0.95rem; }
-        .grammar-table th, .grammar-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
-        .grammar-table th { background-color: var(--azul-primario); color: white; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
         
         .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
 
@@ -126,107 +125,94 @@
         <div class="header">
             <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
             <h1>Training Safely</h1>
-            <p>Level A2 | Unit 2 - Lesson 5 | Adverbs of Manner</p>
+            <p>Level A2 | Unit 2 - Lesson 5 | Should vs. Must</p>
         </div>
 
         <div class="grammar-box">
-            <div style="font-size: 3.5rem;">🛡️</div>
+            <div style="font-size: 3.5rem;">🩹</div>
             <div class="grammar-content">
-                <h2>How do you do it?</h2>
-                <p>We use <strong>Adverbs of Manner</strong> to describe HOW an action is performed. They usually go at the end of the sentence or directly after the verb.</p>
+                <h2>Advice vs. Rules</h2>
+                <p>When training, we need to know the difference between a good recommendation to avoid injuries and a strict rule from the coach.</p>
                 
-                <table class="grammar-table">
-                    <tr>
-                        <th>Rule</th>
-                        <th>Adjective (Describes nouns)</th>
-                        <th>Adverb (Describes verbs)</th>
-                    </tr>
-                    <tr>
-                        <td>General: add <strong>-ly</strong></td>
-                        <td>safe / quick</td>
-                        <td>safe<strong>ly</strong> / quick<strong>ly</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Ends in 'y': <strong>-ily</strong></td>
-                        <td>heavy / easy</td>
-                        <td>heav<strong>ily</strong> / eas<strong>ily</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Irregular</td>
-                        <td>good<br>fast<br>hard</td>
-                        <td><strong>well</strong><br><strong>fast</strong> <em>(Not fastly)</em><br><strong>hard</strong> <em>(Not hardly)</em></td>
-                    </tr>
-                </table>
+                <div class="grammar-rule">
+                    <h4>SHOULD / SHOULDN'T (Advice)</h4>
+                    <p>We use this to say that something is a good (or bad) idea. It is a recommendation.<br>
+                    <em>Example:</em> You <strong>should</strong> stretch carefully after running.</p>
+                </div>
+
+                <div class="grammar-rule">
+                    <h4>MUST / MUSTN'T (Obligation / Rule)</h4>
+                    <p>We use this to state strict rules or very important obligations. It is NOT optional.<br>
+                    <em>Example:</em> You <strong>mustn't</strong> drop the empty barbell. (It's a gym rule!)</p>
+                </div>
 
                 <div class="warning-box">
-                    <strong>⚠️ Adjective vs. Adverb:</strong><br>
-                    He is a <strong>safe</strong> lifter. <em>(Describes the person/noun)</em><br>
-                    He lifts the kettlebell <strong>safely</strong>. <em>(Describes the action/verb)</em>
+                    <strong>⚠️ THE MODAL VERB RULE:</strong><br>
+                    Never use "to" after should/must. Never add "-s" for he/she/it!<br>
+                    ✔️ He must train safely. <br>
+                    ❌ <s>He musts to train safely.</s>
                 </div>
             </div>
         </div>
 
-        <!-- Exercise 1: Form the Adverb -->
+        <!-- Exercise 1: Should or Must -->
         <div class="exercise-section">
-            <h3><span>A</span> Make it an Adverb</h3>
-            <p class="instructions">Change the adjectives in brackets into Adverbs of Manner to complete the sentences.</p>
+            <h3><span>A</span> Rule or Advice?</h3>
+            <p class="instructions">Read the context carefully. Complete the sentences with <strong>should</strong>, <strong>shouldn't</strong>, <strong>must</strong>, or <strong>mustn't</strong>.</p>
             
             <div class="question">
-                1. You must lift the barbell <input type="text" class="short-input" data-answer="carefully"> (careful) to protect your back.
+                1. <em>(Gym Rule)</em> All members <input type="text" class="short-input" data-answer="must"> wear clean sports shoes inside the CrossFit box.
             </div>
             <div class="question">
-                2. Teacher Ivan runs very <input type="text" class="short-input" data-answer="fast"> (fast) in the morning.
+                2. <em>(Good idea)</em> If you want to lose weight, you <input type="text" class="short-input" data-answer="should"> eat more vegetables and protein.
             </div>
             <div class="question">
-                3. The students completed the WOD <input type="text" class="short-input" data-answer="easily"> (easy).
+                3. <em>(Gym Rule / Danger)</em> You <input type="text" class="medium-input" data-answer="mustn't|must not"> walk in front of someone lifting a heavy kettlebell!
             </div>
             <div class="question">
-                4. To win the CrossFit competition, you have to train <input type="text" class="short-input" data-answer="hard"> (hard) every day.
-            </div>
-            <div class="question">
-                5. She speaks English very <input type="text" class="short-input" data-answer="well"> (good).
+                4. <em>(Bad idea)</em> You <input type="text" class="medium-input" data-answer="shouldn't|should not"> drink energy drinks before going to bed; you won't sleep well.
             </div>
         </div>
 
-        <!-- Exercise 2: Adjective or Adverb -->
+        <!-- Exercise 2: Rewriting Advice -->
         <div class="exercise-section">
-            <h3><span>B</span> Adjective or Adverb?</h3>
-            <p class="instructions">Look at the sentences. Decide if you need the Adjective or the Adverb of the word in brackets.</p>
+            <h3><span>B</span> The Coach's Recommendations</h3>
+            <p class="instructions">Rewrite the sentences to give advice using <strong>should</strong> or <strong>shouldn't</strong>.</p>
             
             <div class="question">
-                1. That was a very <input type="text" class="short-input" data-answer="quick"> (quick) workout! We finished it <input type="text" class="short-input" data-answer="quickly"> (quick).
+                1. It is a good idea to warm up your muscles quickly before the WOD.
+                <input type="text" class="long-input" data-answer="you should warm up your muscles quickly before the wod.|you should warm up your muscles quickly before the wod">
             </div>
             <div class="question">
-                2. He is a <input type="text" class="short-input" data-answer="good"> (good) athlete. He performs every exercise <input type="text" class="short-input" data-answer="well"> (good).
-            </div>
-            <div class="question">
-                3. It is a <input type="text" class="short-input" data-answer="heavy"> (heavy) kettlebell. He is breathing <input type="text" class="short-input" data-answer="heavily"> (heavy).
+                2. It is a bad idea to lift 100 kilos on your first day!
+                <input type="text" class="long-input" data-answer="you shouldn't lift 100 kilos on your first day!|you should not lift 100 kilos on your first day!|you shouldn't lift 100 kilos on your first day.">
             </div>
         </div>
 
         <!-- Exercise 3: Reading Context -->
         <div class="exercise-section">
-            <h3><span>C</span> The Coach's Advice</h3>
-            <p class="instructions">Read the advice from the gym coach. Fill in the gaps using the Adverbs of Manner from the box.<br>
-            <small><strong>Adverbs:</strong> <em>safely / fast / perfectly / well</em></small></p>
-
+            <h3><span>C</span> Welcome to the WOD</h3>
+            <p class="instructions">Read the gym's safety board. Fill in the blanks with <strong>must</strong>, <strong>mustn't</strong>, <strong>should</strong>, or <strong>shouldn't</strong>.</p>
+            
             <div class="reading-box">
-                "Listen to me, team! Doing a workout <input type="text" class="medium-input" data-answer="fast"> (1) is not the most important thing. If you want to perform <input type="text" class="medium-input" data-answer="well"> (2) in the competition, you need to execute each movement <input type="text" class="medium-input" data-answer="perfectly"> (3). Remember, drop the weights <input type="text" class="medium-input" data-answer="safely"> (4) to avoid injuries. Focus on your technique first, and speed will come later."
+                <strong>Welcome Athletes! Please read carefully to train safely:</strong><br><br>
+                To avoid accidents, you <input type="text" class="medium-input" data-answer="must"> (1. strict rule) listen to the coach's instructions at all times. You <input type="text" class="medium-input" data-answer="mustn't|must not"> (2. strict prohibition) leave your dumbbells on the floor when you finish; someone could fall. <br><br>
+                For your personal performance, we recommend that you <input type="text" class="medium-input" data-answer="should"> (3. advice) drink at least 2 liters of water daily. Also, you <input type="text" class="medium-input" data-answer="shouldn't|should not"> (4. negative advice) train if you have intense back pain. Rest is important!
             </div>
         </div>
 
-        <!-- Exercise 4: Spot the Mistake -->
+        <!-- Exercise 4: Debug -->
         <div class="exercise-section">
-            <h3><span>D</span> Debug the Performance</h3>
-            <p class="instructions">There is a grammar mistake in each sentence involving the adverbs. Rewrite the full sentence correctly.</p>
+            <h3><span>D</span> Spot the Grammar Bug</h3>
+            <p class="instructions">There is a modal verb mistake in each sentence. Rewrite the full sentence correctly.</p>
 
             <div class="question">
-                1. My partner plays tennis very good.
-                <input type="text" class="long-input" data-answer="my partner plays tennis very well.|my partner plays tennis very well">
+                1. She shoulds stretch carefully after running.
+                <input type="text" class="long-input" data-answer="she should stretch carefully after running.|she should stretch carefully after running">
             </div>
             <div class="question">
-                2. She ran fastly to win the race.
-                <input type="text" class="long-input" data-answer="she ran fast to win the race.|she ran fast to win the race">
+                2. You must to wear a towel in the gym.
+                <input type="text" class="long-input" data-answer="you must wear a towel in the gym.|you must wear a towel in the gym">
             </div>
         </div>
 
@@ -234,7 +220,7 @@
 
         <div class="actions">
             <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
-            <button class="btn-check" onclick="checkAnswers()">🔍 Check Performance</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check Safety Rules</button>
         </div>
 
     </div>
@@ -246,16 +232,18 @@
 
             inputs.forEach(input => {
                 let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
-                userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                // Si la respuesta requiere exclamación, mantenla, si no, quita puntuación
+                if(!input.getAttribute('data-answer').includes("!")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
                 
                 let correctAnswers = input.getAttribute('data-answer').split('|');
-                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
 
                 if (userAnswer === "") {
                     input.style.borderColor = "var(--rojo-error)";
                     input.style.backgroundColor = "#ffebee";
                     allCorrect = false;
-                } else if (correctAnswers.includes(userAnswer)) {
+                } else if (correctAnswers.includes(userAnswer) || correctAnswers.includes(userAnswer.replace(/!$/, ''))) {
                     input.style.borderColor = "var(--verde-correcto)";
                     input.style.backgroundColor = "#e8f5e9";
                     input.style.color = "#2e7d32";
@@ -273,11 +261,11 @@
             if (allCorrect) {
                 feedback.style.backgroundColor = "#e8f5e9";
                 feedback.style.color = "var(--verde-correcto)";
-                feedback.innerHTML = "🌟 ¡Perfecto! Sabes exactamente cómo describir acciones de manera segura y correcta.";
+                feedback.innerHTML = "🌟 ¡Excelente! Sabes perfectamente cómo dar consejos y establecer las reglas del gimnasio.";
             } else {
                 feedback.style.backgroundColor = "#fff3e0";
                 feedback.style.color = "#ff9800";
-                feedback.innerHTML = "⚠️ Tienes algunos errores (marcados en rojo). ¡Recuerda que 'good' y 'fast' son irregulares!";
+                feedback.innerHTML = "⚠️ Tienes algunos errores (marcados en rojo). Recuerda que los modales (Should/Must) NO llevan 'to' y NO llevan 's' en tercera persona.";
             }
         }
     </script>

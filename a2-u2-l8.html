@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: The 5:30 AM Routine - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
+        
+        .prep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+        .prep-card { background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; border-top: 4px solid var(--azul-a2); }
+        .prep-card h4 { color: var(--azul-primario); margin: 0 0 10px 0; font-size: 1.4rem; }
+        .prep-card ul { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; text-align: left; }
+        .prep-card li { margin-bottom: 8px; padding-left: 10px; border-left: 2px solid var(--naranja-vibrante); }
+
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 80px; text-align: center; }
+        .medium-input { width: 140px; text-align: center; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
+
+        /* Reading Box */
+        .reading-box {
+            line-height: 2.4;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>The 5:30 AM Routine</h1>
+            <p>Level A2 | Unit 2 - Lesson 8 | Prepositions of Time</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">⏰</div>
+            <div class="grammar-content">
+                <h2>When does it happen?</h2>
+                <p>To talk about schedules and routines correctly, we need the Prepositions of Time. Think of them like a triangle: from general (IN) to very specific (AT).</p>
+                
+                <div class="prep-grid">
+                    <div class="prep-card">
+                        <h4>IN</h4>
+                        <small>Months, Years & Parts of the day</small>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                        <ul>
+                            <li><strong>in</strong> the morning</li>
+                            <li><strong>in</strong> the afternoon</li>
+                            <li><strong>in</strong> May</li>
+                            <li><strong>in</strong> 2026</li>
+                        </ul>
+                    </div>
+                    <div class="prep-card">
+                        <h4>ON</h4>
+                        <small>Days of the week & Specific Dates</small>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                        <ul>
+                            <li><strong>on</strong> Monday</li>
+                            <li><strong>on</strong> weekends</li>
+                            <li><strong>on</strong> April 16th</li>
+                            <li><strong>on</strong> my birthday</li>
+                        </ul>
+                    </div>
+                    <div class="prep-card">
+                        <h4>AT</h4>
+                        <small>Exact Times & "Night"</small>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                        <ul>
+                            <li><strong>at</strong> 5:30 AM</li>
+                            <li><strong>at</strong> 8 o'clock</li>
+                            <li><strong>at</strong> night</li>
+                            <li><strong>at</strong> midnight</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ The Exception Rule:</strong><br>
+                    We say <em>IN the morning, IN the afternoon, IN the evening</em>... but we ALWAYS say <strong>AT night</strong>.
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> The Time Sorter</h3>
+            <p class="instructions">Write the correct preposition (<strong>in, on, at</strong>) for each time expression.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="question">1. <input type="text" class="short-input" data-answer="on"> Sunday</div>
+                <div class="question">2. <input type="text" class="short-input" data-answer="at"> 7:00 PM</div>
+                <div class="question">3. <input type="text" class="short-input" data-answer="in"> the evening</div>
+                <div class="question">4. <input type="text" class="short-input" data-answer="at"> night</div>
+                <div class="question">5. <input type="text" class="short-input" data-answer="in"> December</div>
+                <div class="question">6. <input type="text" class="short-input" data-answer="on"> May 25th</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> School & Gym Schedules</h3>
+            <p class="instructions">Complete the sentences about daily routines using <strong>in, on, or at</strong>.</p>
+            
+            <div class="question">
+                1. I usually do my CrossFit routine <input type="text" class="short-input" data-answer="at"> 5:30 AM.
+            </div>
+            <div class="question">
+                2. Students don't go to Colegio Fielding <input type="text" class="short-input" data-answer="on"> Saturdays.
+            </div>
+            <div class="question">
+                3. The English classes finish <input type="text" class="short-input" data-answer="in"> the afternoon.
+            </div>
+            <div class="question">
+                4. My friends like to play video games <input type="text" class="short-input" data-answer="at"> night.
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Morning Discipline</h3>
+            <p class="instructions">Read Teacher Ivan's routine. Fill in the blanks with the correct prepositions of time.</p>
+            
+            <div class="reading-box">
+                My alarm clock always rings <input type="text" class="short-input" data-answer="at"> (1) 5:00 AM. <input type="text" class="short-input" data-answer="in"> (2) the morning, I like to be very productive. First, I go to the gym and lift weights <input type="text" class="short-input" data-answer="at"> (3) 5:30 AM. After my shower, I prepare a healthy breakfast with oats. I usually arrive at the school <input type="text" class="short-input" data-answer="at"> (4) 7:45 AM. I teach History and English, and my shift ends <input type="text" class="short-input" data-answer="in"> (5) the afternoon. However, <input type="text" class="short-input" data-answer="on"> (6) weekends, I relax! My partner Lau and I sometimes go running <input type="text" class="short-input" data-answer="on"> (7) Sunday mornings. 
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Debug the Schedule</h3>
+            <p class="instructions">There is a preposition mistake in each sentence. Rewrite the full sentence correctly.</p>
+
+            <div class="question">
+                1. I go to the gym in Monday.
+                <input type="text" class="long-input" data-answer="i go to the gym on monday.|i go to the gym on monday">
+            </div>
+            <div class="question">
+                2. We eat dinner in night.
+                <input type="text" class="long-input" data-answer="we eat dinner at night.|we eat dinner at night">
+            </div>
+            <div class="question">
+                3. The class starts on 8 o'clock.
+                <input type="text" class="long-input" data-answer="the class starts at 8 o'clock.|the class starts at 8 o'clock">
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check Schedule</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "🌟 ¡Excelente! Ahora puedes organizar y describir tu rutina diaria con total precisión.";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ ¡Cuidado con el reloj! Tienes algunos errores (marcados en rojo). Revisa la pirámide de IN/ON/AT y corrige tus respuestas.";
+            }
+        }
+    </script>
+</body>
+</html>

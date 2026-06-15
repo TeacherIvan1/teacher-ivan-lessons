@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Unit 2 Exam - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+            --oro-review: #FFD700;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        /* Timer Sticky Bar */
+        #timer-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--rojo-error);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 100px auto 40px auto; /* Margin top for timer */
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--rojo-error);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 20px; right: -35px; background: var(--rojo-error);
+            color: white; padding: 5px 40px; font-weight: bold; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 0.9rem;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--azul-a2); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; }
+
+        .question { margin-bottom: 15px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 150px; text-align: center; }
+        .long-input { width: 90%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 15px 40px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--rojo-error); color: white; box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3); width: 100%; }
+        .btn-check:hover { background-color: #d32f2f; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.5rem; padding: 25px; border-radius: 8px; border: 2px solid; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            #timer-bar { display: none !important; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, #feedback-message, .ribbon { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="timer-bar">⏱️ TIME LEFT: <span id="time-display">30:00</span></div>
+
+    <div class="worksheet-container">
+        <div class="ribbon">FINAL EXAM</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Unit 2 Final Exam</h1>
+            <p>Level A2 | Grammar & Vocabulary | 50 Points</p>
+        </div>
+
+        <!-- SECTION 1: VOCABULARY (10 items) -->
+        <div class="exercise-section">
+            <h3><span>1</span> Vocabulary: Gym & Body Parts (10 pts)</h3>
+            <p class="instructions">Write the correct gym equipment or body part.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. A heavy iron ball with a handle: <br><input type="text" class="medium-input" data-answer="kettlebell"></div>
+                <div class="question">2. A long metal bar for heavy lifting: <br><input type="text" class="medium-input" data-answer="barbell"></div>
+                <div class="question">3. Short weights for one hand: <br><input type="text" class="medium-input" data-answer="dumbbells|dumbbell"></div>
+                <div class="question">4. Used for jumping under your feet: <br><input type="text" class="medium-input" data-answer="jump rope"></div>
+                <div class="question">5. A wooden cube used to jump on: <br><input type="text" class="medium-input" data-answer="box"></div>
+                
+                <div class="question">6. Bend these (piernas) when squatting: <br><input type="text" class="medium-input" data-answer="knees"></div>
+                <div class="question">7. Keep this straight (espalda) when lifting: <br><input type="text" class="medium-input" data-answer="back"></div>
+                <div class="question">8. Bend these (brazos) for push-ups: <br><input type="text" class="medium-input" data-answer="elbows"></div>
+                <div class="question">9. Don't look up to protect your (cuello): <br><input type="text" class="medium-input" data-answer="neck"></div>
+                <div class="question">10. Don't lift if your (muñecas) hurt: <br><input type="text" class="medium-input" data-answer="wrists"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SPORTS VERBS (8 items) -->
+        <div class="exercise-section">
+            <h3><span>2</span> Play, Go, or Do? (8 pts)</h3>
+            <p class="instructions">Write the correct verb (play, go, or do) for each sport or activity.</p>
+            
+            <div class="grid-2">
+                <div class="question">11. <input type="text" class="short-input" data-answer="play"> football</div>
+                <div class="question">12. <input type="text" class="short-input" data-answer="go"> swimming</div>
+                <div class="question">13. <input type="text" class="short-input" data-answer="do"> CrossFit</div>
+                <div class="question">14. <input type="text" class="short-input" data-answer="do"> yoga</div>
+                <div class="question">15. <input type="text" class="short-input" data-answer="go"> running</div>
+                <div class="question">16. <input type="text" class="short-input" data-answer="play"> tennis</div>
+                <div class="question">17. <input type="text" class="short-input" data-answer="do"> gymnastics</div>
+                <div class="question">18. <input type="text" class="short-input" data-answer="go"> cycling</div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: VERBS OF PREFERENCE + ING (10 items) -->
+        <div class="exercise-section">
+            <h3><span>3</span> Expressing Preferences (10 pts)</h3>
+            <p class="instructions">Complete the sentences with the correct <strong>-ING</strong> form of the verbs in brackets. Watch your spelling!</p>
+            
+            <div class="grid-2">
+                <div class="question">19. I love <input type="text" class="short-input" data-answer="running"> (run).</div>
+                <div class="question">20. She enjoys <input type="text" class="short-input" data-answer="lifting"> (lift).</div>
+                <div class="question">21. We hate <input type="text" class="short-input" data-answer="waiting"> (wait).</div>
+                <div class="question">22. He doesn't mind <input type="text" class="short-input" data-answer="stretching"> (stretch).</div>
+                <div class="question">23. They can't stand <input type="text" class="short-input" data-answer="losing"> (lose).</div>
+                <div class="question">24. I like <input type="text" class="short-input" data-answer="swimming"> (swim).</div>
+                <div class="question">25. Do you enjoy <input type="text" class="short-input" data-answer="playing"> (play) chess?</div>
+                <div class="question">26. Tatiana hates <input type="text" class="short-input" data-answer="waking up|waking"> (wake up).</div>
+                <div class="question">27. I don't mind <input type="text" class="short-input" data-answer="cycling"> (cycle).</div>
+                <div class="question">28. He loves <input type="text" class="short-input" data-answer="doing"> (do) burpees.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: TIME & FREQUENCY (12 items) -->
+        <div class="exercise-section">
+            <h3><span>4</span> Time & Frequency (12 pts)</h3>
+            <p class="instructions">Part 1: Use prepositions (<strong>in, on, at</strong>). Part 2: Use Adverbs of frequency (<strong>always, usually, sometimes, never</strong>).</p>
+            
+            <div class="grid-3">
+                <div class="question">29. <input type="text" class="short-input" data-answer="in"> the morning</div>
+                <div class="question">30. <input type="text" class="short-input" data-answer="on"> Monday</div>
+                <div class="question">31. <input type="text" class="short-input" data-answer="at"> 5:30 AM</div>
+                <div class="question">32. <input type="text" class="short-input" data-answer="at"> night</div>
+                <div class="question">33. <input type="text" class="short-input" data-answer="in"> December</div>
+                <div class="question">34. <input type="text" class="short-input" data-answer="on"> weekends</div>
+            </div>
+
+            <div class="question" style="margin-top:15px;">
+                35. <em>Unscramble:</em> always / I / morning / train / in / the / .
+                <input type="text" class="long-input" data-answer="i always train in the morning.|i always train in the morning">
+            </div>
+            <div class="question">
+                36. <em>Unscramble:</em> never / is / late / he / .
+                <input type="text" class="long-input" data-answer="he is never late.|he is never late">
+            </div>
+
+            <div class="grid-2" style="margin-top:15px;">
+                <div class="question">37. (100%) Teacher Ivan <input type="text" class="short-input" data-answer="always"> warms up.</div>
+                <div class="question">38. (80%) We <input type="text" class="short-input" data-answer="usually"> drink water.</div>
+                <div class="question">39. (50%) They <input type="text" class="short-input" data-answer="sometimes"> go hiking.</div>
+                <div class="question">40. (0%) She <input type="text" class="short-input" data-answer="never"> eats junk food.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: SAFETY (10 items) -->
+        <div class="exercise-section">
+            <h3><span>5</span> Training Safely (10 pts)</h3>
+            <p class="instructions">Part 1: Use <strong>should, shouldn't, must, mustn't</strong>. Part 2: Use the <strong>Imperative</strong> (+ / -) with the verbs in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">41. <em>(Good advice)</em> You <input type="text" class="short-input" data-answer="should"> sleep 8 hours.</div>
+                <div class="question">42. <em>(Gym Rule)</em> You <input type="text" class="short-input" data-answer="must"> wear clean shoes.</div>
+                <div class="question">43. <em>(Bad advice)</em> You <input type="text" class="short-input" data-answer="shouldn't|should not"> drink energy drinks at night.</div>
+                <div class="question">44. <em>(Strict rule)</em> You <input type="text" class="short-input" data-answer="mustn't|must not"> steal gym equipment.</div>
+                <div class="question">49. <em>(Good advice)</em> If you are tired, you <input type="text" class="short-input" data-answer="should"> rest.</div>
+                <div class="question">50. <em>(Gym Rule)</em> You <input type="text" class="short-input" data-answer="must"> listen to the coach.</div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+
+            <div class="grid-2">
+                <div class="question">45. <strong>(+)</strong> <input type="text" class="short-input" data-answer="keep"> (keep) your chest up!</div>
+                <div class="question">46. <strong>(-)</strong> <input type="text" class="medium-input" data-answer="don't drop|do not drop"> (not/drop) the weights!</div>
+                <div class="question">47. <strong>(+)</strong> <input type="text" class="short-input" data-answer="breathe"> (breathe) during the exercise!</div>
+                <div class="question">48. <strong>(-)</strong> <input type="text" class="medium-input" data-answer="don't hold|do not hold"> (not/hold) your breath!</div>
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkAnswers(false)">🏁 SUBMIT EXAM</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Timer Logic ---
+        let totalSeconds = 30 * 60; // 30 minutes
+        const timeDisplay = document.getElementById('time-display');
+        let timerInterval;
+
+        function updateTimer() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+            
+            // Format with leading zero
+            if (seconds < 10) seconds = '0' + seconds;
+            if (minutes < 10) minutes = '0' + minutes;
+            
+            timeDisplay.innerText = `${minutes}:${seconds}`;
+
+            if (totalSeconds <= 0) {
+                clearInterval(timerInterval);
+                timeDisplay.innerText = "00:00";
+                document.getElementById('timer-bar').style.backgroundColor = "black";
+                checkAnswers(true); // Auto-submit when time is up
+            } else {
+                totalSeconds--;
+            }
+        }
+
+        // Start timer when page loads
+        window.onload = function() {
+            timerInterval = setInterval(updateTimer, 1000);
+        };
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers(autoSubmit) {
+            if(examSubmitted) return; // Prevent double submission
+            examSubmitted = true;
+            clearInterval(timerInterval); // Stop timer
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const total = inputs.length; // Should be 50
+
+            inputs.forEach(input => {
+                input.readOnly = true; // Lock inputs
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Allow matches without punctuation
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    // Optional: show correct answer
+                    if(userAnswer === "") {
+                        input.value = "---";
+                    }
+                }
+            });
+
+            // Calculate percentage
+            const percentage = Math.round((score / total) * 100);
+
+            // Display Feedback
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; // Hide submit button
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You are a master of Unit 2.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GREAT JOB! You passed the exam.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Please review the Unit 2 lessons.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            let timeoutMsg = autoSubmit ? "<br><small style='color:black;'>⏱️ Time is up! Auto-submitted.</small>" : "";
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: ${score} / ${total} (${percentage}%)<br>${message}${timeoutMsg}`;
+            
+            // Change timer bar color based on pass/fail
+            document.getElementById('timer-bar').style.backgroundColor = (percentage >= 70) ? "var(--verde-correcto)" : "var(--rojo-error)";
+            document.getElementById('time-display').innerText = "EXAM FINISHED";
+        }
+    </script>
+</body>
+</html>

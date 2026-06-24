@@ -27,7 +27,7 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
 
         .worksheet-container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 40px auto;
             background: white;
             padding: 40px 50px;
@@ -41,6 +41,7 @@
         .header img { height: 60px; margin-bottom: 10px; }
         .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
         .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+        .difficulty-badge { background: var(--rojo-error); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
 
         /* Grammar Box */
         .grammar-box {
@@ -67,6 +68,7 @@
         .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; }
 
         .question { margin-bottom: 20px; font-size: 1.05rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
         input[type="text"] {
             font-family: 'Open Sans', sans-serif;
@@ -82,22 +84,27 @@
         }
         input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
         
-        .short-input { width: 110px; text-align: center; }
+        .short-input { width: 120px; text-align: center; }
         .medium-input { width: 180px; text-align: center; }
-        .long-input { width: 85%; display: inline-block; margin-top: 5px; font-style: italic; }
-
-        /* Media Player Fake UI */
-        .media-player { background: #333; color: white; padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .media-player .play-btn { width: 40px; height: 40px; background: var(--naranja-vibrante); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; }
-        .media-player .timeline { flex: 1; height: 5px; background: #555; border-radius: 3px; position: relative; }
-        .media-player .timeline-progress { width: 45%; height: 100%; background: var(--naranja-vibrante); border-radius: 3px; }
+        .long-input { width: 95%; display: block; margin-top: 10px; font-style: italic; }
 
         /* Reading Box */
-        .reading-box { line-height: 2.2; font-size: 1.05rem; padding: 25px; background: white; border-radius: 8px; border: 1px solid #ddd; }
+        .reading-box {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
 
         /* Action Buttons */
         .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
-        button { padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
         .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
         .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
         .btn-print { background-color: #4A5568; color: white; }
@@ -110,7 +117,7 @@
             body { background: white; }
             .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
             .exercise-section { background: transparent; border: none; padding: 0; }
-            .actions, .btn-check, .btn-print, #feedback-message, .media-player { display: none !important; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
             input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
         }
     </style>
@@ -122,130 +129,124 @@
         <div class="header">
             <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
             <h1>We aren't going to quit</h1>
-            <p>Level A2 | Unit 3 - Lesson 3 | Negative Plans & Short Answers</p>
+            <p>Level A2 | Unit 3 - Lesson 3 | Negative "Be going to"</p>
+            <span class="difficulty-badge">🔥 Increased Difficulty</span>
         </div>
 
         <div class="grammar-box">
-            <div style="font-size: 3.5rem;">💪</div>
+            <div style="font-size: 3.5rem;">🛑</div>
             <div class="grammar-content">
-                <h2>Not Giving Up!</h2>
-                <p>When we want to express determination, reject a bad plan, or answer questions about the future, we use the negative and interrogative forms of <strong>Be going to</strong>.</p>
+                <h2>Expressing Determination</h2>
+                <p>We use the negative form of <strong>"Be going to"</strong> to express a firm decision <strong>NOT</strong> to do something. It is perfect for talking about discipline, avoiding bad habits, or refusing to give up.</p>
                 
                 <div class="grammar-rule">
-                    <h4>The Negative Form</h4>
-                    <p>Use <strong>'m not</strong> / <strong>isn't</strong> / <strong>aren't</strong> + going to + verb.<br>
-                    <em>We aren't going to quit! (¡No vamos a rendirnos!)</em><br>
-                    <em>She isn't going to fail.</em></p>
-                </div>
-
-                <div class="grammar-rule">
-                    <h4>Questions & Short Answers</h4>
-                    <p><strong>Q:</strong> <em>Are</em> you going to study today?<br>
-                    <strong>A:</strong> Yes, I <em>am</em>. / No, I <em>'m not</em>.</p>
-                    <p><strong>Q:</strong> <em>Is</em> she going to travel?<br>
-                    <strong>A:</strong> Yes, she <em>is</em>. / No, she <em>isn't</em>.</p>
+                    <h4>The Negative Structure</h4>
+                    <p><code>Subject + am not / isn't / aren't + going to + Base Verb</code></p>
+                    <ul style="margin: 5px 0 0 20px; padding: 0;">
+                        <li><strong>I</strong> am not ('m not) going to quit.</li>
+                        <li><strong>He/She/It</strong> is not (isn't) going to lose.</li>
+                        <li><strong>You/We/They</strong> are not (aren't) going to fail.</li>
+                    </ul>
                 </div>
 
                 <div class="warning-box">
-                    <strong>⚠️ Golden Rule for Short Answers:</strong><br>
-                    Do <strong>NOT</strong> write "going to" in a short answer! <br>
-                    ❌ Are you going to travel? <em>Yes, I am going to.</em> (WRONG)<br>
-                    ✔️ Are you going to travel? <strong>Yes, I am.</strong> (CORRECT)
+                    <strong>⚠️ Don't use "Don't / Doesn't":</strong><br>
+                    ❌ <s>She doesn't going to give up.</s><br>
+                    ✔️ She <strong>isn't</strong> going to give up.
                 </div>
             </div>
         </div>
 
-        <!-- Exercise 1: Listening / Transcript -->
+        <!-- Exercise 1: Form -->
         <div class="exercise-section">
-            <h3><span>A</span> Listening: The Coach's Speech</h3>
-            <p class="instructions">Listen to the audio (read the transcript below) and fill in the blanks with the correct form of "be going to" (Affirmative, Negative, or Interrogative).</p>
+            <h3><span>A</span> Unbreakable Discipline (8 items)</h3>
+            <p class="instructions">Complete the sentences with the negative form of "be going to" and the verb in brackets. Use contractions (isn't / aren't) where possible.</p>
             
-            <div class="media-player">
-                <div class="play-btn">▶</div>
-                <div class="timeline"><div class="timeline-progress"></div></div>
-                <div>0:45 / 1:30</div>
-            </div>
-
-            <div class="reading-box" style="font-style: italic; background-color: #fcfcfc;">
-                <strong>Coach Ivan:</strong> "Listen up, team! Tomorrow is the CrossFit final. The other teams are very strong, but we <input type="text" class="medium-input" data-answer="aren't going to quit|are not going to quit"> (1. not/quit). <input type="text" class="medium-input" data-answer="are you going to give up"> (2. you/give up)? No, you aren't! We <input type="text" class="medium-input" data-answer="are going to push"> (3. push) our limits. Santiago, <input type="text" class="medium-input" data-answer="are you going to lift"> (4. you/lift) that heavy kettlebell? Yes, you are! The judges <input type="text" class="medium-input" data-answer="aren't going to make|are not going to make"> (5. not/make) it easy, but we are ready. Let's go!"
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="medium-input" data-answer="am not going to eat|'m not going to eat"> (not/eat) junk food this month.</div>
+                <div class="question">2. We <input type="text" class="medium-input" data-answer="aren't going to quit|are not going to quit"> (not/quit) the CrossFit competition.</div>
+                <div class="question">3. She <input type="text" class="medium-input" data-answer="isn't going to miss|is not going to miss"> (not/miss) her training session.</div>
+                <div class="question">4. They <input type="text" class="medium-input" data-answer="aren't going to lose|are not going to lose"> (not/lose) the football match.</div>
+                <div class="question">5. El Michi <input type="text" class="medium-input" data-answer="isn't going to destroy|is not going to destroy"> (not/destroy) the sofa again!</div>
+                <div class="question">6. You <input type="text" class="medium-input" data-answer="aren't going to fail|are not going to fail"> (not/fail) the IELTS exam.</div>
+                <div class="question">7. He <input type="text" class="medium-input" data-answer="isn't going to stop|is not going to stop"> (not/stop) running until the end.</div>
+                <div class="question">8. I <input type="text" class="medium-input" data-answer="am not going to sleep|'m not going to sleep"> (not/sleep) until my project is done.</div>
             </div>
         </div>
 
-        <!-- Exercise 2: Reading Comprehension -->
+        <!-- Exercise 2: Transformation -->
         <div class="exercise-section">
-            <h3><span>B</span> Reading: The Final Exams</h3>
-            <p class="instructions">Read the text about the students at Colegio Fielding. Then, answer the questions using <strong>Short Answers</strong> (Yes, he is / No, they aren't / etc.).</p>
+            <h3><span>B</span> Change the Mindset</h3>
+            <p class="instructions">Rewrite the weak or negative statements into strong declarations of determination using the negative form of "be going to".</p>
             
-            <div class="reading-box" style="margin-bottom: 20px;">
-                The final exams are next month, and the students are stressed. Tatiana and Laura aren't going to sleep much this weekend because they are going to study History and English. Carlos, on the other hand, is very relaxed. He isn't going to study today because he prefers to play video games. Is the test going to be easy? No, Teacher Ivan is going to prepare a very difficult exam. But the girls are determined: they aren't going to fail.
-            </div>
-
             <div class="question">
-                1. Are Tatiana and Laura going to sleep a lot this weekend?<br>
-                <input type="text" class="medium-input" data-answer="no, they aren't.|no, they are not.|no, they aren't">
+                1. <em>Weak:</em> We want to surrender.<br>
+                <strong>Strong:</strong> <input type="text" class="long-input" data-answer="we aren't going to surrender.|we are not going to surrender.|we aren't going to surrender">
             </div>
             <div class="question">
-                2. Are the girls going to study History and English?<br>
-                <input type="text" class="medium-input" data-answer="yes, they are.|yes, they are">
+                2. <em>Weak:</em> He plans to stop training.<br>
+                <strong>Strong:</strong> <input type="text" class="long-input" data-answer="he isn't going to stop training.|he is not going to stop training.|he isn't going to stop training">
             </div>
             <div class="question">
-                3. Is Carlos going to study today?<br>
-                <input type="text" class="medium-input" data-answer="no, he isn't.|no, he is not.|no, he isn't">
+                3. <em>Weak:</em> I will probably give up.<br>
+                <strong>Strong:</strong> <input type="text" class="long-input" data-answer="i am not going to give up.|i'm not going to give up.|i am not going to give up">
             </div>
             <div class="question">
-                4. Is the test going to be easy?<br>
-                <input type="text" class="medium-input" data-answer="no, it isn't.|no, it is not.|no, it isn't">
-            </div>
-            <div class="question">
-                5. Are Tatiana and Laura going to fail?<br>
-                <input type="text" class="medium-input" data-answer="no, they aren't.|no, they are not.|no, they aren't">
+                4. <em>Weak:</em> They will cancel the academic project.<br>
+                <strong>Strong:</strong> <input type="text" class="long-input" data-answer="they aren't going to cancel the academic project.|they aren't going to cancel the project.|they are not going to cancel the project.">
             </div>
         </div>
 
-        <!-- Exercise 3: Formulating Questions & Answers -->
+        <!-- Exercise 3: Reading Comprehension -->
         <div class="exercise-section">
-            <h3><span>C</span> Grammar: Ask and Answer</h3>
-            <p class="instructions">Look at the cues. First, write the complete question. Then, write the correct short answer.</p>
+            <h3><span>C</span> Reading: The SAGMUN Challenge</h3>
+            <p class="instructions">Read the text about the students from Colegio Fielding. Then, extract the exact verbs they "aren't going to" do to complete the summary.</p>
             
-            <div class="question" style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                <em>Cue: (Teacher Ivan / give a test? / Yes)</em><br>
-                <strong>Q:</strong> <input type="text" class="long-input" data-answer="is teacher ivan going to give a test?|is teacher ivan going to give a test"><br>
-                <strong>A:</strong> <input type="text" class="medium-input" data-answer="yes, he is.|yes, he is">
-            </div>
-            
-            <div class="question" style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px;">
-                <em>Cue: (The students / quit? / No)</em><br>
-                <strong>Q:</strong> <input type="text" class="long-input" data-answer="are the students going to quit?|are the students going to quit"><br>
-                <strong>A:</strong> <input type="text" class="medium-input" data-answer="no, they aren't.|no, they are not.|no, they aren't">
+            <div class="reading-box">
+                "Next month is the SAGMUN Model United Nations event. The 14 students from Colegio Fielding are working very hard. They are exhausted, but they <strong>aren't going to quit</strong>. The debates are extremely difficult, so they <strong>aren't going to sleep</strong> much this weekend because they need to study international laws. Teacher Ivan is helping them with their English. He <strong>isn't going to let</strong> them fail on the big stage. The students want to win, so they <strong>aren't going to waste</strong> time on video games or parties."
             </div>
 
-            <div class="question" style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px;">
-                <em>Cue: (You / travel to La Paz? / Yes)</em><br>
-                <strong>Q:</strong> <input type="text" class="long-input" data-answer="are you going to travel to la paz?|are you going to travel to la paz"><br>
-                <strong>A:</strong> <input type="text" class="medium-input" data-answer="yes, i am.|yes, i am">
+            <div class="question">1. The 14 students are tired, but they aren't going to <input type="text" class="short-input" data-answer="quit">.</div>
+            <div class="question">2. Because they have to study, they aren't going to <input type="text" class="short-input" data-answer="sleep"> much this weekend.</div>
+            <div class="question">3. Teacher Ivan is strict; he isn't going to <input type="text" class="short-input" data-answer="let"> them fail.</div>
+            <div class="question">4. To prepare for the debates, the students aren't going to <input type="text" class="short-input" data-answer="waste"> their time.</div>
+        </div>
+
+        <!-- Exercise 4: Debug -->
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug</h3>
+            <p class="instructions">There is a grammar mistake in the negative structure of each sentence. Rewrite the full sentence correctly.</p>
+
+            <div class="question">
+                1. She doesn't going to eat pizza today.
+                <input type="text" class="long-input" data-answer="she isn't going to eat pizza today.|she is not going to eat pizza today.">
+            </div>
+            <div class="question">
+                2. We aren't going to quitting the race.
+                <input type="text" class="long-input" data-answer="we aren't going to quit the race.|we are not going to quit the race.">
+            </div>
+            <div class="question">
+                3. I am not go to lose the competition.
+                <input type="text" class="long-input" data-answer="i am not going to lose the competition.|i'm not going to lose the competition.">
             </div>
         </div>
 
-        <!-- Exercise 4: Writing / Transformation -->
+        <!-- Exercise 5: Guided Writing -->
         <div class="exercise-section">
-            <h3><span>D</span> Writing: Change your mindset</h3>
-            <p class="instructions">Transform these negative thoughts (Affirmative sentences) into positive resilience (Negative sentences). Write the full sentence.</p>
-
+            <h3><span>E</span> Guided Writing: Translation</h3>
+            <p class="instructions">Translate these Spanish expressions of determination into English using the negative "be going to".</p>
+            
             <div class="question">
-                1. I am going to stop trying. ➔ <em>(Change to negative)</em><br>
-                <input type="text" class="long-input" data-answer="i am not going to stop trying.|i'm not going to stop trying.|i am not going to stop trying">
+                1. <em>(No me voy a rendir.)</em>
+                <input type="text" class="long-input" data-answer="i am not going to give up.|i'm not going to give up.">
             </div>
             <div class="question">
-                2. She is going to give up. ➔ <em>(Change to negative)</em><br>
-                <input type="text" class="long-input" data-answer="she isn't going to give up.|she is not going to give up.|she isn't going to give up">
+                2. <em>(Nosotros no vamos a perder.)</em>
+                <input type="text" class="long-input" data-answer="we aren't going to lose.|we are not going to lose.">
             </div>
             <div class="question">
-                3. We are going to lose the match. ➔ <em>(Change to negative)</em><br>
-                <input type="text" class="long-input" data-answer="we aren't going to lose the match.|we are not going to lose the match.|we aren't going to lose the match">
-            </div>
-            <div class="question">
-                4. They are going to fail the class. ➔ <em>(Change to negative)</em><br>
-                <input type="text" class="long-input" data-answer="they aren't going to fail the class.|they are not going to fail the class.|they aren't going to fail the class">
+                3. <em>(Él no va a fracasar.)</em>
+                <input type="text" class="long-input" data-answer="he isn't going to fail.|he is not going to fail.">
             </div>
         </div>
 
@@ -253,7 +254,7 @@
 
         <div class="actions">
             <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
-            <button class="btn-check" onclick="checkAnswers()">🔍 Check My Progress</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check My Determination</button>
         </div>
 
     </div>
@@ -265,13 +266,11 @@
 
             inputs.forEach(input => {
                 let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
-                // Preserve question marks if they are in the expected answer
-                if(!input.getAttribute('data-answer').includes("?")) {
-                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
-                }
+                userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
                 
                 let correctAnswers = input.getAttribute('data-answer').split('|');
-                
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
                 if (userAnswer === "") {
                     input.style.borderColor = "var(--rojo-error)";
                     input.style.backgroundColor = "#ffebee";
@@ -294,11 +293,11 @@
             if (allCorrect) {
                 feedback.style.backgroundColor = "#e8f5e9";
                 feedback.style.color = "var(--verde-correcto)";
-                feedback.innerHTML = "🌟 ¡Excelente trabajo! Has demostrado que no te vas a rendir. Dominas las oraciones negativas y las respuestas cortas.";
+                feedback.innerHTML = "🌟 ¡IMPECABLE! Tienes una determinación de acero y tu gramática es perfecta. ¡A seguir así!";
             } else {
                 feedback.style.backgroundColor = "#fff3e0";
                 feedback.style.color = "#ff9800";
-                feedback.innerHTML = "⚠️ ¡No te rindas! Tienes algunos errores (marcados en rojo). Revisa bien la estructura de las preguntas y recuerda no usar 'going to' en las respuestas cortas.";
+                feedback.innerHTML = "⚠️ ¡No te rindas! Revisa los recuadros en rojo. Asegúrate de usar am/is/are + not, y no conjugar el verbo de acción.";
             }
         }
     </script>

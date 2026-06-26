@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 General Exam (U1-U3) - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        /* Timer Sticky Bar */
+        #timer-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--azul-primario);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 100px auto 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-primario);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 25px; right: -45px; background: var(--naranja-vibrante);
+            color: white; padding: 5px 50px; font-weight: bold; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 0.9rem;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--azul-a2); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--azul-a2); padding-left: 10px; }
+
+        .question { margin-bottom: 15px; font-size: 1.05rem; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            outline: none;
+        }
+        textarea:focus { border-color: var(--azul-a2); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 90%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        /* Reading & Transcript Box */
+        .reading-box { line-height: 1.8; font-size: 1.05rem; padding: 20px; background: white; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
+        
+        .transcript-container { display: none; margin-top: 15px; padding: 15px; background: #e3f2fd; border-left: 4px solid var(--azul-a2); border-radius: 4px; font-style: italic; }
+        .btn-toggle { background: var(--azul-primario); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-toggle:hover { background: #08366b; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        .btn-check { background-color: var(--azul-primario); color: white; padding: 15px 40px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; text-transform: uppercase; width: 100%; }
+        .btn-check:hover { background-color: #08366b; }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.5rem; padding: 25px; border-radius: 8px; border: 2px solid; }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            #timer-bar { display: none !important; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .actions, .btn-check, #feedback-message, .ribbon, .btn-toggle { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="timer-bar">⏱️ TIME LEFT: <span id="time-display">40:00</span></div>
+
+    <div class="worksheet-container">
+        <div class="ribbon">GENERAL EXAM</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>General Exam: Units 1-3</h1>
+            <p>Level A2 | Grammar, Vocab, Reading, Listening & Writing | 50 Points</p>
+        </div>
+
+        <!-- SECTION 1: UNIT 1 (10 items) -->
+        <div class="exercise-section">
+            <h3><span>1</span> Review: Past & Present (10 pts)</h3>
+            <p class="instructions">Complete the sentences with the correct form of the verb (Past Simple, Present Simple, or Present Continuous).</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="medium-input" data-answer="went"> (go) to Uyuni last year.</div>
+                <div class="question">2. She <input type="text" class="medium-input" data-answer="doesn't play|does not play"> (not/play) tennis on Mondays.</div>
+                <div class="question">3. <input type="text" class="medium-input" data-answer="did you watch"> (you/watch) the football game yesterday?</div>
+                <div class="question">4. We are <input type="text" class="medium-input" data-answer="studying"> (study) right now.</div>
+                <div class="question">5. He <input type="text" class="medium-input" data-answer="bought"> (buy) a new computer yesterday.</div>
+                <div class="question">6. The cat <input type="text" class="medium-input" data-answer="sleeps"> (sleep) on the sofa every afternoon.</div>
+                <div class="question">7. I <input type="text" class="medium-input" data-answer="didn't go|did not go"> (not/go) to Santa Cruz last month.</div>
+                <div class="question">8. What <input type="text" class="medium-input" data-answer="is"> she doing right now?</div>
+                <div class="question">9. They <input type="text" class="medium-input" data-answer="ate"> (eat) pizza for dinner yesterday.</div>
+                <div class="question">10. I usually <input type="text" class="medium-input" data-answer="wake up"> (wake up) at 5:00 AM.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: UNIT 2 (15 items) -->
+        <div class="exercise-section">
+            <h3><span>2</span> Sports, Modals & Frequency (15 pts)</h3>
+            
+            <p class="instructions">Part A: Play, Go, or Do?</p>
+            <div class="grid-2">
+                <div class="question">11. I want to <input type="text" class="short-input" data-answer="go"> swimming.</div>
+                <div class="question">12. We usually <input type="text" class="short-input" data-answer="play"> football on Sundays.</div>
+                <div class="question">13. Lau loves to <input type="text" class="short-input" data-answer="do"> CrossFit.</div>
+            </div>
+
+            <p class="instructions" style="margin-top:15px;">Part B: Gerunds (Verb + ING)</p>
+            <div class="grid-2">
+                <div class="question">14. He (hate / run) <input type="text" class="medium-input" data-answer="hates running">.</div>
+                <div class="question">15. I (not mind / lift) <input type="text" class="medium-input" data-answer="don't mind lifting|do not mind lifting"> heavy weights.</div>
+            </div>
+
+            <p class="instructions" style="margin-top:15px;">Part C: Rewrite the frequency sentences correctly.</p>
+            <div class="question">16. I train in the morning. <strong>(Always)</strong> <input type="text" class="long-input" data-answer="i always train in the morning.|i always train in the morning"></div>
+            <div class="question">17. She is late. <strong>(Never)</strong> <input type="text" class="long-input" data-answer="she is never late.|she is never late"></div>
+
+            <p class="instructions" style="margin-top:15px;">Part D: Safety & Prepositions</p>
+            <div class="grid-2">
+                <div class="question">18. <em>(Rule)</em> You <input type="text" class="short-input" data-answer="must"> wear sports shoes.</div>
+                <div class="question">19. <em>(Advice)</em> You <input type="text" class="short-input" data-answer="should"> warm up before lifting.</div>
+                <div class="question">20. <em>(Strict Rule)</em> You <input type="text" class="short-input" data-answer="mustn't|must not"> drop the barbell.</div>
+                <div class="question">21. <em>(+) Command:</em> <input type="text" class="short-input" data-answer="bend"> (bend) your knees.</div>
+                <div class="question">22. <em>(-) Command:</em> <input type="text" class="short-input" data-answer="don't hold|do not hold"> (not/hold) your breath.</div>
+                <div class="question">23. We train <input type="text" class="short-input" data-answer="at"> 5:30 AM.</div>
+                <div class="question">24. I don't work <input type="text" class="short-input" data-answer="on"> Sunday.</div>
+                <div class="question">25. I sleep well <input type="text" class="short-input" data-answer="at"> night.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: UNIT 3 (10 items) -->
+        <div class="exercise-section">
+            <h3><span>3</span> Future: Going to & Will (10 pts)</h3>
+            <p class="instructions">Complete the sentences based on the context in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">26. <em>(Plan)</em> I <input type="text" class="medium-input" data-answer="am going to study|'m going to study"> (study) history next year.</div>
+                <div class="question">27. <em>(Plan)</em> She <input type="text" class="medium-input" data-answer="isn't going to travel|is not going to travel"> (not/travel) to France.</div>
+                <div class="question">28. <em>(Question)</em> Are you <input type="text" class="medium-input" data-answer="going to build"> (build) an app?</div>
+                <div class="question">29. <em>(Determination)</em> We <input type="text" class="medium-input" data-answer="aren't going to quit|are not going to quit"> (not/quit).</div>
+                <div class="question">30. <em>(Sudden decision)</em> It's cold! I <input type="text" class="medium-input" data-answer="will close|'ll close"> (close) the window.</div>
+                <div class="question">31. <em>(Promise)</em> I <input type="text" class="medium-input" data-answer="will help|'ll help"> (help) you with the HTML.</div>
+                <div class="question">32. <em>(Prediction)</em> In 2050, cars <input type="text" class="medium-input" data-answer="will fly"> (fly).</div>
+                <div class="question">33. <em>(Promise)</em> We <input type="text" class="medium-input" data-answer="won't forget|will not forget"> (not/forget) your birthday.</div>
+                <div class="question">34. <em>(Evidence)</em> Look at the clouds! It <input type="text" class="medium-input" data-answer="is going to rain|'s going to rain"> (rain).</div>
+                <div class="question">35. <em>(Question)</em> What <input type="text" class="medium-input" data-answer="are"> you going to do tomorrow?</div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: LISTENING (7 items) -->
+        <div class="exercise-section">
+            <h3><span>4</span> Listening Comprehension (7 pts)</h3>
+            <p class="instructions">Click the button to reveal the audio transcript. Read the dialogue and fill in the blanks.</p>
+            
+            <button class="btn-toggle" onclick="document.getElementById('transcript').style.display='block'">🔊 Show Transcript</button>
+            <div id="transcript" class="transcript-container">
+                "Hi, I'm Carlos. Next month, my friend Ivan and I are going to travel to Santa Cruz for a CrossFit competition. We must practice every day. I always lift kettlebells, but Ivan prefers barbells. We will probably stay in a small hotel. We aren't going to eat junk food because we want to win!"
+            </div>
+
+            <div style="margin-top: 20px;">
+                <div class="question">36. Carlos and Ivan are going to travel to <input type="text" class="medium-input" data-answer="santa cruz">.</div>
+                <div class="question">37. They are traveling for a <input type="text" class="medium-input" data-answer="crossfit"> competition.</div>
+                <div class="question">38. They <input type="text" class="short-input" data-answer="must"> practice every day. (must / should)</div>
+                <div class="question">39. Carlos always lifts <input type="text" class="medium-input" data-answer="kettlebells|kettlebell">.</div>
+                <div class="question">40. Ivan prefers <input type="text" class="medium-input" data-answer="barbells|barbell">.</div>
+                <div class="question">41. They will probably stay in a <input type="text" class="medium-input" data-answer="hotel|small hotel">.</div>
+                <div class="question">42. They aren't going to eat <input type="text" class="medium-input" data-answer="junk"> food.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: READING (7 items) -->
+        <div class="exercise-section">
+            <h3><span>5</span> Reading Comprehension (7 pts)</h3>
+            <p class="instructions">Read the text about technology at school and fill in the missing grammar words.</p>
+            
+            <div class="reading-box">
+                The Fielding App was <input type="text" class="medium-input" data-answer="created"> (43. create - Passive) last year to help students. Before the app, teachers used lots of <input type="text" class="medium-input" data-answer="paper"> (44. material). The material was <input type="text" class="medium-input" data-answer="recycled"> (45. recycle - Passive), but it wasn't enough. Now, the app is being <input type="text" class="medium-input" data-answer="updated"> (46. update) by the tech team. Next year, the school <input type="text" class="short-input" data-answer="will"> (47. prediction) add a new English module. The students <input type="text" class="short-input" data-answer="are"> (48. verb to be) going to use it for their exams. "We <input type="text" class="medium-input" data-answer="won't|will not"> (49. promise negative) use paper anymore," said the principal.
+            </div>
+        </div>
+
+        <!-- SECTION 6: WRITING (1 item = 1 pt) -->
+        <div class="exercise-section">
+            <h3><span>6</span> Writing (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about your weekend routines AND your plans for your next vacation. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="I usually wake up at 7:00 AM on Saturdays... For my next vacation, I am going to travel to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkAnswers(false)">🏁 SUBMIT EXAM</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Timer Logic ---
+        let totalSeconds = 40 * 60; // 40 minutes
+        const timeDisplay = document.getElementById('time-display');
+        let timerInterval;
+
+        function updateTimer() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+            
+            if (seconds < 10) seconds = '0' + seconds;
+            if (minutes < 10) minutes = '0' + minutes;
+            
+            timeDisplay.innerText = `${minutes}:${seconds}`;
+
+            if (totalSeconds <= 0) {
+                clearInterval(timerInterval);
+                timeDisplay.innerText = "00:00";
+                document.getElementById('timer-bar').style.backgroundColor = "black";
+                checkAnswers(true); 
+            } else {
+                totalSeconds--;
+            }
+        }
+
+        window.onload = function() {
+            timerInterval = setInterval(updateTimer, 1000);
+        };
+
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers(autoSubmit) {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+            clearInterval(timerInterval); 
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalInputs = 49; 
+            const totalMax = 50; // 49 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You have mastered Units 1, 2, and 3.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GREAT JOB! You passed the General Exam.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Keep practicing the grammar structures.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            let timeoutMsg = autoSubmit ? "<br><small style='color:black;'>⏱️ Time is up! Auto-submitted.</small>" : "";
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}${timeoutMsg}`;
+            
+            document.getElementById('timer-bar').style.backgroundColor = (percentage >= 70) ? "var(--verde-correcto)" : "var(--rojo-error)";
+            document.getElementById('time-display').innerText = "EXAM FINISHED";
+        }
+    </script>
+</body>
+</html>

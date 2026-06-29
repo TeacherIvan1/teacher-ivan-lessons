@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: Will you help me? - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 10px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        .exercise-section { margin-bottom: 45px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; }
+
+        .question { margin-bottom: 20px; font-size: 1.05rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 10px; font-style: italic; }
+
+        .reading-box {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; }
+        button {
+            padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase;
+        }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+        .btn-print { background-color: #4A5568; color: white; }
+        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 25px 20px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.8rem; }
+            .grammar-box { flex-direction: column; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; gap: 15px; }
+            .btn-check, .btn-print { width: 100%; }
+        }
+
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Will you help me?</h1>
+            <p>Level A2 | Unit 3 - Lesson 5 | Requests and Offers</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🤝</div>
+            <div class="grammar-content">
+                <h2>Asking for Favors & Making Offers</h2>
+                <p>We already know that "Will" is used for the future, but we also use it in questions to ask someone to do something for us (a request) or to offer our help.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Requests (Pedir un favor)</h4>
+                    <p><code>Will + you + Base Verb + please?</code><br>
+                    <em>"Will you open the window, please?"</em><br>
+                    <em>"Will you help me with this box?"</em></p>
+                </div>
+
+                <div class="grammar-rule">
+                    <h4>Short Answers</h4>
+                    <p>When someone asks you for a favor using "Will", you answer with:<br>
+                    ✔️ Yes, I will. / Sure! / Of course.<br>
+                    ❌ No, I won't. / I'm sorry, I can't.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Politeness Rule:</strong><br>
+                    Using "Will you...?" is a polite way to give an order or ask for help. It sounds much better than saying "Open the window!".
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Asking for Help</h3>
+            <p class="instructions">Complete the questions to ask for a favor using <strong>Will you</strong> and the verb in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. It is very dark. <input type="text" class="medium-input" data-answer="will you turn on"> (turn on) the light, please?</div>
+                <div class="question">2. I don't understand this math problem. <input type="text" class="medium-input" data-answer="will you help"> (help) me?</div>
+                <div class="question">3. The phone is ringing. <input type="text" class="medium-input" data-answer="will you answer"> (answer) it for me?</div>
+                <div class="question">4. We are thirsty. <input type="text" class="medium-input" data-answer="will you bring"> (bring) us some water?</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Be Polite!</h3>
+            <p class="instructions">These commands are too aggressive! Rewrite them as polite requests using <strong>Will you</strong>. Don't forget the question mark (?)</p>
+            
+            <div class="question">
+                1. <em>Aggressive:</em> Close the door! <br>
+                <strong>Polite:</strong> <input type="text" class="long-input" data-answer="will you close the door?|will you close the door, please?|will you close the door">
+            </div>
+            <div class="question">
+                2. <em>Aggressive:</em> Call a taxi for me! <br>
+                <strong>Polite:</strong> <input type="text" class="long-input" data-answer="will you call a taxi for me?|will you call a taxi for me, please?|will you call a taxi for me">
+            </div>
+            <div class="question">
+                3. <em>Aggressive:</em> Carry my bags! <br>
+                <strong>Polite:</strong> <input type="text" class="long-input" data-answer="will you carry my bags?|will you carry my bags, please?|will you carry my bags">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> Setting up the Classroom</h3>
+            <p class="instructions">Read the conversation between Teacher Ivan and his students. Fill in the gaps with the correct questions or short answers using "Will".</p>
+            
+            <div class="reading-box">
+                <strong>Teacher Ivan:</strong> Good morning, class! Today we have an English event. I need some volunteers. Tatiana, these dictionaries are heavy. <input type="text" class="medium-input" data-answer="will you carry"> (1. you / carry) them to the library?<br><br>
+                <strong>Tatiana:</strong> Yes, <input type="text" class="short-input" data-answer="i will"> (2. Yes)! No problem.<br><br>
+                <strong>Teacher Ivan:</strong> Thank you! Santiago, <input type="text" class="medium-input" data-answer="will you erase"> (3. you / erase) the whiteboard, please?<br><br>
+                <strong>Santiago:</strong> I'm sorry, I can't. I need to finish my exam. <br><br>
+                <strong>Teacher Ivan:</strong> That's fine. Luis, <input type="text" class="medium-input" data-answer="will you help"> (4. you / help) me with the whiteboard?<br><br>
+                <strong>Luis:</strong> Yes, <input type="text" class="short-input" data-answer="i will"> (5. Yes), Teacher!
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug</h3>
+            <p class="instructions">There is a grammar mistake in each request. Rewrite the full sentence correctly.</p>
+
+            <div class="question">
+                1. Will you to open the window, please?
+                <input type="text" class="long-input" data-answer="will you open the window, please?|will you open the window, please">
+            </div>
+            <div class="question">
+                2. Do you will help me with my project?
+                <input type="text" class="long-input" data-answer="will you help me with my project?|will you help me with my project">
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
+            <button class="btn-check" onclick="checkAnswers()">🔍 Check My Answers</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                // Preserve question marks if they are in the expected answer
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (allCorrect) {
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.innerHTML = "🌟 ¡Excelente! Ahora sabes cómo pedir favores y solicitar ayuda de manera muy educada en inglés.";
+            } else {
+                feedback.style.backgroundColor = "#fff3e0";
+                feedback.style.color = "#ff9800";
+                feedback.innerHTML = "⚠️ Revisa tus respuestas (las que están en rojo). Recuerda la estructura: Will + you + Verbo Normal.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A2 Lesson: Going to vs Will - Teacher Ivan</title>
+    <title>A2 Lesson: Going to vs Will (Extended) - Teacher Ivan</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -36,12 +36,20 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
             border-top: 8px solid var(--azul-a2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ribbon {
+            position: absolute; top: 25px; right: -45px; background: var(--naranja-vibrante);
+            color: white; padding: 5px 50px; font-weight: bold; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 0.9rem;
         }
 
         .header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
         .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
         .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--azul-primario); }
-        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
 
         .grammar-box {
             background-color: var(--gris-claro);
@@ -65,8 +73,8 @@
         .exercise-section h3 span { background: var(--naranja-vibrante); color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
         .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; }
 
-        .question { margin-bottom: 20px; font-size: 1.05rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .question { margin-bottom: 15px; font-size: 1.05rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         input[type="text"] {
             font-family: 'Open Sans', sans-serif;
@@ -83,12 +91,12 @@
         input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
         
         .short-input { width: 100px; text-align: center; }
-        .medium-input { width: 180px; text-align: center; }
-        .long-input { width: 100%; display: block; margin-top: 10px; font-style: italic; }
+        .medium-input { width: 170px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 8px; font-style: italic; }
 
         .reading-box {
             line-height: 2;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             padding: 25px;
             background: white;
             border-radius: 8px;
@@ -97,29 +105,40 @@
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .actions { display: flex; justify-content: space-between; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
-        .btn-action { padding: 12px 30px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; }
-        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); flex: 1; }
-        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
-        .btn-print { background-color: #4A5568; color: white; }
-        .btn-print:hover { background-color: #2d3748; transform: translateY(-2px); }
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            outline: none;
+        }
+        textarea:focus { border-color: var(--naranja-vibrante); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
 
-        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 8px; }
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 40px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3); width: 100%; }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.4rem; padding: 25px; border-radius: 8px; border: 2px solid; }
 
         @media (max-width: 768px) {
             .worksheet-container { margin: 20px 10px; padding: 25px 20px; }
-            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 15px; }
             .header h1 { font-size: 1.8rem; }
             .grammar-box { flex-direction: column; gap: 10px; }
-            .actions { flex-direction: column-reverse; }
-            .btn-action { width: 100%; }
+            .ribbon { right: -50px; font-size: 0.8rem; padding: 5px 40px; }
         }
 
         @media print {
             body { background: white; }
             .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
             .exercise-section { background: transparent; border: none; padding: 0; }
-            .actions, .btn-check, .btn-print, #feedback-message { display: none !important; }
+            .actions, .btn-check, #feedback-message, .ribbon { display: none !important; }
             input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
         }
     </style>
@@ -127,125 +146,179 @@
 <body>
 
     <div class="worksheet-container">
+        <div class="ribbon">30 QUESTIONS</div>
         
         <div class="header">
             <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
             <h1>Going to vs. Will</h1>
-            <p>Level A2 | Unit 3 - Lesson 7 | The Ultimate Future Test</p>
+            <p>Level A2 | Unit 3 - Lesson 7 | The Ultimate Future Test (31 Points)</p>
         </div>
 
         <div class="grammar-box">
             <div style="font-size: 3.5rem;">⚖️</div>
             <div class="grammar-content">
                 <h2>Choosing the Right Future</h2>
-                <p>Both "Going to" and "Will" talk about the future, but they have completely different feelings. You must read the <strong>context</strong> before choosing!</p>
+                <p>To master the future in English, you must read the <strong>context</strong>. Does the person have a plan, or did they decide right now?</p>
                 
                 <div class="grammar-rule">
                     <h4>📅 BE GOING TO (The Planner)</h4>
                     <p>Use it for organized plans, firm intentions, and things you decided <strong>BEFORE</strong> speaking.<br>
-                    <em>"I bought the tickets. I <strong>am going to</strong> travel to La Paz."</em></p>
+                    <em>"I bought the tickets. I <strong>am going to</strong> travel to Sucre."</em></p>
                 </div>
 
                 <div class="grammar-rule">
                     <h4>⚡ WILL (The Spontaneous)</h4>
-                    <p>Use it for sudden decisions made <strong>AT THE MOMENT</strong> of speaking, promises, or reactions.<br>
+                    <p>Use it for sudden decisions made <strong>AT THE MOMENT</strong> of speaking, promises, or predictions without evidence.<br>
                     <em>"The phone is ringing! I <strong>will</strong> answer it."</em></p>
                 </div>
             </div>
         </div>
 
-        <!-- Exercise 1: Quick Decisions -->
         <div class="exercise-section">
-            <h3><span>A</span> Read the Context</h3>
-            <p class="instructions">Look at the situations. Decide if it's a Plan (Going to) or a Sudden Decision (Will). Write the correct form with the verb in brackets.</p>
+            <h3><span>A</span> The Rules (5 pts)</h3>
+            <p class="instructions">Read the situation. Type <strong>will</strong> or <strong>going to</strong> depending on which grammar structure is the correct choice.</p>
             
             <div class="grid-2">
-                <div class="question">
-                    1. <em>(At a restaurant)</em> <br>
-                    Waiter: Are you ready to order? <br>
-                    You: Yes, I <input type="text" class="medium-input" data-answer="will have|'ll have"> (have) the chicken.
-                </div>
-                <div class="question">
-                    2. <em>(A life plan)</em> <br>
-                    I studied very hard. Next year, I <input type="text" class="medium-input" data-answer="am going to be|'m going to be"> (be) an engineer.
-                </div>
-                <div class="question">
-                    3. <em>(A reaction)</em> <br>
-                    A: Oh no! It is raining outside! <br>
-                    B: Don't worry. I <input type="text" class="medium-input" data-answer="will give|'ll give"> (give) you my umbrella.
-                </div>
-                <div class="question">
-                    4. <em>(An organized trip)</em> <br>
-                    We <input type="text" class="medium-input" data-answer="are going to fly|'re going to fly"> (fly) to Miami tomorrow. Here are the tickets!
-                </div>
+                <div class="question">1. An organized holiday for next month: <br><input type="text" class="medium-input" data-answer="going to"></div>
+                <div class="question">2. A sudden decision because you feel cold: <br><input type="text" class="medium-input" data-answer="will"></div>
+                <div class="question">3. A firm promise to your best friend: <br><input type="text" class="medium-input" data-answer="will"></div>
+                <div class="question">4. A clear intention to study engineering at university: <br><input type="text" class="medium-input" data-answer="going to"></div>
+                <div class="question">5. A prediction based on your opinion (I think...): <br><input type="text" class="medium-input" data-answer="will"></div>
             </div>
         </div>
 
-        <!-- Exercise 2: Conversations -->
         <div class="exercise-section">
-            <h3><span>B</span> Everyday Dialogues</h3>
+            <h3><span>B</span> Quick Decisions vs. Plans (10 pts)</h3>
+            <p class="instructions">Decide if it's a Plan or a Sudden Decision/Promise. Write the correct form with the verb in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">6. A: I'm cold. <br>B: I <input type="text" class="medium-input" data-answer="will close|'ll close"> (close) the window!</div>
+                <div class="question">7. Next week, we <input type="text" class="medium-input" data-answer="are going to travel|'re going to travel"> (travel) to La Paz. We have tickets!</div>
+                <div class="question">8. Don't worry! I <input type="text" class="medium-input" data-answer="will help|'ll help"> (help) you with those heavy bags.</div>
+                <div class="question">9. She <input type="text" class="medium-input" data-answer="is going to buy|'s going to buy"> (buy) a new car next year; she is saving money.</div>
+                <div class="question">10. A: Are you ready to order? <br>B: Yes, I <input type="text" class="medium-input" data-answer="will have|'ll have"> (have) a hamburger.</div>
+                <div class="question">11. I promise I <input type="text" class="medium-input" data-answer="won't tell|will not tell"> (not/tell) anyone your secret.</div>
+                <div class="question">12. Look at those black clouds! It <input type="text" class="medium-input" data-answer="is going to rain|'s going to rain"> (rain) soon.</div>
+                <div class="question">13. I think robots <input type="text" class="medium-input" data-answer="will do"> (do) our homework in 2050.</div>
+                <div class="question">14. We <input type="text" class="medium-input" data-answer="are going to play|'re going to play"> (play) football on Saturday morning. It's a plan.</div>
+                <div class="question">15. A: I forgot my wallet! <br>B: Don't worry, I <input type="text" class="medium-input" data-answer="will pay|'ll pay"> (pay).</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> Everyday Dialogues (5 pts)</h3>
             <p class="instructions">Complete the conversations using <strong>Will</strong> or <strong>Be going to</strong>.</p>
             
             <div class="question">
-                <strong>Ivan:</strong> Are you busy this weekend?<br>
-                <strong>Santiago:</strong> Yes, I <input type="text" class="medium-input" data-answer="am going to study|'m going to study"> (study) for my math exam. I planned it yesterday.
+                16. <strong>Ivan:</strong> Are you free on Sunday?<br>
+                <strong>Lau:</strong> No, I <input type="text" class="medium-input" data-answer="am going to visit|'m going to visit"> (visit) my grandmother.
             </div>
             <div class="question">
-                <strong>Tatiana:</strong> Oh no! I forgot my wallet at home!<br>
-                <strong>Lau:</strong> That's okay! I <input type="text" class="medium-input" data-answer="will pay|'ll pay"> (pay) for your coffee.
+                17. <strong>Santiago:</strong> Oh no, we don't have sugar for the coffee!<br>
+                <strong>Tatiana:</strong> Really? I <input type="text" class="medium-input" data-answer="will go|'ll go"> (go) to the supermarket right now.
             </div>
             <div class="question">
-                <strong>Coach:</strong> Why are you wearing those sports shoes?<br>
-                <strong>Luis:</strong> Because I <input type="text" class="medium-input" data-answer="am going to train|'m going to train"> (train) CrossFit in 10 minutes.
+                18. <strong>Student:</strong> I don't understand this grammar rule.<br>
+                <strong>Teacher:</strong> Sit down, I <input type="text" class="medium-input" data-answer="will explain|'ll explain"> (explain) it to you.
+            </div>
+            <div class="question">
+                19. <strong>Mom:</strong> Have you decided what to study at university?<br>
+                <strong>Son:</strong> Yes, I <input type="text" class="medium-input" data-answer="am going to study|'m going to study"> (study) architecture.
+            </div>
+            <div class="question">
+                20. <strong>A:</strong> This is a big secret, okay?<br>
+                <strong>B:</strong> I swear I <input type="text" class="medium-input" data-answer="won't say|will not say"> (not/say) a word.
             </div>
         </div>
 
-        <!-- Exercise 3: Reading Context -->
         <div class="exercise-section">
-            <h3><span>C</span> The Weekend Plan vs. The Surprise</h3>
-            <p class="instructions">Read the story. Fill in the gaps correctly. Is it a plan or a sudden reaction?</p>
+            <h3><span>D</span> Reading: Teacher Ivan's Weekend (5 pts)</h3>
+            <p class="instructions">Read the story. Fill in the gaps correctly. Is it a planned event or a sudden reaction?</p>
             
             <div class="reading-box">
-                Tomorrow is Saturday. I <input type="text" class="medium-input" data-answer="am going to visit|'m going to visit"> (1. visit) my grandmother in the morning. We planned this last week! After that, my friends and I <input type="text" class="medium-input" data-answer="are going to play|'re going to play"> (2. play) football at the park.<br><br>
+                "This weekend, I <input type="text" class="medium-input" data-answer="am going to travel|'m going to travel"> (21. travel) to Cochabamba for an educational seminar. I bought the plane tickets yesterday! After the seminar, I <input type="text" class="medium-input" data-answer="am going to meet|'m going to meet"> (22. meet) my old friends for dinner.<br><br>
                 <em>*Ring, ring!*</em><br><br>
-                Wait, my phone is ringing. I <input type="text" class="medium-input" data-answer="will answer|'ll answer"> (3. answer) it. <br>
-                Oh no, my grandmother is sick! I can't believe it. I <input type="text" class="medium-input" data-answer="will buy|'ll buy"> (4. buy) some medicine for her right now, and I <input type="text" class="medium-input" data-answer="will call|'ll call"> (5. call) my friends to cancel the football game.
+                Wait, my phone is ringing! I <input type="text" class="medium-input" data-answer="will answer|'ll answer"> (23. answer) it. <br>
+                Oh, it's my friend. He says he is very sick. That's terrible! I <input type="text" class="medium-input" data-answer="will buy|'ll buy"> (24. buy) some medicine for him right now, and I think I <input type="text" class="medium-input" data-answer="will stay|'ll stay"> (25. stay) at his house to take care of him instead of going out."
             </div>
         </div>
 
-        <!-- Exercise 4: Debug -->
         <div class="exercise-section">
-            <h3><span>D</span> Spot the Grammar Bug</h3>
-            <p class="instructions">These sentences use the WRONG future form based on their context. Rewrite them correctly.</p>
+            <h3><span>E</span> Spot the Grammar Bug (5 pts)</h3>
+            <p class="instructions">These sentences use the WRONG future form based on their context or have a structural error. Rewrite them correctly.</p>
 
             <div class="question">
-                1. <em>(I see someone carrying heavy boxes right now)</em><br>
-                Wait! I am going to help you!
-                <input type="text" class="long-input" data-answer="wait! i will help you!|wait! i'll help you!|i will help you!">
+                26. <em>(I see someone carrying heavy boxes right now)</em><br>
+                I am going to help you!
+                <input type="text" class="long-input" data-answer="i will help you!|i'll help you!|i will help you">
             </div>
             <div class="question">
-                2. <em>(I have a clear plan for next year)</em><br>
-                Next year, I will travel to Europe. I have my passport ready.
-                <input type="text" class="long-input" data-answer="next year, i am going to travel to europe.|i am going to travel to europe.">
+                27. <em>(I have a clear plan for next year)</em><br>
+                Next year, I will travel to Europe.
+                <input type="text" class="long-input" data-answer="next year, i am going to travel to europe.|next year, i'm going to travel to europe.">
             </div>
+            <div class="question">
+                28. I promise I don't will forget your birthday.
+                <input type="text" class="long-input" data-answer="i promise i won't forget your birthday.|i promise i will not forget your birthday.">
+            </div>
+            <div class="question">
+                29. The phone is ringing! I am going to answer it!
+                <input type="text" class="long-input" data-answer="the phone is ringing! i will answer it!|the phone is ringing! i'll answer it!|i will answer it!|i'll answer it!">
+            </div>
+            <div class="question">
+                30. I going to study for the math test tonight.
+                <input type="text" class="long-input" data-answer="i am going to study for the math test tonight.|i'm going to study for the math test tonight.">
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Your Turn (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about your plans for the weekend (use 'going to'). Then, imagine it starts raining heavily; write 1 sudden decision you make (use 'will'). Minimum 30 words.</p>
+            
+            <textarea id="writing-section" placeholder="This weekend, I am going to... If it rains, I will..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
         </div>
 
         <div id="feedback-message"></div>
 
         <div class="actions">
-            <button class="btn-action btn-print" onclick="window.print()">🖨️ Print Worksheet</button>
-            <button class="btn-action btn-check" onclick="checkAnswers()">🔍 Check Futures</button>
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🔍 SUBMIT & GET SCORE</button>
         </div>
 
     </div>
 
     <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Grading Logic ---
+        let examSubmitted = false;
+
         function checkAnswers() {
+            if(examSubmitted) return;
+            examSubmitted = true;
+
             const inputs = document.querySelectorAll('input[type="text"]');
-            let allCorrect = true;
+            let score = 0;
+            const totalMax = 31; // 30 inputs + 1 writing
 
             inputs.forEach(input => {
+                input.readOnly = true; // Lock inputs
+
                 let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                // Preserve exclamation marks if required by the answer
                 if(!input.getAttribute('data-answer').includes("!")) {
                     userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
                 }
@@ -255,31 +328,65 @@
                 if (userAnswer === "") {
                     input.style.borderColor = "var(--rojo-error)";
                     input.style.backgroundColor = "#ffebee";
-                    allCorrect = false;
                 } else if (correctAnswers.includes(userAnswer) || correctAnswers.includes(userAnswer.replace(/!$/, ''))) {
                     input.style.borderColor = "var(--verde-correcto)";
                     input.style.backgroundColor = "#e8f5e9";
                     input.style.color = "#2e7d32";
+                    score++;
                 } else {
                     input.style.borderColor = "var(--rojo-error)";
                     input.style.backgroundColor = "#ffebee";
                     input.style.color = "#c62828";
-                    allCorrect = false;
                 }
             });
 
-            const feedback = document.getElementById('feedback-message');
-            feedback.style.display = 'block';
-
-            if (allCorrect) {
-                feedback.style.backgroundColor = "#e8f5e9";
-                feedback.style.color = "var(--verde-correcto)";
-                feedback.innerHTML = "🌟 ¡Excelente! Ya eres un maestro del futuro. Sabes exactamente cuándo planear y cuándo reaccionar.";
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
             } else {
-                feedback.style.backgroundColor = "#fff3e0";
-                feedback.style.color = "#ff9800";
-                feedback.innerHTML = "⚠️ ¡Atención al contexto! (Revisa las cajas en rojo). Recuerda: Si ya lo sabías antes de hablar, usa 'Going to'. Si lo decides en ese mismo segundo, usa 'Will'.";
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
             }
+
+            // Calculate percentage
+            const percentage = Math.round((score / totalMax) * 100);
+
+            // Display Feedback
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; // Hide submit button
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You are a master of the Future Tense.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GREAT JOB! You understand the difference well.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Remember: Going to = Plans, Will = Sudden decisions/Promises.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: ${score} / ${totalMax} (${percentage}%)<br><span style="font-size:1.1rem; font-weight:normal;">${message}</span>`;
+            
+            // Scroll to bottom to see score
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>

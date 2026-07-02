@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: My English Goals - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--azul-primario); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 90px; text-align: center; }
+        .medium-input { width: 140px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        /* Reading Box */
+        .reading-box { line-height: 2; font-size: 1rem; padding: 20px; background: white; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--azul-primario); color: white; box-shadow: 0 4px 10px rgba(10, 70, 140, 0.3); }
+        .btn-check:hover { background-color: #08366b; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 25px 20px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+            input[type="text"].medium-input, input[type="text"].short-input { width: auto; min-width: 80px; max-width: 140px; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>My English Goals</h1>
+            <p>Level A2 | Unit 3 - Lesson 8 | Infinitive of Purpose</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 31 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🎯</div>
+            <div class="grammar-content">
+                <h2>Why do you do it?</h2>
+                <p>When we want to express the <strong>reason</strong> or <strong>purpose</strong> behind an action, we use the <strong>Infinitive of Purpose</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Structure:</h4>
+                    <p><code>Action + to + Base Verb</code></p>
+                    <p>✔️ <em>I study English <strong>to travel</strong> around the world.</em><br>
+                    ✔️ <em>He went to the gym <strong>to lift</strong> weights.</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Common Mistakes:</strong><br>
+                    In Spanish, we say "para viajar". But in English, DO NOT use "for" + verb in this case!<br>
+                    ❌ <s>I study English for travel.</s> (Incorrect)<br>
+                    ❌ <s>I study English for to travel.</s> (Incorrect)<br>
+                    ❌ <s>I study English to travelling.</s> (Incorrect)
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Fill in the Blanks (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Action and Purpose (10 pts)</h3>
+            <p class="instructions">Complete the sentences using "to" + the verb in brackets to express purpose.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I go to the gym <input type="text" class="medium-input" data-answer="to do"> (do) CrossFit.</div>
+                <div class="question">2. She called Teacher Ivan <input type="text" class="medium-input" data-answer="to ask"> (ask) a question.</div>
+                <div class="question">3. We use the Fielding App <input type="text" class="medium-input" data-answer="to check"> (check) our grades.</div>
+                <div class="question">4. He went to the supermarket <input type="text" class="medium-input" data-answer="to buy"> (buy) avocados.</div>
+                <div class="question">5. I turned on the computer <input type="text" class="medium-input" data-answer="to play"> (play) Warcraft III.</div>
+                <div class="question">6. Tatiana studies hard <input type="text" class="medium-input" data-answer="to pass"> (pass) her B1 exam.</div>
+                <div class="question">7. Lau went to the kitchen <input type="text" class="medium-input" data-answer="to prepare"> (prepare) a healthy breakfast.</div>
+                <div class="question">8. I bought a new jacket <input type="text" class="medium-input" data-answer="to keep"> (keep) warm in winter.</div>
+                <div class="question">9. El Michi jumped on the sofa <input type="text" class="medium-input" data-answer="to sleep"> (sleep).</div>
+                <div class="question">10. I am saving money <input type="text" class="medium-input" data-answer="to travel"> (travel) to Japan.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Unscramble (5 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Unscramble the Goals (5 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form sentences using the infinitive of purpose.</p>
+            
+            <div class="question">
+                11. went / to / park / the / I / run / to / .
+                <input type="text" class="long-input" data-answer="i went to the park to run.|i went to the park to run">
+            </div>
+            <div class="question">
+                12. english / learn / you / to / a / get / job / good / .
+                <input type="text" class="long-input" data-answer="you learn english to get a good job.|you learn english to get a good job">
+            </div>
+            <div class="question">
+                13. early / up / wakes / he / train / to / .
+                <input type="text" class="long-input" data-answer="he wakes up early to train.|he wakes up early to train">
+            </div>
+            <div class="question">
+                14. water / drink / we / hydrated / stay / to / .
+                <input type="text" class="long-input" data-answer="we drink water to stay hydrated.|we drink water to stay hydrated">
+            </div>
+            <div class="question">
+                15. app / the / downloaded / I / study / to / .
+                <input type="text" class="long-input" data-answer="i downloaded the app to study.|i downloaded the app to study">
+            </div>
+        </div>
+
+        <!-- Section C: Sentence Joining (5 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Combine Ideas (5 pts)</h3>
+            <p class="instructions">Join the two sentences into one using the infinitive of purpose ("to"). <br><em>Example: I saved money. I want to buy a PC. ➔ I saved money to buy a PC.</em></p>
+            
+            <div class="question">
+                16. She went to Japan. She wanted to visit Aomori.
+                <input type="text" class="long-input" data-answer="she went to japan to visit aomori.|she went to japan to visit aomori">
+            </div>
+            <div class="question">
+                17. He uses HTML. He builds interactive tools.
+                <input type="text" class="long-input" data-answer="he uses html to build interactive tools.|he uses html to build interactive tools">
+            </div>
+            <div class="question">
+                18. We study History. We want to understand the past.
+                <input type="text" class="long-input" data-answer="we study history to understand the past.|we study history to understand the past">
+            </div>
+            <div class="question">
+                19. I exercise. I want to be strong.
+                <input type="text" class="long-input" data-answer="i exercise to be strong.|i exercise to be strong">
+            </div>
+            <div class="question">
+                20. They are reading books. They want to learn more.
+                <input type="text" class="long-input" data-answer="they are reading books to learn more.|they are reading books to learn more">
+            </div>
+        </div>
+
+        <!-- Section D: Reading Comprehension (5 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Classroom Goals (5 pts)</h3>
+            <p class="instructions">Read about Teacher Ivan's class. Fill in the blanks with the correct verb expressing purpose from the list: <strong>understand, improve, help, communicate, organize</strong>.</p>
+            
+            <div class="reading-box">
+                "My students learn English to <input type="text" class="medium-input" data-answer="communicate"> (21) with people from other countries. Santiago practices every day to <input type="text" class="medium-input" data-answer="improve"> (22) his pronunciation. Tatiana listens to podcasts to <input type="text" class="medium-input" data-answer="understand"> (23) native speakers better. At school, we use Google Classroom to <input type="text" class="medium-input" data-answer="organize"> (24) our homework efficiently. I teach them every day to <input type="text" class="medium-input" data-answer="help"> (25) them succeed in the future."
+            </div>
+        </div>
+
+        <!-- Section E: Debug (5 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (5 pts)</h3>
+            <p class="instructions">There is a grammar mistake with the expression of purpose in each sentence. Rewrite the full sentence correctly.</p>
+
+            <div class="question">
+                26. I went to the gym for lift weights.
+                <input type="text" class="long-input" data-answer="i went to the gym to lift weights.|i went to the gym to lift weights">
+            </div>
+            <div class="question">
+                27. She studies English for to travel.
+                <input type="text" class="long-input" data-answer="she studies english to travel.|she studies english to travel">
+            </div>
+            <div class="question">
+                28. He uses the app to checking grades.
+                <input type="text" class="long-input" data-answer="he uses the app to check grades.|he uses the app to check grades">
+            </div>
+            <div class="question">
+                29. We run to getting fit.
+                <input type="text" class="long-input" data-answer="we run to get fit.|we run to get fit">
+            </div>
+            <div class="question">
+                30. I eat avocados for stay healthy.
+                <input type="text" class="long-input" data-answer="i eat avocados to stay healthy.|i eat avocados to stay healthy">
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Your Weekly Goals (1 pt)</h3>
+            <p class="instructions">Write about 3 actions you do every week and explain <strong>WHY</strong> you do them using the infinitive of purpose. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="Example: I go to the park to play football. I wake up early to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 31; // 30 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Has dominado el Infinitive of Purpose a la perfección.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GREAT JOB! Has superado el reto con un buen puntaje.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda que no debes usar "for" para expresar propósito de una acción.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Project: My 5-Year Vision - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+            position: relative;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 25px; right: -45px; background: var(--azul-a2);
+            color: white; padding: 5px 50px; font-weight: bold; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 0.9rem;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+
+        /* Grammar Box (Toolkit) */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--naranja-vibrante);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+        .toolkit-item { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
+        .toolkit-item h4 { margin: 0 0 10px 0; color: var(--naranja-vibrante); font-size: 1.1rem; }
+        .toolkit-item p { margin: 0; font-size: 0.9rem; font-weight: 600;}
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--azul-a2); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--azul-a2); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            width: 100%;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        .input-inline { width: auto; min-width: 200px; display: inline-block; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 200px; font-family: 'Open Sans', sans-serif; font-size: 1.05rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none; line-height: 1.6;
+        }
+        textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--azul-primario); color: white; box-shadow: 0 4px 10px rgba(10, 70, 140, 0.3); }
+        .btn-check:hover { background-color: #08366b; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 25px 20px; border-radius: 8px; }
+            .toolkit-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+            .ribbon { right: -50px; padding: 5px 40px; font-size: 0.8rem; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message, .ribbon { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { border: 1px solid black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <div class="ribbon">UNIT PROJECT</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>My 5-Year Vision</h1>
+            <p>Level A2 | Unit 3 | Final Project</p>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🚀</div>
+            <div class="grammar-content">
+                <h2>Project Grammar Toolkit</h2>
+                <p>Para construir tu visión del futuro, vas a necesitar combinar tres estructuras clave que aprendimos en esta unidad:</p>
+                
+                <div class="toolkit-grid">
+                    <div class="toolkit-item">
+                        <h4>Organized Plans</h4>
+                        <p>Be going to</p>
+                        <small><em>I am going to graduate...</em></small>
+                    </div>
+                    <div class="toolkit-item">
+                        <h4>Predictions/Hopes</h4>
+                        <p>Will / Won't</p>
+                        <small><em>I hope I will travel...</em></small>
+                    </div>
+                    <div class="toolkit-item">
+                        <h4>Purpose (The "Why")</h4>
+                        <p>to + Base Verb</p>
+                        <small><em>...to get a good job.</em></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 1: Brainstorming -->
+        <div class="exercise-section">
+            <h3><span>1</span> Step 1: Brainstorming</h3>
+            <p class="instructions">Escribe 3 metas claras que tienes para los próximos 5 años. Usa palabras clave (no necesitas oraciones completas aún).</p>
+            
+            <div class="question">
+                <strong>Academic / Career Goal:</strong>
+                <input type="text" class="req-input" placeholder="Example: Study Medicine, get a scholarship...">
+            </div>
+            <div class="question">
+                <strong>Fitness / Health Goal:</strong>
+                <input type="text" class="req-input" placeholder="Example: Do CrossFit, run a marathon...">
+            </div>
+            <div class="question">
+                <strong>Travel / Personal Goal:</strong>
+                <input type="text" class="req-input" placeholder="Example: Visit Japan, buy a car...">
+            </div>
+        </div>
+
+        <!-- STEP 2: Guided Sentences -->
+        <div class="exercise-section">
+            <h3><span>2</span> Step 2: Guided Outline</h3>
+            <p class="instructions">Usa tus ideas del Paso 1 para completar estas oraciones. Aplica la gramática correcta.</p>
+            
+            <div class="question">
+                1. In five years, I am going to <input type="text" class="input-inline req-input" placeholder="...">.
+            </div>
+            <div class="question">
+                2. I will study/work very hard to <input type="text" class="input-inline req-input" placeholder="...">.
+            </div>
+            <div class="question">
+                3. I don't think I will <input type="text" class="input-inline req-input" placeholder="...">.
+            </div>
+            <div class="question">
+                4. To stay healthy, I am going to <input type="text" class="input-inline req-input" placeholder="...">.
+            </div>
+            <div class="question">
+                5. I hope I will <input type="text" class="input-inline req-input" placeholder="...">.
+            </div>
+        </div>
+
+        <!-- STEP 3: Final Writing -->
+        <div class="exercise-section">
+            <h3><span>3</span> Step 3: My Vision (Final Draft)</h3>
+            <p class="instructions">Une todas tus ideas en un solo texto fluido. Habla sobre tu vida académica, personal y de salud en 5 años. (Mínimo 50 palabras).</p>
+            
+            <textarea id="writing-section" placeholder="Hello! My name is... and this is my 5-year vision. In five years, I am going to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 50 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkProject()">🏁 Submit Project</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            
+            if(words >= 50) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Project Validation Logic ---
+        let projectSubmitted = false;
+
+        function checkProject() {
+            if(projectSubmitted) return; 
+            
+            const inputs = document.querySelectorAll('.req-input');
+            let allInputsFilled = true;
+
+            // Validate Step 1 and Step 2 inputs
+            inputs.forEach(input => {
+                if (input.value.trim().length < 3) {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allInputsFilled = false;
+                } else {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.readOnly = true; // Lock if valid
+                }
+            });
+
+            // Validate Step 3 (Textarea > 50 words)
+            const text = textarea.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            let textValid = false;
+
+            if(words >= 50) {
+                textValid = true;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+                textarea.readOnly = true;
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+
+            if (allInputsFilled && textValid) {
+                projectSubmitted = true;
+                submitBtn.style.display = 'none'; 
+                
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+                feedback.innerHTML = `🌟 PROJECT APPROVED! 🌟<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">Has completado exitosamente la Unidad 3. Tu visión está claramente redactada aplicando la gramática del futuro. ¡Ve por esos objetivos!</span>`;
+            } else {
+                feedback.style.color = "var(--rojo-error)";
+                feedback.style.backgroundColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+                
+                let errorMsg = "⚠️ PROJECT INCOMPLETE:<br><br>";
+                if (!allInputsFilled) errorMsg += "<span style='font-size: 1rem; color: #333; font-weight: 400;'>• Por favor, completa todos los campos de ideas (Step 1 y Step 2).</span><br>";
+                if (!textValid) errorMsg += `<span style='font-size: 1rem; color: #333; font-weight: 400;'>• Tu texto final (Step 3) debe tener al menos 50 palabras. (Llevas ${words}).</span>`;
+                
+                feedback.innerHTML = errorMsg;
+            }
+            
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

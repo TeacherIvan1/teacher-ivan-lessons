@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: Sucre and La Paz - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 950px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--azul-primario); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 110px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--azul-primario); color: white; box-shadow: 0 4px 10px rgba(10, 70, 140, 0.3); }
+        .btn-check:hover { background-color: #08366b; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 25px 20px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Sucre and La Paz</h1>
+            <p>Level A2 | Unit 4 - Lesson 1 | Short Comparatives</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 31 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏔️</div>
+            <div class="grammar-content">
+                <h2>Comparing Two Things</h2>
+                <p>When comparing two places or objects with a <strong>short adjective</strong> (1 syllable), we add <strong>-ER</strong> to the adjective and use the word <strong>THAN</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Spelling Rules:</h4>
+                    <p>✔️ General rule: add <strong>-er</strong> (cold ➔ colder)<br>
+                    ✔️ Ends in -e: add <strong>-r</strong> (nice ➔ nicer)<br>
+                    ✔️ Ends in consonant-vowel-consonant: <strong>double</strong> the last letter (big ➔ bigger, hot ➔ hotter)<br>
+                    ✔️ Ends in -y: change 'y' to 'i' and add <strong>-er</strong> (dry ➔ drier, heavy ➔ heavier)</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Irregular Adjectives:</strong><br>
+                    Good ➔ <strong>Better</strong><br>
+                    Bad ➔ <strong>Worse</strong><br>
+                    Far ➔ <strong>Farther / Further</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Spelling (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Spelling Rules (10 pts)</h3>
+            <p class="instructions">Write the comparative form of these short adjectives. Be careful with double letters, the 'Y', and irregulars!</p>
+            
+            <div class="grid-3">
+                <div class="question">1. cold ➔ <input type="text" class="short-input" data-answer="colder"></div>
+                <div class="question">2. hot ➔ <input type="text" class="short-input" data-answer="hotter"></div>
+                <div class="question">3. big ➔ <input type="text" class="short-input" data-answer="bigger"></div>
+                <div class="question">4. small ➔ <input type="text" class="short-input" data-answer="smaller"></div>
+                <div class="question">5. dry ➔ <input type="text" class="short-input" data-answer="drier"></div>
+                <div class="question">6. high ➔ <input type="text" class="short-input" data-answer="higher"></div>
+                <div class="question">7. heavy ➔ <input type="text" class="short-input" data-answer="heavier"></div>
+                <div class="question">8. nice ➔ <input type="text" class="short-input" data-answer="nicer"></div>
+                <div class="question">9. good ➔ <input type="text" class="short-input" data-answer="better"></div>
+                <div class="question">10. bad ➔ <input type="text" class="short-input" data-answer="worse"></div>
+            </div>
+        </div>
+
+        <!-- Section B: Fill in the Blanks (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Comparing Contexts (10 pts)</h3>
+            <p class="instructions">Complete the sentences comparing Sucre, La Paz, and other daily situations. Use the comparative form of the adjective in brackets + <strong>than</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">11. La Paz is <input type="text" class="medium-input" data-answer="colder than"> (cold) Sucre.</div>
+                <div class="question">12. Santa Cruz is <input type="text" class="medium-input" data-answer="hotter than"> (hot) Cochabamba.</div>
+                <div class="question">13. The food in Sucre is <input type="text" class="medium-input" data-answer="better than"> (good) the food in other cities.</div>
+                <div class="question">14. My new CrossFit gym is <input type="text" class="medium-input" data-answer="bigger than"> (big) my old gym.</div>
+                <div class="question">15. The traffic in La Paz is <input type="text" class="medium-input" data-answer="worse than"> (bad) in Sucre.</div>
+                <div class="question">16. El Alto is <input type="text" class="medium-input" data-answer="higher than"> (high) Potosí.</div>
+                <div class="question">17. Lau is <input type="text" class="medium-input" data-answer="faster than"> (fast) me at running.</div>
+                <div class="question">18. The Fielding School is <input type="text" class="medium-input" data-answer="larger than"> (large) my previous school.</div>
+                <div class="question">19. July is <input type="text" class="medium-input" data-answer="drier than"> (dry) January.</div>
+                <div class="question">20. The 20kg kettlebell is <input type="text" class="medium-input" data-answer="heavier than"> (heavy) the 10kg one.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Unscramble (5 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Sentence Builder (5 pts)</h3>
+            <p class="instructions">Unscramble the words to make correct comparative sentences.</p>
+            
+            <div class="question">
+                21. is / La Paz / bigger / Sucre / than / .
+                <input type="text" class="long-input" data-answer="la paz is bigger than sucre.|la paz is bigger than sucre">
+            </div>
+            <div class="question">
+                22. food / better / The / here / is / .
+                <input type="text" class="long-input" data-answer="the food is better here.|the food is better here">
+            </div>
+            <div class="question">
+                23. than / hotter / Santa Cruz / is / Sucre / .
+                <input type="text" class="long-input" data-answer="santa cruz is hotter than sucre.|santa cruz is hotter than sucre">
+            </div>
+            <div class="question">
+                24. My / faster / yours / is / computer / than / .
+                <input type="text" class="long-input" data-answer="my computer is faster than yours.|my computer is faster than yours">
+            </div>
+            <div class="question">
+                25. El Michi / than / is / lazier / the dog / .
+                <input type="text" class="long-input" data-answer="el michi is lazier than the dog.|el michi is lazier than the dog">
+            </div>
+        </div>
+
+        <!-- Section D: Debug (5 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug (5 pts)</h3>
+            <p class="instructions">There is a mistake in each sentence. Rewrite the full sentence correctly.</p>
+
+            <div class="question">
+                26. La Paz is more cold than Sucre.
+                <input type="text" class="long-input" data-answer="la paz is colder than sucre.|la paz is colder than sucre">
+            </div>
+            <div class="question">
+                27. Sucre is small than La Paz.
+                <input type="text" class="long-input" data-answer="sucre is smaller than la paz.|sucre is smaller than la paz">
+            </div>
+            <div class="question">
+                28. The weather is gooder today.
+                <input type="text" class="long-input" data-answer="the weather is better today.|the weather is better today">
+            </div>
+            <div class="question">
+                29. Santa Cruz is hoter than Cochabamba.
+                <input type="text" class="long-input" data-answer="santa cruz is hotter than cochabamba.|santa cruz is hotter than cochabamba">
+            </div>
+            <div class="question">
+                30. My backpack is heavyer than yours.
+                <input type="text" class="long-input" data-answer="my backpack is heavier than yours.|my backpack is heavier than yours">
+            </div>
+        </div>
+
+        <!-- Section E: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Writing: City Showdown (1 pt)</h3>
+            <p class="instructions">Write a short paragraph comparing two cities (for example, Sucre and La Paz, or any other two cities). Use at least three comparative adjectives. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="I think Sucre is better than... because it is warmer. However, La Paz is bigger than..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 31; // 30 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un experto comparando lugares en inglés. ¡Gran trabajo!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has superado la prueba, pero revisa los errores marcados en rojo.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda las reglas de escritura (doble consonante, cambiar la 'y') y no uses "more" con adjetivos cortos.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

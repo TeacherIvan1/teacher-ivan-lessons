@@ -3,357 +3,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 5: As healthy as... - Teacher Ivan HUB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>A2 Lesson: As healthy as... - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Variables Institucionales A2 */
         :root {
             --azul-primario: #0A468C; 
-            --verde-a2: #28A745; 
-            --verde-claro: #d4edda;
-            --gris-neutro: #C8CDD2; 
+            --naranja-vibrante: #F56E1E; 
             --blanco-nieve: #FAFAF0; 
-            --a2-color: #28A745; /* Color A2 (Verde Esmeralda) */
-            --font-titulares: 'Montserrat', sans-serif; 
-            --font-cuerpo: 'Open Sans', sans-serif; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50;
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
         }
+
+        * { box-sizing: border-box; }
 
         body {
-            margin: 0; padding: 0;
-            font-family: var(--font-cuerpo);
+            font-family: 'Open Sans', sans-serif;
             background-color: var(--blanco-nieve);
-            color: var(--azul-primario);
-            display: flex; flex-direction: column; min-height: 100vh;
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
         }
 
-        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
-        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(10, 70, 140, 0.1);
+            border-top: 8px solid var(--azul-a2);
+        }
 
         /* Header */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
-        }
-        .header-branding { display: flex; align-items: center; gap: 1rem; }
-        .header-logo-img { height: 40px; width: auto; }
-        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
-        
-        .back-btn {
-            background-color: transparent; border: 1px solid var(--blanco-nieve);
-            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
-            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
-        }
-        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--azul-primario); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--azul-primario); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
 
-        main {
-            padding: 3rem; max-width: 900px; margin: 0 auto;
-            flex-grow: 1; width: 100%; box-sizing: border-box;
-        }
-
-        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
-        .lesson-badge {
-            display: inline-block; background-color: var(--a2-color); 
-            color: white; padding: 0.4rem 1rem; border-radius: 50px;
-            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
-        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
-
-        .lesson-section {
-            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
-        }
-        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .section-title span { color: var(--a2-color); }
-
-        /* Vocabulario A2 */
-        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-        .vocab-card {
-            border: 2px solid var(--verde-claro); border-radius: 8px; padding: 1.5rem 1rem;
-            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-            transition: all 0.2s ease; background-color: #fff;
-        }
-        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
-        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
-        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
-        .vocab-es { font-size: 0.85rem; color: #666; }
-        
-        .audio-btn {
-            background-color: var(--azul-primario); color: var(--blanco-nieve);
-            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
-        }
-        .audio-btn:hover { background-color: var(--a2-color); }
-
-        /* Gramática: As ... As (Review & Expansion) */
+        /* Grammar Box */
         .grammar-box {
-            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a2-color);
-            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+            background-color: var(--gris-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
         }
-
-        .comparison-container {
-            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
-        }
-        .comp-card {
-            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
-        }
-        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
-        .comp-formula { background: var(--verde-claro); color: #155724; font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
-        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a2-color); margin-bottom: 0.5rem;}
-
-        .alert-box {
-            background-color: #fdf0f0; border-left: 5px solid #dc3545;
-            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
-        }
-        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
-
-        .highlight-a2 { color: var(--a2-color); font-weight: 800; }
-        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
-
-        /* Evaluación */
-        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
-        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
-        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .eval-label {
-            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
-            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
-            background-color: #fff;
-        }
-        .eval-label:hover { border-color: var(--verde-claro); background-color: rgba(40, 167, 69, 0.05); }
-        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
-        .eval-radio { display: none; }
         
-        .eval-submit-btn {
-            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
-            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .eval-submit-btn:hover { background-color: #218838; }
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ddd; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-a2); font-size: 1.1rem; }
         
-        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
 
-        /* Footer */
-        .lesson-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
         }
-        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-        .footer-logo-img-large { height: 90px; width: auto; }
-        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
-        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
-        .btn-primary { background-color: var(--a2-color); color: white; }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        
+        .short-input { width: 140px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--azul-primario); color: white; box-shadow: 0 4px 10px rgba(10, 70, 140, 0.3); }
+        .btn-check:hover { background-color: #08366b; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-branding">
-            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
-            <div class="header-title">TEACHER IVAN HUB</div>
-        </div>
-        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
-    </header>
-
-    <main>
-        <div class="lesson-header">
-            <span class="lesson-badge">Level A2 • Unit 4 • Lesson 5</span>
-            <h1 class="lesson-title">As healthy as...</h1>
-            <p class="lesson-objective">Objective: Compare health habits and lifestyles using "as...as" correctly.</p>
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>As healthy as...</h1>
+            <p>Level A2 | Unit 4 - Lesson 5 | Equality and Inequality</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
         </div>
 
-        <!-- Sección 1: Vocabulario -->
-        <section class="lesson-section">
-            <h2 class="section-title"><span>1.</span> Vocabulary: Health & Lifestyle</h2>
-            <p style="margin-bottom: 1.5rem; color: #555;">Learn these adjectives to describe how good or bad a habit is for your body.</p>
-            
-            <div class="vocab-grid">
-                <div class="vocab-card">
-                    <span class="vocab-icon">🥗</span>
-                    <span class="vocab-en">Healthy</span>
-                    <span class="vocab-es">Saludable / Sano</span>
-                    <button class="audio-btn" onclick="playSound('Healthy')">▶</button>
-                </div>
-                <div class="vocab-card">
-                    <span class="vocab-icon">🍔</span>
-                    <span class="vocab-en">Unhealthy</span>
-                    <span class="vocab-es">Poco saludable</span>
-                    <button class="audio-btn" onclick="playSound('Unhealthy')">▶</button>
-                </div>
-                <div class="vocab-card">
-                    <span class="vocab-icon">🏃‍♂️</span>
-                    <span class="vocab-en">Active</span>
-                    <span class="vocab-es">Activo</span>
-                    <button class="audio-btn" onclick="playSound('Active')">▶</button>
-                </div>
-                <div class="vocab-card">
-                    <span class="vocab-icon">💪</span>
-                    <span class="vocab-en">Fit</span>
-                    <span class="vocab-es">En buena forma</span>
-                    <button class="audio-btn" onclick="playSound('Fit')">▶</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección 2: Gramática -->
-        <section class="lesson-section">
-            <h2 class="section-title"><span>2.</span> Grammar: Lifestyle Comparisons</h2>
-            
-            <div class="grammar-box">
-                <p>We use <strong>as [adjective] as</strong> to compare two habits, foods, or people that are at the same level. If they are different, we use <strong>not as [adjective] as</strong>.</p>
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">⚖️</div>
+            <div class="grammar-content">
+                <h2>Comparing Equals (and Unequals)</h2>
+                <p>To say that two things are the same in some way, we use <strong>as + adjective + as</strong>. To say they are different, we make it negative: <strong>not as + adjective + as</strong>.</p>
                 
-                <div class="comparison-container">
-                    <div class="comp-card">
-                        <div class="comp-title">Healthy Equivalents (+)</div>
-                        <div class="comp-formula">as + ADJECTIVE + as</div>
-                        <div class="comp-example">"Apples are <span class="highlight-a2">as healthy as</span> oranges."</div>
-                        <div class="comp-example">"Lau is <span class="highlight-a2">as fit as</span> a professional athlete."</div>
-                    </div>
-
-                    <div class="comp-card">
-                        <div class="comp-title">Unhealthy Differences (-)</div>
-                        <div class="comp-formula">NOT as + ADJECTIVE + as</div>
-                        <div class="comp-example">"Burgers are <span class="highlight-blue">not as healthy as</span> salads."</div>
-                        <div class="comp-example">"Watching TV is <span class="highlight-blue">not as active as</span> running."</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="alert-box">
-                <div class="alert-title">🚨 THE "AS... LIKE" TRAP</div>
-                <p>In Spanish, you say "Él es tan fuerte <strong>como</strong> un toro". Because "como" often translates to "like", students make a huge mistake and say "as strong <strong>like</strong> a bull". In comparisons of equality, you must always use AS twice!</p>
-                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
-                    ❌ <span style="text-decoration: line-through;">Soda is not as healthy <strong>like</strong> water.</span><br>
-                    ❌ <span style="text-decoration: line-through;">He is as fit <strong>how</strong> me.</span><br>
-                    ✅ <span style="color: #155724;">Soda is not <strong>AS</strong> healthy <strong>AS</strong> water.</span>
-                </p>
-            </div>
-            
-            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Fitness and Fast Food</em></h3>
-            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
-                <p>"At Colegio Fielding, I always tell my students that eating well is very important. A burger is delicious, but it is <span class="highlight-blue">not as healthy as</span> a good salad. If you want to have energy for your History classes, you need to eat well!"</p>
-                <p>"In my personal life, fitness is essential. My partner Lau trains every day at our box in Sucre. She is <span class="highlight-a2">as fit as</span> a professional athlete! We do CrossFit together, and she is <span class="highlight-a2">as strong as</span> me. We also drink a lot of water because soda is <span class="highlight-blue">not as good as</span> water for your body."</p>
-                <p>"And then there is El Michi. Is he <span class="highlight-a2">as active as</span> us? No, he is definitely <span class="highlight-blue">not as active as</span> a normal cat. He eats tuna and sleeps on his favorite sofa. His lifestyle is <span class="highlight-blue">not as healthy as</span> ours, but he is very happy!"</p>
-                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('At Colegio Fielding, I always tell my students that eating well is very important. A burger is delicious, but it is not as healthy as a good salad. If you want to have energy for your History classes, you need to eat well! In my personal life, fitness is essential. My partner Lau trains every day at our box in Sucre. She is as fit as a professional athlete! We do CrossFit together, and she is as strong as me. We also drink a lot of water because soda is not as good as water for your body. And then there is El Michi. Is he as active as us? No, he is definitely not as active as a normal cat. He eats tuna and sleeps on his favorite sofa. His lifestyle is not as healthy as ours, but he is very happy!')">🔊 Listen to the healthy habits</button>
-            </div>
-        </section>
-
-        <!-- Sección 3: Evaluación (Gatekeeper) -->
-        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
-            <h2 class="section-title"><span>3.</span> A2 Checkpoint</h2>
-            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Check your lifestyle grammar! Score 5/5 to unlock Lesson 6.</p>
-
-            <form id="eval-form">
-                <!-- Q1 -->
-                <div class="eval-question">
-                    <p>1. <strong>Grammar Trap:</strong> "Water is as healthy __________ natural juice."</p>
-                    <div class="eval-options">
-                        <input type="radio" name="q1" id="q1a" value="like" class="eval-radio"><label for="q1a" class="eval-label">like</label>
-                        <input type="radio" name="q1" id="q1b" value="as" class="eval-radio"><label for="q1b" class="eval-label">as</label>
-                        <input type="radio" name="q1" id="q1c" value="how" class="eval-radio"><label for="q1c" class="eval-label">how</label>
-                    </div>
+                <div class="grammar-rule">
+                    <h4>The Formula:</h4>
+                    <p>✔️ <strong>Equality:</strong> Apples are <strong>as healthy as</strong> oranges.<br>
+                    ✔️ <strong>Inequality:</strong> Soda is <strong>not as healthy as</strong> water.</p>
                 </div>
 
-                <!-- Q2 -->
-                <div class="eval-question">
-                    <p>2. <strong>Grammar Inequality:</strong> "Fast food is __________ a balanced meal."</p>
-                    <div class="eval-options">
-                        <input type="radio" name="q2" id="q2a" value="notashealthyas" class="eval-radio"><label for="q2a" class="eval-label">not as healthy as</label>
-                        <input type="radio" name="q2" id="q2b" value="nothealthyas" class="eval-radio"><label for="q2b" class="eval-label">not healthy as</label>
-                        <input type="radio" name="q2" id="q2c" value="notashealthylike" class="eval-radio"><label for="q2c" class="eval-label">not as healthy like</label>
-                    </div>
+                <div class="warning-box">
+                    <strong>⚠️ Don't change the adjective!</strong><br>
+                    ❌ <s>Water is as healthier as juice.</s><br>
+                    ❌ <s>Water is as healthy than juice.</s><br>
+                    ✔️ Water is <strong>as healthy as</strong> juice. (Use the BASE adjective).
                 </div>
-
-                <!-- Q3 -->
-                <div class="eval-question">
-                    <p>3. <strong>Vocabulary:</strong> What is the meaning of "Unhealthy"?</p>
-                    <div class="eval-options">
-                        <input type="radio" name="q3" id="q3a" value="fuerte" class="eval-radio"><label for="q3a" class="eval-label">Muy fuerte</label>
-                        <input type="radio" name="q3" id="q3b" value="pocosaludable" class="eval-radio"><label for="q3b" class="eval-label">Poco saludable / Dañino</label>
-                        <input type="radio" name="q3" id="q3c" value="activo" class="eval-radio"><label for="q3c" class="eval-label">Activo</label>
-                    </div>
-                </div>
-
-                <!-- Q4 -->
-                <div class="eval-question">
-                    <p>4. <strong>Reading Comprehension:</strong> According to the text, how fit is Lau?</p>
-                    <div class="eval-options">
-                        <input type="radio" name="q4" id="q4a" value="athlete" class="eval-radio"><label for="q4a" class="eval-label">She is as fit as a professional athlete.</label>
-                        <input type="radio" name="q4" id="q4b" value="michi" class="eval-radio"><label for="q4b" class="eval-label">She is as active as El Michi.</label>
-                        <input type="radio" name="q4" id="q4c" value="student" class="eval-radio"><label for="q4c" class="eval-label">She is as healthy as a student.</label>
-                    </div>
-                </div>
-
-                <!-- Q5 -->
-                <div class="eval-question">
-                    <p>5. <strong>Reading Comprehension:</strong> Why does Teacher Ivan tell his students to eat well?</p>
-                    <div class="eval-options">
-                        <input type="radio" name="q5" id="q5a" value="crossfit" class="eval-radio"><label for="q5a" class="eval-label">To lift heavy weights in CrossFit.</label>
-                        <input type="radio" name="q5" id="q5b" value="energy" class="eval-radio"><label for="q5b" class="eval-label">Because they need energy for their History classes.</label>
-                        <input type="radio" name="q5" id="q5c" value="tuna" class="eval-radio"><label for="q5c" class="eval-label">So they can share their food with El Michi.</label>
-                    </div>
-                </div>
-
-                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
-            </form>
-            <div id="eval-results"></div>
-        </section>
-
-        <!-- Footer -->
-        <div class="lesson-footer">
-            <div class="footer-logo-branding">
-                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
-                <span class="footer-brand-text">Teacher Ivan</span>
-            </div>
-            
-            <div class="footer-buttons">
-                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
-                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Stay healthy! Moving to Lesson 6.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
             </div>
         </div>
 
-    </main>
+        <!-- Section A: Equality (15 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> We are equals (15 pts)</h3>
+            <p class="instructions">Complete the sentences using <strong>as + adjective + as</strong> based on the word in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. Water is <input type="text" class="medium-input" data-answer="as important as"> (important) diet.</div>
+                <div class="question">2. Apples are <input type="text" class="medium-input" data-answer="as healthy as"> (healthy) oranges.</div>
+                <div class="question">3. Running is <input type="text" class="medium-input" data-answer="as good as"> (good) swimming.</div>
+                <div class="question">4. My brother is <input type="text" class="medium-input" data-answer="as strong as"> (strong) me.</div>
+                <div class="question">5. Yoga is <input type="text" class="medium-input" data-answer="as relaxing as"> (relaxing) meditation.</div>
+                <div class="question">6. This gym is <input type="text" class="medium-input" data-answer="as big as"> (big) the other one.</div>
+                <div class="question">7. Chicken is <input type="text" class="medium-input" data-answer="as tasty as"> (tasty) fish.</div>
+                <div class="question">8. Sleeping 8 hours is <input type="text" class="medium-input" data-answer="as necessary as"> (necessary) eating well.</div>
+                <div class="question">9. Green tea is <input type="text" class="medium-input" data-answer="as popular as"> (popular) coffee here.</div>
+                <div class="question">10. A salad is <input type="text" class="medium-input" data-answer="as fresh as"> (fresh) a smoothie.</div>
+                <div class="question">11. Walking is <input type="text" class="medium-input" data-answer="as easy as"> (easy) cycling.</div>
+                <div class="question">12. Tatiana is <input type="text" class="medium-input" data-answer="as fast as"> (fast) Santiago.</div>
+                <div class="question">13. CrossFit is <input type="text" class="medium-input" data-answer="as hard as"> (hard) weightlifting.</div>
+                <div class="question">14. Your diet is <input type="text" class="medium-input" data-answer="as strict as"> (strict) my diet.</div>
+                <div class="question">15. El Michi is <input type="text" class="medium-input" data-answer="as lazy as"> (lazy) always.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Inequality (15 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Not the same (15 pts)</h3>
+            <p class="instructions">Now, compare things that are different. Complete the sentences using <strong>not as + adjective + as</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">16. Fast food is <input type="text" class="medium-input" data-answer="not as healthy as|isn't as healthy as"> (healthy) homemade food.</div>
+                <div class="question">17. Soda is <input type="text" class="medium-input" data-answer="not as good as|isn't as good as"> (good) water.</div>
+                <div class="question">18. I am <input type="text" class="medium-input" data-answer="not as fast as"> (fast) Usain Bolt.</div>
+                <div class="question">19. A bicycle is <input type="text" class="medium-input" data-answer="not as expensive as|isn't as expensive as"> (expensive) a car.</div>
+                <div class="question">20. Candy is <input type="text" class="medium-input" data-answer="not as nutritious as|isn't as nutritious as"> (nutritious) fruit.</div>
+                <div class="question">21. Watching TV is <input type="text" class="medium-input" data-answer="not as active as|isn't as active as"> (active) playing sports.</div>
+                <div class="question">22. Sugar is <input type="text" class="medium-input" data-answer="not as safe as|isn't as safe as"> (safe) stevia.</div>
+                <div class="question">23. Sucre is <input type="text" class="medium-input" data-answer="not as big as|isn't as big as"> (big) Santa Cruz.</div>
+                <div class="question">24. Leonardo is <input type="text" class="medium-input" data-answer="not as tall as|isn't as tall as"> (tall) the teacher.</div>
+                <div class="question">25. Doing yoga is <input type="text" class="medium-input" data-answer="not as intense as|isn't as intense as"> (intense) doing CrossFit.</div>
+                <div class="question">26. My backpack is <input type="text" class="medium-input" data-answer="not as heavy as|isn't as heavy as"> (heavy) yours.</div>
+                <div class="question">27. Yesterday was <input type="text" class="medium-input" data-answer="not as cold as|isn't as cold as"> (cold) today.</div>
+                <div class="question">28. White bread is <input type="text" class="medium-input" data-answer="not as healthy as|isn't as healthy as"> (healthy) whole wheat bread.</div>
+                <div class="question">29. The old app is <input type="text" class="medium-input" data-answer="not as fast as|isn't as fast as"> (fast) the new app.</div>
+                <div class="question">30. Playing video games is <input type="text" class="medium-input" data-answer="not as tiring as|isn't as tiring as"> (tiring) running a marathon.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form comparative sentences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. water / as / Soda / healthy / as / isn't / .<br><input type="text" class="long-input" data-answer="soda isn't as healthy as water.|soda is not as healthy as water."></div>
+                <div class="question">32. is / strong / Ivan / Teacher / as / Superman / as / .<br><input type="text" class="long-input" data-answer="teacher ivan is as strong as superman.|teacher ivan is as strong as superman"></div>
+                <div class="question">33. as / fast / am / I / you / as / .<br><input type="text" class="long-input" data-answer="i am as fast as you.|i am as fast as you"></div>
+                <div class="question">34. not / as / expensive / is / Apple / Orange / an / as / an / .<br><input type="text" class="long-input" data-answer="an apple is not as expensive as an orange.|an orange is not as expensive as an apple."></div>
+                <div class="question">35. is / relaxing / as / sleeping / Yoga / as / .<br><input type="text" class="long-input" data-answer="yoga is as relaxing as sleeping.|sleeping is as relaxing as yoga."></div>
+                <div class="question">36. is / big / as / gym / My / yours / as / .<br><input type="text" class="long-input" data-answer="my gym is as big as yours.|my gym is as big as yours"></div>
+                <div class="question">37. aren't / Vegetables / as / tasty / pizza / as / .<br><input type="text" class="long-input" data-answer="vegetables aren't as tasty as pizza.|vegetables are not as tasty as pizza."></div>
+                <div class="question">38. as / easy / Spanish / English / as / is / .<br><input type="text" class="long-input" data-answer="english is as easy as spanish.|spanish is as easy as english."></div>
+                <div class="question">39. not / is / as / Sucre / cold / as / La Paz / .<br><input type="text" class="long-input" data-answer="sucre is not as cold as la paz.|sucre is not as cold as la paz"></div>
+                <div class="question">40. Michi / El / lazy / is / Garfield / as / as / .<br><input type="text" class="long-input" data-answer="el michi is as lazy as garfield.|el michi is as lazy as garfield"></div>
+            </div>
+        </div>
+
+        <!-- Section D: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence has a mistake. Rewrite the full sentence correctly without the "-er" or "than".</p>
+
+            <div class="grid-2">
+                <div class="question">41. Water is as healthier as soda.<br><input type="text" class="long-input" data-answer="water is as healthy as soda.|water is as healthy as soda"></div>
+                <div class="question">42. He is not as tall than his brother.<br><input type="text" class="long-input" data-answer="he is not as tall as his brother.|he isn't as tall as his brother."></div>
+                <div class="question">43. Apples are as better as oranges.<br><input type="text" class="long-input" data-answer="apples are as good as oranges.|apples are as good as oranges"></div>
+                <div class="question">44. This gym is as biger as the old one.<br><input type="text" class="long-input" data-answer="this gym is as big as the old one.|this gym is as big as the old one"></div>
+                <div class="question">45. I am not as fast like you.<br><input type="text" class="long-input" data-answer="i am not as fast as you.|i'm not as fast as you."></div>
+                <div class="question">46. Pizza isn't as healthy than salad.<br><input type="text" class="long-input" data-answer="pizza isn't as healthy as salad.|pizza is not as healthy as salad."></div>
+                <div class="question">47. English is as easier as Spanish.<br><input type="text" class="long-input" data-answer="english is as easy as spanish.|english is as easy as spanish"></div>
+                <div class="question">48. She is as most intelligent as Einstein.<br><input type="text" class="long-input" data-answer="she is as intelligent as einstein.|she is as intelligent as einstein"></div>
+                <div class="question">49. Sucre isn't as colder as La Paz.<br><input type="text" class="long-input" data-answer="sucre isn't as cold as la paz.|sucre is not as cold as la paz."></div>
+                <div class="question">50. The test is as harder as the homework.<br><input type="text" class="long-input" data-answer="the test is as hard as the homework.|the test is as hard as the homework"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Writing: Lifestyle Comparison (1 pt)</h3>
+            <p class="instructions">Write a short paragraph comparing your health habits now with your habits in the past, or compare two people you know. Use <strong>as...as</strong> and <strong>not as...as</strong> at least once. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="My diet today is not as bad as my diet last year. Now, I eat apples, and they are as tasty as candy for me..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
 
     <script>
-        function playSound(text) {
-            let utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.9;
-            window.speechSynthesis.speak(utterance);
-        }
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
 
-        function checkEvaluation() {
-            // Respuestas correctas (5 preguntas)
-            const answers = { q1: 'as', q2: 'notashealthyas', q3: 'pocosaludable', q4: 'athlete', q5: 'energy' };
-            let score = 0;
-            let total = 5;
-
-            for(let key in answers) {
-                let selected = document.querySelector(`input[name="${key}"]:checked`);
-                if(selected && selected.value === answers[key]) {
-                    score++;
-                }
-            }
-
-            const resultsDiv = document.getElementById('eval-results');
-            const continueBtn = document.getElementById('continue-btn');
-            const submitBtn = document.querySelector('.eval-submit-btn');
-
-            resultsDiv.style.display = "block";
-
-            if(score === total) {
-                resultsDiv.style.backgroundColor = "#d4edda";
-                resultsDiv.style.color = "#155724";
-                resultsDiv.style.border = "1px solid #c3e6cb";
-                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully mastered health comparisons.";
-                
-                submitBtn.style.display = "none";
-                continueBtn.style.display = "block";
-                
-                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
             } else {
-                resultsDiv.style.backgroundColor = "#fdf0f0";
-                resultsDiv.style.color = "#721c24";
-                resultsDiv.style.border = "1px solid #f5c6cb";
-                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: NEVER use "like" when comparing equality. It must always be "as... as". Try again!`;
+                wordCountDisplay.style.color = "#666";
             }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => ans.replace(/[\.,!]$/, ''));
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un máster de las comparaciones. Tu gramática es tan buena como tu disciplina.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has superado la prueba, pero ten cuidado de no mezclar "as" con "than".`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: cuando usas "as...as", el adjetivo NO cambia (no agregues -er ni most).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>

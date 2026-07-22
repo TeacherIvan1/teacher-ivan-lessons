@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: You should eat greens - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.15);
+            border-top: 8px solid var(--verde-correcto);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--verde-correcto); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--verde-correcto); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid var(--verde-correcto);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #c8e6c9; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--verde-correcto); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--verde-correcto); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--verde-correcto); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--verde-correcto); box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--verde-correcto); box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--verde-correcto); color: white; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); }
+        .btn-check:hover { background-color: #388E3C; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>You should eat greens</h1>
+            <p>Level A2 | Unit 5 - Lesson 1 | Giving Advice</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🥦</div>
+            <div class="grammar-content">
+                <h2>Health and Advice</h2>
+                <p>When we want to give a recommendation, advice, or say what is a good idea, we use the modal verb <strong>Should</strong> or <strong>Shouldn't</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Formula:</h4>
+                    <p>✔️ <strong>Subject + should + Base Verb</strong><br>
+                    <em>You should eat more vegetables.</em></p>
+                    <p>✔️ <strong>Subject + shouldn't + Base Verb</strong><br>
+                    <em>He shouldn't drink soda every day.</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ THE "TO" TRAP:</strong><br>
+                    Modal verbs NEVER use the word "to" after them, and they NEVER take an "s" for he/she/it.<br>
+                    ❌ <s>You should to eat apples.</s> (Wrong!)<br>
+                    ❌ <s>She shoulds sleep more.</s> (Wrong!)<br>
+                    ✔️ <strong>You should eat apples.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Should or Shouldn't (15 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Healthy Choices (15 pts)</h3>
+            <p class="instructions">Write <strong>should</strong> or <strong>shouldn't</strong> depending on what is healthy or good for you.</p>
+            
+            <div class="grid-3">
+                <div class="question">1. You <input type="text" class="short-input" data-answer="should"> eat more vegetables.</div>
+                <div class="question">2. You <input type="text" class="short-input" data-answer="shouldn't|should not"> drink soda every day.</div>
+                <div class="question">3. He <input type="text" class="short-input" data-answer="should"> sleep at least 8 hours.</div>
+                <div class="question">4. We <input type="text" class="short-input" data-answer="shouldn't|should not"> eat junk food before training.</div>
+                <div class="question">5. They <input type="text" class="short-input" data-answer="should"> drink 2 liters of water.</div>
+                <div class="question">6. She <input type="text" class="short-input" data-answer="shouldn't|should not"> skip breakfast.</div>
+                <div class="question">7. I <input type="text" class="short-input" data-answer="should"> exercise three times a week.</div>
+                <div class="question">8. You <input type="text" class="short-input" data-answer="shouldn't|should not"> eat lots of sugar.</div>
+                <div class="question">9. Students <input type="text" class="short-input" data-answer="should"> listen to Teacher Ivan.</div>
+                <div class="question">10. You <input type="text" class="short-input" data-answer="shouldn't|should not"> spend all day on your phone.</div>
+                <div class="question">11. El Michi <input type="text" class="short-input" data-answer="shouldn't|should not"> eat too many treats.</div>
+                <div class="question">12. Athletes <input type="text" class="short-input" data-answer="should"> stretch after CrossFit.</div>
+                <div class="question">13. People <input type="text" class="short-input" data-answer="shouldn't|should not"> smoke cigarettes.</div>
+                <div class="question">14. You <input type="text" class="short-input" data-answer="should"> wash your hands before eating.</div>
+                <div class="question">15. We <input type="text" class="short-input" data-answer="shouldn't|should not"> go to bed very late.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Give Advice (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> What's the best idea? (10 pts)</h3>
+            <p class="instructions">Read the situation and complete the advice using <strong>should / shouldn't</strong> + the verb in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">16. Leonardo has a test tomorrow. He <input type="text" class="medium-input" data-answer="should study"> (study).</div>
+                <div class="question">17. Tatiana is very tired. She <input type="text" class="medium-input" data-answer="should go"> (go) to bed.</div>
+                <div class="question">18. Santiago is sick. He <input type="text" class="medium-input" data-answer="shouldn't play|should not play"> (not / play) outside.</div>
+                <div class="question">19. I want to learn English. I <input type="text" class="medium-input" data-answer="should practice"> (practice) every day.</div>
+                <div class="question">20. You have a stomachache. You <input type="text" class="medium-input" data-answer="shouldn't eat|should not eat"> (not / eat) that burger.</div>
+                <div class="question">21. It's cold in La Paz. You <input type="text" class="medium-input" data-answer="should wear"> (wear) a warm jacket.</div>
+                <div class="question">22. The soup is very hot. You <input type="text" class="medium-input" data-answer="shouldn't drink|should not drink"> (not / drink) it yet.</div>
+                <div class="question">23. He wants to be fit. He <input type="text" class="medium-input" data-answer="should do"> (do) CrossFit.</div>
+                <div class="question">24. They are late for school. They <input type="text" class="medium-input" data-answer="should hurry"> (hurry).</div>
+                <div class="question">25. You want to pass the A2 level. You <input type="text" class="medium-input" data-answer="shouldn't miss|should not miss"> (not / miss) classes.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make advice sentences or questions.</p>
+            
+            <div class="grid-2">
+                <div class="question">26. water / should / drink / You / more / .<br><input type="text" class="long-input" data-answer="you should drink more water.|you should drink more water"></div>
+                <div class="question">27. smoke / He / shouldn't / .<br><input type="text" class="long-input" data-answer="he shouldn't smoke.|he should not smoke.|he shouldn't smoke"></div>
+                <div class="question">28. doctors / We / listen / to / should / .<br><input type="text" class="long-input" data-answer="we should listen to doctors.|we should listen to doctors"></div>
+                <div class="question">29. fast / eat / shouldn't / They / food / .<br><input type="text" class="long-input" data-answer="they shouldn't eat fast food.|they should not eat fast food.|they shouldn't eat fast food"></div>
+                <div class="question">30. I / see / should / a / dentist / ?<br><input type="text" class="long-input" data-answer="should i see a dentist?|should i see a dentist"></div>
+                <div class="question">31. you / What / do / should / ?<br><input type="text" class="long-input" data-answer="what should you do?|what should you do"></div>
+                <div class="question">32. vegetables / She / eat / should / .<br><input type="text" class="long-input" data-answer="she should eat vegetables.|she should eat vegetables"></div>
+                <div class="question">33. late / shouldn't / You / sleep / .<br><input type="text" class="long-input" data-answer="you shouldn't sleep late.|you should not sleep late.|you shouldn't sleep late"></div>
+                <div class="question">34. exercise / Ivan / should / every / day / .<br><input type="text" class="long-input" data-answer="ivan should exercise every day.|ivan should exercise every day"></div>
+                <div class="question">35. too / work / shouldn't / We / much / .<br><input type="text" class="long-input" data-answer="we shouldn't work too much.|we should not work too much.|we shouldn't work too much"></div>
+            </div>
+        </div>
+
+        <!-- Section D: Debug (15 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug (15 pts)</h3>
+            <p class="instructions">Each sentence has a grammar mistake related to "should". Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">36. You should to eat apples.<br><input type="text" class="long-input" data-answer="you should eat apples.|you should eat apples"></div>
+                <div class="question">37. He shouldn't to drink soda.<br><input type="text" class="long-input" data-answer="he shouldn't drink soda.|he should not drink soda.|he shouldn't drink soda"></div>
+                <div class="question">38. She shoulds sleep more.<br><input type="text" class="long-input" data-answer="she should sleep more.|she should sleep more"></div>
+                <div class="question">39. We don't should go out.<br><input type="text" class="long-input" data-answer="we shouldn't go out.|we should not go out.|we shouldn't go out"></div>
+                <div class="question">40. I should going to the doctor.<br><input type="text" class="long-input" data-answer="i should go to the doctor.|i should go to the doctor"></div>
+                <div class="question">41. They shouldn't eating junk food.<br><input type="text" class="long-input" data-answer="they shouldn't eat junk food.|they should not eat junk food.|they shouldn't eat junk food"></div>
+                <div class="question">42. You should to drink water.<br><input type="text" class="long-input" data-answer="you should drink water.|you should drink water"></div>
+                <div class="question">43. Carlos should works less.<br><input type="text" class="long-input" data-answer="carlos should work less.|carlos should work less"></div>
+                <div class="question">44. Doesn't she should rest?<br><input type="text" class="long-input" data-answer="shouldn't she rest?|should she not rest?|shouldn't she rest"></div>
+                <div class="question">45. I should to do CrossFit.<br><input type="text" class="long-input" data-answer="i should do crossfit.|i should do crossfit"></div>
+                <div class="question">46. You shouldn't to smoke.<br><input type="text" class="long-input" data-answer="you shouldn't smoke.|you should not smoke.|you shouldn't smoke"></div>
+                <div class="question">47. He should resting today.<br><input type="text" class="long-input" data-answer="he should rest today.|he should rest today"></div>
+                <div class="question">48. We should to listen to Teacher Ivan.<br><input type="text" class="long-input" data-answer="we should listen to teacher ivan.|we should listen to teacher ivan"></div>
+                <div class="question">49. They doesn't should talk loud.<br><input type="text" class="long-input" data-answer="they shouldn't talk loud.|they should not talk loud.|they shouldn't talk loud"></div>
+                <div class="question">50. You should eats greens.<br><input type="text" class="long-input" data-answer="you should eat greens.|you should eat greens"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Writing: Lifestyle Coach (1 pt)</h3>
+            <p class="instructions">Imagine you are a lifestyle coach (like Teacher Ivan). Write a short paragraph giving at least 3 pieces of advice to someone who wants to start a healthy life. Use <strong>should</strong> and <strong>shouldn't</strong>. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="If you want to be healthy, you should... You shouldn't..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                // Preserve question marks if they are in the expected answer
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    allCorrect = false;
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You SHOULD be very proud of your grammar. ¡Trabajo perfecto!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has aprobado, pero YOU SHOULD review the mistakes marked in red.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: You shouldn't add "to" or "s" after the modal verb. Keep practicing!`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: Rules at Colegio Fielding - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --rojo-oscuro: #b71c1c;
+            --azul-a2: #2196F3; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(244, 67, 54, 0.15);
+            border-top: 8px solid var(--rojo-error);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--rojo-oscuro); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--rojo-error); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: #ffebee;
+            border-left: 5px solid var(--rojo-error);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #ffcdd2; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--rojo-oscuro); font-size: 1.1rem; }
+        
+        .warning-box { background: #fff3e0; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--naranja-vibrante); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--rojo-error); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--rojo-error); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--rojo-error); box-shadow: 0 0 5px rgba(244, 67, 54, 0.3); }
+        
+        .short-input { width: 110px; text-align: center; }
+        .medium-input { width: 170px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--rojo-error); box-shadow: 0 0 5px rgba(244, 67, 54, 0.3); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--rojo-error); color: white; box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3); }
+        .btn-check:hover { background-color: var(--rojo-oscuro); transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Rules at Colegio Fielding</h1>
+            <p>Level A2 | Unit 5 - Lesson 3 | Obligations & Prohibitions</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">📜</div>
+            <div class="grammar-content">
+                <h2>Strict Rules: Must & Mustn't</h2>
+                <p>We use <strong>Must</strong> to talk about strong obligations (100% necessary). We use <strong>Mustn't (Must not)</strong> to talk about strict prohibitions (100% illegal or banned).</p>
+                
+                <div class="grammar-rule">
+                    <h4>Structure:</h4>
+                    <p>✔️ <strong>Subject + must + Base Verb</strong><br>
+                    <em>We must wear the school uniform.</em> (Rule)</p>
+                    <p>✔️ <strong>Subject + mustn't + Base Verb</strong><br>
+                    <em>You mustn't cheat on the exam.</em> (Prohibition)</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ THE "TO" TRAP CONTINUES:</strong><br>
+                    Just like "should", NEVER use the word "to" after must.<br>
+                    ❌ <s>You must to pay attention.</s><br>
+                    ❌ <s>She musts arrive on time.</s><br>
+                    ✔️ <strong>You must pay attention.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Must or Mustn't (15 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The School Manual (15 pts)</h3>
+            <p class="instructions">Read the situations at Colegio Fielding. Write <strong>must</strong> or <strong>mustn't</strong> depending on the rule.</p>
+            
+            <div class="grid-3">
+                <div class="question">1. Students <input type="text" class="short-input" data-answer="must"> wear the school uniform.</div>
+                <div class="question">2. You <input type="text" class="short-input" data-answer="mustn't|must not"> use your phone during the exam.</div>
+                <div class="question">3. We <input type="text" class="short-input" data-answer="must"> arrive at school on time.</div>
+                <div class="question">4. Santiago <input type="text" class="short-input" data-answer="mustn't|must not"> run in the corridors.</div>
+                <div class="question">5. You <input type="text" class="short-input" data-answer="must"> listen to Teacher Ivan.</div>
+                <div class="question">6. Students <input type="text" class="short-input" data-answer="mustn't|must not"> eat in the computer lab.</div>
+                <div class="question">7. We <input type="text" class="short-input" data-answer="must"> do our English homework.</div>
+                <div class="question">8. You <input type="text" class="short-input" data-answer="mustn't|must not"> cheat on the test.</div>
+                <div class="question">9. They <input type="text" class="short-input" data-answer="must"> bring their books to class.</div>
+                <div class="question">10. Tatiana <input type="text" class="short-input" data-answer="mustn't|must not"> sleep during the lesson.</div>
+                <div class="question">11. You <input type="text" class="short-input" data-answer="must"> respect your classmates.</div>
+                <div class="question">12. We <input type="text" class="short-input" data-answer="mustn't|must not"> be late for class.</div>
+                <div class="question">13. El Michi <input type="text" class="short-input" data-answer="mustn't|must not"> enter the classroom!</div>
+                <div class="question">14. You <input type="text" class="short-input" data-answer="must"> ask questions to learn.</div>
+                <div class="question">15. Leonardo <input type="text" class="short-input" data-answer="mustn't|must not"> forget his notebook.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Rewrite the Rule (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Decode the Rules (10 pts)</h3>
+            <p class="instructions">Read the strict instruction and complete the sentence using <strong>must</strong> or <strong>mustn't</strong> + the verb in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">16. It is an obligation to pass. I <input type="text" class="medium-input" data-answer="must pass"> (pass) the exam.</div>
+                <div class="question">17. It is prohibited to smoke. You <input type="text" class="medium-input" data-answer="mustn't smoke|must not smoke"> (smoke) in school.</div>
+                <div class="question">18. It is mandatory to study. You <input type="text" class="medium-input" data-answer="must study"> (study) hard.</div>
+                <div class="question">19. It is not allowed to chew gum. We <input type="text" class="medium-input" data-answer="mustn't chew|must not chew"> (chew) gum.</div>
+                <div class="question">20. It's mandatory to speak English. We <input type="text" class="medium-input" data-answer="must speak"> (speak) English.</div>
+                <div class="question">21. Don't shout in the library! You <input type="text" class="medium-input" data-answer="mustn't shout|must not shout"> (shout) here.</div>
+                <div class="question">22. Bring your ID card every day. You <input type="text" class="medium-input" data-answer="must bring"> (bring) your ID.</div>
+                <div class="question">23. No eating in class! You <input type="text" class="medium-input" data-answer="mustn't eat|must not eat"> (eat) in class.</div>
+                <div class="question">24. You have to pass the A2 level. I <input type="text" class="medium-input" data-answer="must pass"> (pass) the A2 level.</div>
+                <div class="question">25. Don't disrespect the teacher! You <input type="text" class="medium-input" data-answer="mustn't disrespect|must not disrespect"> (disrespect) the teacher.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make school rules.</p>
+            
+            <div class="grid-2">
+                <div class="question">26. must / English / speak / You / .<br><input type="text" class="long-input" data-answer="you must speak english.|you must speak english"></div>
+                <div class="question">27. phone / mustn't / use / She / her / .<br><input type="text" class="long-input" data-answer="she mustn't use her phone.|she should not use her phone.|she mustn't use her phone"></div>
+                <div class="question">28. uniform / wear / must / We / the / .<br><input type="text" class="long-input" data-answer="we must wear the uniform.|we must wear the uniform"></div>
+                <div class="question">29. late / arrive / mustn't / They / .<br><input type="text" class="long-input" data-answer="they mustn't arrive late.|they must not arrive late.|they mustn't arrive late"></div>
+                <div class="question">30. I / my / homework / do / must / .<br><input type="text" class="long-input" data-answer="i must do my homework.|i must do my homework"></div>
+                <div class="question">31. the / run / You / mustn't / in / hall / .<br><input type="text" class="long-input" data-answer="you mustn't run in the hall.|you must not run in the hall.|you mustn't run in the hall"></div>
+                <div class="question">32. Teacher Ivan / to / listen / must / Students / .<br><input type="text" class="long-input" data-answer="students must listen to teacher ivan.|students must listen to teacher ivan"></div>
+                <div class="question">33. sleep / class / mustn't / He / in / .<br><input type="text" class="long-input" data-answer="he mustn't sleep in class.|he must not sleep in class.|he mustn't sleep in class"></div>
+                <div class="question">34. must / pass / the / exam / We / .<br><input type="text" class="long-input" data-answer="we must pass the exam.|we must pass the exam"></div>
+                <div class="question">35. cheat / mustn't / You / test / the / on / .<br><input type="text" class="long-input" data-answer="you mustn't cheat on the test.|you must not cheat on the test.|you mustn't cheat on the test"></div>
+            </div>
+        </div>
+
+        <!-- Section D: Debug (15 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Spot the Grammar Bug (15 pts)</h3>
+            <p class="instructions">Each rule has a grammar mistake. Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">36. You must to wear a uniform.<br><input type="text" class="long-input" data-answer="you must wear a uniform.|you must wear a uniform"></div>
+                <div class="question">37. He musts do his homework.<br><input type="text" class="long-input" data-answer="he must do his homework.|he must do his homework"></div>
+                <div class="question">38. She don't must use the phone.<br><input type="text" class="long-input" data-answer="she mustn't use the phone.|she must not use the phone.|she mustn't use the phone"></div>
+                <div class="question">39. We mustn't to run in class.<br><input type="text" class="long-input" data-answer="we mustn't run in class.|we must not run in class.|we mustn't run in class"></div>
+                <div class="question">40. Do I must speak English?<br><input type="text" class="long-input" data-answer="must i speak english?|must i speak english"></div>
+                <div class="question">41. They doesn't must be late.<br><input type="text" class="long-input" data-answer="they mustn't be late.|they must not be late.|they mustn't be late"></div>
+                <div class="question">42. You must eating vegetables.<br><input type="text" class="long-input" data-answer="you must eat vegetables.|you must eat vegetables"></div>
+                <div class="question">43. He must to listens to the teacher.<br><input type="text" class="long-input" data-answer="he must listen to the teacher.|he must listen to the teacher"></div>
+                <div class="question">44. We mustn't sleeping in the library.<br><input type="text" class="long-input" data-answer="we mustn't sleep in the library.|we must not sleep in the library.|we mustn't sleep in the library"></div>
+                <div class="question">45. I must going to the school.<br><input type="text" class="long-input" data-answer="i must go to the school.|i must go to the school"></div>
+                <div class="question">46. You mustn't to cheat.<br><input type="text" class="long-input" data-answer="you mustn't cheat.|you must not cheat.|you mustn't cheat"></div>
+                <div class="question">47. She musts study every day.<br><input type="text" class="long-input" data-answer="she must study every day.|she must study every day"></div>
+                <div class="question">48. They must to arrive on time.<br><input type="text" class="long-input" data-answer="they must arrive on time.|they must arrive on time"></div>
+                <div class="question">49. We don't must eat in class.<br><input type="text" class="long-input" data-answer="we mustn't eat in class.|we must not eat in class.|we mustn't eat in class"></div>
+                <div class="question">50. You must to be quiet.<br><input type="text" class="long-input" data-answer="you must be quiet.|you must be quiet"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Writing: The Principal</h3>
+            <p class="instructions">Imagine you are the Principal of Colegio Fielding. Write a short paragraph presenting at least 4 strict rules (using <strong>must</strong> and <strong>mustn't</strong>) for your students. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="Welcome to Colegio Fielding. Here are the rules. First, you must..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                // Preserve question marks if they are in the expected answer
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You MUST be proud. Tienes un dominio total sobre las reglas y obligaciones.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has aprobado con un buen puntaje. Revisa los errores marcados en rojo.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "#FF9800";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: No se usa "to" después de Must, y no se añade "s" al final del verbo.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

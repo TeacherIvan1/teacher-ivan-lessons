@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: I have to correct exams - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --azul-a2: #2196F3; 
+            --celeste-claro: #E3F2FD;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
+            border-top: 8px solid var(--azul-a2);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--azul-a2); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--azul-a2); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--celeste-claro);
+            border-left: 5px solid var(--azul-a2);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #BBDEFB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--azul-a2); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--azul-a2); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 220px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--azul-a2); box-shadow: 0 0 5px rgba(33, 150, 243, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--azul-a2); color: white; box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3); }
+        .btn-check:hover { background-color: #1976D2; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>I have to correct exams</h1>
+            <p>Level A2 | Unit 5 - Lesson 5 | Daily Obligations</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">📋</div>
+            <div class="grammar-content">
+                <h2>Obligations: Have to / Has to</h2>
+                <p>We use <strong>have to</strong> when an action is necessary because it is a rule, a law, or a daily obligation. <br>We use <strong>don't have to</strong> to say that something is <em>NOT</em> necessary (it's optional).</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Rules:</h4>
+                    <p>✔️ <strong>I / You / We / They:</strong> have to / don't have to<br>
+                    ✔️ <strong>He / She / It:</strong> has to / doesn't have to</p>
+                    <p><em>Example:</em> I <strong>have to</strong> work on Monday, but I <strong>don't have to</strong> work on Sunday.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ CAREFUL WITH QUESTIONS & NEGATIVES:</strong><br>
+                    When using <em>doesn't</em> or <em>does</em>, the verb goes back to normal (have to).<br>
+                    ❌ <s>She doesn't has to go.</s> ➔ ✔️ <strong>She doesn't have to go.</strong><br>
+                    ❌ <s>Does he has to study?</s> ➔ ✔️ <strong>Does he have to study?</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Affirmative (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Daily Duties (10 pts)</h3>
+            <p class="instructions">Complete the sentences using <strong>have to</strong> or <strong>has to</strong> based on the subject.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="short-input" data-answer="have to"> correct 50 exams today.</div>
+                <div class="question">2. She <input type="text" class="short-input" data-answer="has to"> study for the history test.</div>
+                <div class="question">3. Leonardo <input type="text" class="short-input" data-answer="has to"> practice English grammar.</div>
+                <div class="question">4. We <input type="text" class="short-input" data-answer="have to"> go to Fielding School.</div>
+                <div class="question">5. They <input type="text" class="short-input" data-answer="have to"> use the new mobile app.</div>
+                <div class="question">6. Teacher Ivan <input type="text" class="short-input" data-answer="has to"> plan the lessons.</div>
+                <div class="question">7. The students <input type="text" class="short-input" data-answer="have to"> wear a uniform.</div>
+                <div class="question">8. You <input type="text" class="short-input" data-answer="have to"> arrive on time for class.</div>
+                <div class="question">9. My cat <input type="text" class="short-input" data-answer="has to"> eat his special food.</div>
+                <div class="question">10. He <input type="text" class="short-input" data-answer="has to"> travel to China for business.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Negative (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Lack of Obligation (10 pts)</h3>
+            <p class="instructions">Complete using <strong>don't have to</strong> or <strong>doesn't have to</strong>. (It's not necessary!).</p>
+            
+            <div class="grid-2">
+                <div class="question">11. I <input type="text" class="medium-input" data-answer="don't have to|do not have to"> work on Sunday.</div>
+                <div class="question">12. She <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> take the diagnostic test.</div>
+                <div class="question">13. We <input type="text" class="medium-input" data-answer="don't have to|do not have to"> wake up early today.</div>
+                <div class="question">14. Leonardo <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> read that book.</div>
+                <div class="question">15. They <input type="text" class="medium-input" data-answer="don't have to|do not have to"> bring their laptops.</div>
+                <div class="question">16. You <input type="text" class="medium-input" data-answer="don't have to|do not have to"> buy a new phone for this.</div>
+                <div class="question">17. Teacher Ivan <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> teach on weekends.</div>
+                <div class="question">18. The app <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> be complicated.</div>
+                <div class="question">19. He <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> run 10 kilometers.</div>
+                <div class="question">20. I <input type="text" class="medium-input" data-answer="don't have to|do not have to"> cook dinner tonight.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Context/Mixed (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> The Fielding Routine (10 pts)</h3>
+            <p class="instructions">Read the context carefully. Complete the sentence using the correct affirmative or negative form of <strong>have to</strong> with the verbs in brackets.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. To calculate grades, I <input type="text" class="medium-input" data-answer="have to use"> (use) the Excel spreadsheet.</div>
+                <div class="question">22. The students <input type="text" class="medium-input" data-answer="don't have to go|do not have to go"> (not / go) to school on Saturdays.</div>
+                <div class="question">23. A businesswoman <input type="text" class="medium-input" data-answer="has to speak"> (speak) English in China.</div>
+                <div class="question">24. For the history exam, they <input type="text" class="medium-input" data-answer="have to study"> (study) the Andean Neolithic.</div>
+                <div class="question">25. You <input type="text" class="medium-input" data-answer="don't have to do|do not have to do"> (not / do) CrossFit if you prefer yoga.</div>
+                <div class="question">26. Leonardo <input type="text" class="medium-input" data-answer="has to memorize"> (memorize) the vocabulary list.</div>
+                <div class="question">27. Tatiana is in A2, so she <input type="text" class="medium-input" data-answer="doesn't have to take|does not have to take"> (not / take) the A1 test.</div>
+                <div class="question">28. We <input type="text" class="medium-input" data-answer="have to finish"> (finish) developing the Lifestyle App.</div>
+                <div class="question">29. The teachers <input type="text" class="medium-input" data-answer="have to explain"> (explain) the grammar clearly.</div>
+                <div class="question">30. The exam is easy, so you <input type="text" class="medium-input" data-answer="don't have to stress|do not have to stress"> (not / stress) about it.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make obligations or questions.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. have / to / I / early / wake up / .<br><input type="text" class="long-input" data-answer="i have to wake up early.|i have to wake up early"></div>
+                <div class="question">32. She / have / to / doesn't / cook / .<br><input type="text" class="long-input" data-answer="she doesn't have to cook.|she does not have to cook.|she doesn't have to cook"></div>
+                <div class="question">33. to / Do / we / have / study / ?<br><input type="text" class="long-input" data-answer="do we have to study?|do we have to study"></div>
+                <div class="question">34. has / to / He / English / practice / .<br><input type="text" class="long-input" data-answer="he has to practice english.|he has to practice english"></div>
+                <div class="question">35. have / to / You / don't / pay / .<br><input type="text" class="long-input" data-answer="you don't have to pay.|you do not have to pay.|you don't have to pay"></div>
+                <div class="question">36. to / exams / correct / have / I / .<br><input type="text" class="long-input" data-answer="i have to correct exams.|i have to correct exams"></div>
+                <div class="question">37. Does / have / to / travel / she / ?<br><input type="text" class="long-input" data-answer="does she have to travel?|does she have to travel"></div>
+                <div class="question">38. they / have / to / Do / wait / ?<br><input type="text" class="long-input" data-answer="do they have to wait?|do they have to wait"></div>
+                <div class="question">39. has / to / Ivan / the / app / update / .<br><input type="text" class="long-input" data-answer="ivan has to update the app.|ivan has to update the app"></div>
+                <div class="question">40. have / don't / We / to / run / .<br><input type="text" class="long-input" data-answer="we don't have to run.|we do not have to run.|we don't have to run"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence contains a grammar mistake related to "have to". Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. I has to go now.<br><input type="text" class="long-input" data-answer="i have to go now.|i have to go now"></div>
+                <div class="question">42. She don't have to study.<br><input type="text" class="long-input" data-answer="she doesn't have to study.|she does not have to study.|she doesn't have to study"></div>
+                <div class="question">43. Do he have to work?<br><input type="text" class="long-input" data-answer="does he have to work?|does he have to work"></div>
+                <div class="question">44. We have to working today.<br><input type="text" class="long-input" data-answer="we have to work today.|we have to work today"></div>
+                <div class="question">45. You doesn't have to wait.<br><input type="text" class="long-input" data-answer="you don't have to wait.|you do not have to wait.|you don't have to wait"></div>
+                <div class="question">46. Teacher Ivan have to grade exams.<br><input type="text" class="long-input" data-answer="teacher ivan has to grade exams.|teacher ivan has to grade exams"></div>
+                <div class="question">47. Does she has to travel?<br><input type="text" class="long-input" data-answer="does she have to travel?|does she have to travel"></div>
+                <div class="question">48. I don't has to get up early.<br><input type="text" class="long-input" data-answer="i don't have to get up early.|i do not have to get up early.|i don't have to get up early"></div>
+                <div class="question">49. They have to leaving.<br><input type="text" class="long-input" data-answer="they have to leave.|they have to leave"></div>
+                <div class="question">50. She hasn't to do the homework.<br><input type="text" class="long-input" data-answer="she doesn't have to do the homework.|she does not have to do the homework.|she doesn't have to do the homework"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: A Day in the Life (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about your daily routine. Mention 2 things you <strong>have to</strong> do, and 2 things you <strong>don't have to</strong> do. (Minimum 30 words).</p>
+            
+            <textarea id="writing-section" placeholder="Every day, I have to wake up early and I have to... but on weekends, I don't have to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 30 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 30) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                // Preserve question marks if they are in the expected answer
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                if (userAnswer === "") {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                } else if (correctAnswers.includes(userAnswer)) {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                }
+            });
+
+            // Check Writing section (1 point if >= 30 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 30) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un experto en las obligaciones del día a día. ¡Gran trabajo!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has aprobado con solidez. Solo repasa los errores marcados en rojo (cuidado con el "has to" en negativo).`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "#FF9800";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: en negaciones y preguntas, el verbo vuelve a ser "have to" para todas las personas.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br>${message}`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

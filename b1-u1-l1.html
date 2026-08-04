@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: Have you ever tried CrossFit? - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #009688; 
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--teal-b1); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--teal-b1); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3); }
+        .btn-check:hover { background-color: #00796B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Have you ever tried CrossFit?</h1>
+            <p>Level B1 | Unit 1 - Lesson 1 | Life Experiences</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🌍</div>
+            <div class="grammar-content">
+                <h2>The Present Perfect Tense</h2>
+                <p>Welcome to B1! We use the <strong>Present Perfect</strong> to talk about life experiences when the exact time is <em>not</em> important. It's about what you have done in your life up to now.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Structure:</h4>
+                    <p>✔️ <strong>Subject + have/has + Past Participle (V3)</strong><br>
+                    <em>I have traveled to Europe. / He has built an app.</em></p>
+                    
+                    <h4>Ever and Never:</h4>
+                    <p>✔️ <strong>Ever:</strong> Used in questions (Have you <em>ever</em>...?). Meaning: "alguna vez".<br>
+                    ✔️ <strong>Never:</strong> Used in affirmative sentences to give a negative meaning. Meaning: "nunca".</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Don't confuse Past Simple with Past Participle:</strong><br>
+                    You must use the 3rd column of the irregular verbs!<br>
+                    ❌ <s>I have went to China.</s> ➔ ✔️ <strong>I have gone to China.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Participles (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Third Column (10 pts)</h3>
+            <p class="instructions">Write the <strong>Past Participle (V3)</strong> of the following verbs. Be careful with irregulars!</p>
+            
+            <div class="grid-3">
+                <div class="question">1. go ➔ <input type="text" class="short-input" data-answer="gone"></div>
+                <div class="question">2. be ➔ <input type="text" class="short-input" data-answer="been"></div>
+                <div class="question">3. do ➔ <input type="text" class="short-input" data-answer="done"></div>
+                <div class="question">4. try ➔ <input type="text" class="short-input" data-answer="tried"></div>
+                <div class="question">5. eat ➔ <input type="text" class="short-input" data-answer="eaten"></div>
+                <div class="question">6. travel ➔ <input type="text" class="short-input" data-answer="traveled|travelled"></div>
+                <div class="question">7. build ➔ <input type="text" class="short-input" data-answer="built"></div>
+                <div class="question">8. see ➔ <input type="text" class="short-input" data-answer="seen"></div>
+                <div class="question">9. write ➔ <input type="text" class="short-input" data-answer="written"></div>
+                <div class="question">10. study ➔ <input type="text" class="short-input" data-answer="studied"></div>
+            </div>
+        </div>
+
+        <!-- Section B: Have or Has? (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> The Auxiliary (10 pts)</h3>
+            <p class="instructions">Complete the sentences with <strong>have</strong> or <strong>has</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">11. I <input type="text" class="short-input" data-answer="have"> tried CrossFit before.</div>
+                <div class="question">12. Teacher Ivan <input type="text" class="short-input" data-answer="has"> built the Fielding School App.</div>
+                <div class="question">13. Leonardo <input type="text" class="short-input" data-answer="has"> traveled to China for business.</div>
+                <div class="question">14. We <input type="text" class="short-input" data-answer="have"> studied the Andean Neolithic.</div>
+                <div class="question">15. El Michi <input type="text" class="short-input" data-answer="has"> jumped on my desk!</div>
+                <div class="question">16. Tatiana <input type="text" class="short-input" data-answer="has"> finished her diagnostic exam.</div>
+                <div class="question">17. They <input type="text" class="short-input" data-answer="have"> programmed a great HTML game.</div>
+                <div class="question">18. You <input type="text" class="short-input" data-answer="have"> eaten all the avocados.</div>
+                <div class="question">19. She <input type="text" class="short-input" data-answer="has"> prepared a history exam.</div>
+                <div class="question">20. My students <input type="text" class="short-input" data-answer="have"> used the new grading spreadsheet.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Ever or Never? (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Ever vs Never (10 pts)</h3>
+            <p class="instructions">Complete the sentences using <strong>ever</strong> (for questions) or <strong>never</strong> (for zero experience).</p>
+            
+            <div class="grid-2">
+                <div class="question">21. Have you <input type="text" class="short-input" data-answer="ever"> been to La Paz?</div>
+                <div class="question">22. Yuck! I have <input type="text" class="short-input" data-answer="never"> eaten dog food.</div>
+                <div class="question">23. Has Santiago <input type="text" class="short-input" data-answer="ever"> won a sports competition?</div>
+                <div class="question">24. We study hard. We have <input type="text" class="short-input" data-answer="never"> failed a test.</div>
+                <div class="question">25. Have they <input type="text" class="short-input" data-answer="ever"> used Google Classroom?</div>
+                <div class="question">26. She has <input type="text" class="short-input" data-answer="never"> traveled to Asia before today.</div>
+                <div class="question">27. Has Teacher Ivan <input type="text" class="short-input" data-answer="ever"> forgotten his laptop?</div>
+                <div class="question">28. I am terrified because I have <input type="text" class="short-input" data-answer="never"> seen a ghost.</div>
+                <div class="question">29. Have you <input type="text" class="short-input" data-answer="ever"> programmed an interactive HTML tool?</div>
+                <div class="question">30. El Michi has <input type="text" class="short-input" data-answer="never"> caught a mouse in his life.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make questions or sentences about experiences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. you / Have / ever / to / China / traveled / ?<br><input type="text" class="long-input" data-answer="have you ever traveled to china?|have you ever traveled to china"></div>
+                <div class="question">32. has / never / Leonardo / CrossFit / done / .<br><input type="text" class="long-input" data-answer="leonardo has never done crossfit.|leonardo has never done crossfit"></div>
+                <div class="question">33. I / eaten / never / have / sushi / .<br><input type="text" class="long-input" data-answer="i have never eaten sushi.|i have never eaten sushi"></div>
+                <div class="question">34. ever / she / Has / a / marathon / run / ?<br><input type="text" class="long-input" data-answer="has she ever run a marathon?|has she ever run a marathon"></div>
+                <div class="question">35. have / an / app / built / We / never / .<br><input type="text" class="long-input" data-answer="we have never built an app.|we have never built an app"></div>
+                <div class="question">36. Ivan / ever / a / failed / student / Has / ?<br><input type="text" class="long-input" data-answer="has ivan ever failed a student?|has ivan ever failed a student"></div>
+                <div class="question">37. never / They / been / to / Fielding School / have / .<br><input type="text" class="long-input" data-answer="they have never been to fielding school.|they have never been to fielding school"></div>
+                <div class="question">38. Have / read / ever / you / book / that / ?<br><input type="text" class="long-input" data-answer="have you ever read that book?|have you ever read that book"></div>
+                <div class="question">39. has / seen / the / never / ocean / Tatiana / .<br><input type="text" class="long-input" data-answer="tatiana has never seen the ocean.|tatiana has never seen the ocean"></div>
+                <div class="question">40. El Michi / ever / slept / your / bed / in / Has / ?<br><input type="text" class="long-input" data-answer="has el michi ever slept in your bed?|has el michi ever slept in your bed"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence contains a grammar mistake related to Present Perfect. Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. I has never traveled to Sucre.<br><input type="text" class="long-input" data-answer="i have never traveled to sucre.|i have never traveled to sucre"></div>
+                <div class="question">42. Have you never eaten avocado?<br><input type="text" class="long-input" data-answer="have you ever eaten avocado?|have you ever eaten avocado"></div>
+                <div class="question">43. She have done CrossFit.<br><input type="text" class="long-input" data-answer="she has done crossfit.|she has done crossfit"></div>
+                <div class="question">44. We has never built a lifestyle app.<br><input type="text" class="long-input" data-answer="we have never built a lifestyle app.|we have never built a lifestyle app"></div>
+                <div class="question">45. Has Leonardo ever go to China?<br><input type="text" class="long-input" data-answer="has leonardo ever gone to china?|has leonardo ever gone to china|has leonardo ever been to china?|has leonardo ever been to china"></div>
+                <div class="question">46. I have ever seen that movie.<br><input type="text" class="long-input" data-answer="i have never seen that movie.|i have never seen that movie"></div>
+                <div class="question">47. Did you ever tried sushi?<br><input type="text" class="long-input" data-answer="have you ever tried sushi?|have you ever tried sushi"></div>
+                <div class="question">48. Teacher Ivan have corrected the exams.<br><input type="text" class="long-input" data-answer="teacher ivan has corrected the exams.|teacher ivan has corrected the exams"></div>
+                <div class="question">49. They haven't never played tennis.<br><input type="text" class="long-input" data-answer="they have never played tennis.|they have never played tennis|they haven't ever played tennis.|they haven't ever played tennis"></div>
+                <div class="question">50. Has she ever drank coffee?<br><input type="text" class="long-input" data-answer="has she ever drunk coffee?|has she ever drunk coffee"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Your Life Experiences (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about your life experiences. Mention 2 things you <strong>have done</strong> (or have tried) and 2 things you <strong>have never done</strong>. (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="I have traveled to... and I have tried... However, I have never..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Allow question marks inside correct answers if expected, otherwise clean punctuation
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                // Remove trailing punctuation from user answer unless it's an expected question mark
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Has iniciado el Nivel B1 con el pie derecho. ¡Tienes un gran dominio del Present Perfect!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has superado la primera lección B1. Revisa los verbos irregulares que marcamos en rojo.`;
+                color = "var(--naranja-vibrante)";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "var(--naranja-vibrante)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: Have/Has + Past Participle (la 3ra columna de los verbos). "Ever" es para preguntas y "Never" para oraciones afirmativas con sentido negativo.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

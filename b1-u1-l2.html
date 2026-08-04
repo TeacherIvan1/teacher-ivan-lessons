@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: I have run 5k today - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #00796B; 
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 121, 107, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--teal-b1); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--teal-b1); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 121, 107, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 121, 107, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 121, 107, 0.3); }
+        .btn-check:hover { background-color: #004D40; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>I have run 5k today</h1>
+            <p>Level B1 | Unit 1 - Lesson 2 | Unfinished Time</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏃</div>
+            <div class="grammar-content">
+                <h2>Unfinished Time Periods</h2>
+                <p>We use the <strong>Present Perfect</strong> for actions that happen in a period of time that is <em>not finished yet</em>. If the time is already over, we must use the <strong>Past Simple</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Finished vs. Unfinished:</h4>
+                    <p>✔️ <strong>Finished (Past Simple):</strong> yesterday, last week, last month, in 2020.<br>
+                    <em>I ran 5k yesterday.</em></p>
+                    <p>✔️ <strong>Unfinished (Present Perfect):</strong> today, this week, this month, this year, so far.<br>
+                    <em>I have run 5k today.</em> (The day is not over yet!)</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Common Mistake:</strong><br>
+                    Never use the Present Perfect with "yesterday" or "last year".<br>
+                    ❌ <s>I have worked a lot yesterday.</s> ➔ ✔️ <strong>I worked a lot yesterday.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Unfinished Time (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Still Happening (10 pts)</h3>
+            <p class="instructions">All these sentences happen in <strong>unfinished time</strong> periods (today, this week...). Fill in the blanks with the Present Perfect (have/has + Past Participle).</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="medium-input" data-answer="have run"> (run) 5k today.</div>
+                <div class="question">2. She <input type="text" class="medium-input" data-answer="has drunk"> (drink) three cups of coffee this morning.</div>
+                <div class="question">3. We <input type="text" class="medium-input" data-answer="have worked"> (work) a lot this week.</div>
+                <div class="question">4. Leonardo <input type="text" class="medium-input" data-answer="has studied"> (study) for his test this month.</div>
+                <div class="question">5. They <input type="text" class="medium-input" data-answer="have built"> (build) two apps this year.</div>
+                <div class="question">6. Tatiana <input type="text" class="medium-input" data-answer="has read"> (read) five books so far.</div>
+                <div class="question">7. Teacher Ivan <input type="text" class="medium-input" data-answer="has graded"> (grade) twenty exams today.</div>
+                <div class="question">8. Santiago <input type="text" class="medium-input" data-answer="has done"> (do) CrossFit three times this week.</div>
+                <div class="question">9. You <input type="text" class="medium-input" data-answer="have eaten"> (eat) two salteñas today!</div>
+                <div class="question">10. El Michi <input type="text" class="medium-input" data-answer="has slept"> (sleep) all day.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Past Simple vs Present Perfect (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Finished vs. Unfinished (10 pts)</h3>
+            <p class="instructions">Read the time expression carefully! Use <strong>Past Simple</strong> for finished time (yesterday, last week) and <strong>Present Perfect</strong> for unfinished time (today, this week).</p>
+            
+            <div class="grid-2">
+                <div class="question">11. I <input type="text" class="medium-input" data-answer="went"> (go) to Sucre last year.</div>
+                <div class="question">12. I <input type="text" class="medium-input" data-answer="have visited"> (visit) Sucre this year.</div>
+                <div class="question">13. She <input type="text" class="medium-input" data-answer="ate"> (eat) pizza yesterday.</div>
+                <div class="question">14. She <input type="text" class="medium-input" data-answer="has eaten"> (eat) pizza today.</div>
+                <div class="question">15. We <input type="text" class="medium-input" data-answer="finished"> (finish) the project last night.</div>
+                <div class="question">16. We <input type="text" class="medium-input" data-answer="have finished"> (finish) the project this week.</div>
+                <div class="question">17. Leonardo <input type="text" class="medium-input" data-answer="traveled|travelled"> (travel) to China in 2022.</div>
+                <div class="question">18. Leonardo <input type="text" class="medium-input" data-answer="has traveled|has travelled"> (travel) to China this month.</div>
+                <div class="question">19. They <input type="text" class="medium-input" data-answer="played"> (play) tennis two days ago.</div>
+                <div class="question">20. They <input type="text" class="medium-input" data-answer="have played"> (play) tennis this morning.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Negatives & Interrogatives (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Asking and Denying (10 pts)</h3>
+            <p class="instructions">Make full negative sentences (-) or questions (?) in the <strong>Present Perfect</strong> based on the prompts.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. <em>(-)</em> I / not / run / today.<br><input type="text" class="long-input" data-answer="i haven't run today.|i have not run today."></div>
+                <div class="question">22. <em>(?)</em> you / drink / water / this morning?<br><input type="text" class="long-input" data-answer="have you drunk water this morning?|have you drunk water this morning"></div>
+                <div class="question">23. <em>(-)</em> She / not / work / this week.<br><input type="text" class="long-input" data-answer="she hasn't worked this week.|she has not worked this week."></div>
+                <div class="question">24. <em>(?)</em> he / finish / his homework / today?<br><input type="text" class="long-input" data-answer="has he finished his homework today?|has he finished his homework today"></div>
+                <div class="question">25. <em>(-)</em> We / not / learn / new words / this month.<br><input type="text" class="long-input" data-answer="we haven't learned new words this month.|we have not learned new words this month.|we haven't learnt new words this month.|we have not learnt new words this month."></div>
+                <div class="question">26. <em>(?)</em> they / use / the app / this year?<br><input type="text" class="long-input" data-answer="have they used the app this year?|have they used the app this year"></div>
+                <div class="question">27. <em>(-)</em> Tatiana / not / study / this week.<br><input type="text" class="long-input" data-answer="tatiana hasn't studied this week.|tatiana has not studied this week."></div>
+                <div class="question">28. <em>(?)</em> Ivan / grade / the exams / today?<br><input type="text" class="long-input" data-answer="has ivan graded the exams today?|has ivan graded the exams today"></div>
+                <div class="question">29. <em>(-)</em> El Michi / not / catch / a mouse / this month.<br><input type="text" class="long-input" data-answer="el michi hasn't caught a mouse this month.|el michi has not caught a mouse this month."></div>
+                <div class="question">30. <em>(?)</em> Santiago / train / today?<br><input type="text" class="long-input" data-answer="has santiago trained today?|has santiago trained today"></div>
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make sentences about this week or today.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. today / run / I / 5k / have / .<br><input type="text" class="long-input" data-answer="i have run 5k today.|i have run 5k today"></div>
+                <div class="question">32. has / three / coffees / She / drunk / today / .<br><input type="text" class="long-input" data-answer="she has drunk three coffees today.|she has drunk three coffees today"></div>
+                <div class="question">33. this / We / worked / week / have / hard / .<br><input type="text" class="long-input" data-answer="we have worked hard this week.|we have worked hard this week"></div>
+                <div class="question">34. seen / have / you / Ivan / today / ?<br><input type="text" class="long-input" data-answer="have you seen ivan today?|have you seen ivan today"></div>
+                <div class="question">35. this / year / They / traveled / haven't / .<br><input type="text" class="long-input" data-answer="they haven't traveled this year.|they have not traveled this year.|they haven't travelled this year.|they have not travelled this year."></div>
+                <div class="question">36. has / month / Leonardo / an app / built / this / .<br><input type="text" class="long-input" data-answer="leonardo has built an app this month.|leonardo has built an app this month"></div>
+                <div class="question">37. month / have / read / I / books / two / this / .<br><input type="text" class="long-input" data-answer="i have read two books this month.|i have read two books this month"></div>
+                <div class="question">38. Santiago / today / trained / Has / ?<br><input type="text" class="long-input" data-answer="has santiago trained today?|has santiago trained today"></div>
+                <div class="question">39. week / haven't / We / eaten / junk food / this / .<br><input type="text" class="long-input" data-answer="we haven't eaten junk food this week.|we have not eaten junk food this week."></div>
+                <div class="question">40. El Michi / caught / today / a mouse / hasn't / .<br><input type="text" class="long-input" data-answer="el michi hasn't caught a mouse today.|el michi has not caught a mouse today."></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence contains a mistake with the Present Perfect structure. Rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. I has run 5k today.<br><input type="text" class="long-input" data-answer="i have run 5k today.|i have run 5k today"></div>
+                <div class="question">42. She have worked hard this week.<br><input type="text" class="long-input" data-answer="she has worked hard this week.|she has worked hard this week"></div>
+                <div class="question">43. We haven't travel this month.<br><input type="text" class="long-input" data-answer="we haven't traveled this month.|we haven't travelled this month.|we have not traveled this month.|we have not travelled this month."></div>
+                <div class="question">44. Has you seen El Michi today?<br><input type="text" class="long-input" data-answer="have you seen el michi today?|have you seen el michi today"></div>
+                <div class="question">45. They have build an app this year.<br><input type="text" class="long-input" data-answer="they have built an app this year.|they have built an app this year"></div>
+                <div class="question">46. I have went to the gym today.<br><input type="text" class="long-input" data-answer="i have gone to the gym today.|i have gone to the gym today"></div>
+                <div class="question">47. He haven't run 5k this week.<br><input type="text" class="long-input" data-answer="he hasn't run 5k this week.|he has not run 5k this week."></div>
+                <div class="question">48. Ivan have taught three classes today.<br><input type="text" class="long-input" data-answer="ivan has taught three classes today.|teacher ivan has taught three classes today.|ivan has taught three classes today"></div>
+                <div class="question">49. Have she eaten salteñas this morning?<br><input type="text" class="long-input" data-answer="has she eaten salteñas this morning?|has she eaten salteñas this morning"></div>
+                <div class="question">50. We have study a lot this month.<br><input type="text" class="long-input" data-answer="we have studied a lot this month.|we have studied a lot this month"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Your Week (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about what you have done <strong>today</strong> or <strong>this week</strong>. Mention at least 2 things you have done (+) and 2 things you haven't done (-). (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="This week has been very busy. I have worked a lot and I have... However, I haven't..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter Logic
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Exam Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Allow question marks inside correct answers if expected, otherwise clean punctuation
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                // Remove trailing punctuation from user answer unless it's an expected question mark
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Dominas a la perfección la diferencia entre el pasado y el Present Perfect. ¡Gran trabajo!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has superado la lección. Revisa los errores marcados en rojo (especialmente los verbos irregulares).`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "#FF9800";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: Si el tiempo no ha terminado (today, this week), usa Present Perfect. Si ya terminó (yesterday), usa Past Simple.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

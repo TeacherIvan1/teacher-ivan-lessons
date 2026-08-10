@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: He had already finished - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #009688; 
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--teal-b1); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--teal-b1); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3); }
+        .btn-check:hover { background-color: #00796B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>He had already finished</h1>
+            <p>Level B1 | Unit 1 - Lesson 5 | Past Perfect</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">⏱️</div>
+            <div class="grammar-content">
+                <h2>The Past of the Past</h2>
+                <p>We use the <strong>Past Perfect</strong> to describe an action that happened <em>before</em> another action in the past. We use the <strong>Past Simple</strong> for the action that happened second.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Formula:</h4>
+                    <p>✔️ <strong>Subject + had + Past Participle (V3)</strong><br>
+                    <em>"When I arrived at the station, the train <strong>had left</strong>."</em><br>
+                    (Action 1: The train left. Action 2: I arrived.)</p>
+                </div>
+                
+                <div class="grammar-rule">
+                    <h4>Time Markers:</h4>
+                    <p>We often use words like <strong>already, just, never, before, after,</strong> and <strong>by the time</strong> to connect the two actions.<br>
+                    <em>"By the time I woke up, my mom <strong>had already made</strong> breakfast."</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Don't confuse HAVE with HAD:</strong><br>
+                    Present Perfect (Have/Has) connects to the Present.<br>
+                    Past Perfect (Had) connects two actions in the Past.
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Build the Tense (10 pts)</h3>
+            <p class="instructions">Write the <strong>Past Perfect</strong> form of the verbs in brackets. (Example: work ➔ had worked).</p>
+            
+            <div class="grid-2">
+                <div class="question">1. go ➔ <input type="text" class="medium-input" data-answer="had gone"></div>
+                <div class="question">2. finish ➔ <input type="text" class="medium-input" data-answer="had finished"></div>
+                <div class="question">3. eat ➔ <input type="text" class="medium-input" data-answer="had eaten"></div>
+                <div class="question">4. leave ➔ <input type="text" class="medium-input" data-answer="had left"></div>
+                <div class="question">5. see ➔ <input type="text" class="medium-input" data-answer="had seen"></div>
+                <div class="question">6. start ➔ <input type="text" class="medium-input" data-answer="had started"></div>
+                <div class="question">7. close ➔ <input type="text" class="medium-input" data-answer="had closed"></div>
+                <div class="question">8. forget ➔ <input type="text" class="medium-input" data-answer="had forgotten"></div>
+                <div class="question">9. break ➔ <input type="text" class="medium-input" data-answer="had broken"></div>
+                <div class="question">10. buy ➔ <input type="text" class="medium-input" data-answer="had bought"></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Before and After (10 pts)</h3>
+            <p class="instructions">Complete the sentences. Use <strong>Past Simple</strong> for the second action and <strong>Past Perfect</strong> for the first action.</p>
+            
+            <div class="question">11-12. By the time Ivan <input type="text" class="short-input" data-answer="arrived"> (arrive), the students <input type="text" class="medium-input" data-answer="had left"> (leave).</div>
+            <div class="question">13-14. When I <input type="text" class="short-input" data-answer="turned"> (turn) on the TV, the game <input type="text" class="medium-input" data-answer="had finished"> (finish).</div>
+            <div class="question">15-16. She <input type="text" class="short-input" data-answer="was"> (be) very tired because she <input type="text" class="medium-input" data-answer="had trained"> (train) all morning.</div>
+            <div class="question">17-18. Leonardo <input type="text" class="medium-input" data-answer="didn't pass|did not pass"> (not / pass) the exam because he <input type="text" class="medium-input" data-answer="hadn't studied|had not studied"> (not / study).</div>
+            <div class="question">19-20. After Tatiana <input type="text" class="medium-input" data-answer="had eaten"> (eat), she <input type="text" class="short-input" data-answer="went"> (go) to sleep.</div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Unlucky Day (10 pts)</h3>
+            <p class="instructions">Read Santiago's story. Fill in the blanks using the <strong>Past Perfect</strong>. Pay attention to adverbs like <em>already</em> or <em>never</em> in brackets.</p>
+            
+            <div class="reading-box">
+                Yesterday was a terrible day for Santiago. When he woke up, he realized he 21. <input type="text" class="medium-input" data-answer="had forgotten"> (forget) to set the alarm. By the time he got to the bus stop, the bus 22. <input type="text" class="medium-input" data-answer="had already left"> (already / leave). He ran to the gym, but the CrossFit class 23. <input type="text" class="medium-input" data-answer="had started"> (start). When he finally saw his friends, they 24. <input type="text" class="medium-input" data-answer="had finished"> (finish) the workout. He wanted to buy a protein shake, but he 25. <input type="text" class="medium-input" data-answer="had left"> (leave) his wallet at home! He walked back home, but someone 26. <input type="text" class="medium-input" data-answer="had locked"> (lock) the door. He called his mom, but she 27. <input type="text" class="medium-input" data-answer="had gone"> (go) to the market. When he finally got inside, El Michi 28. <input type="text" class="medium-input" data-answer="had eaten"> (eat) his breakfast! Santiago was so sad because everything 29. <input type="text" class="medium-input" data-answer="had gone"> (go) wrong before noon. He 30. <input type="text" class="medium-input" data-answer="had never had"> (never / have) such a bad day!
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form Past Perfect sentences with time markers.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. train / had / already / The / left / .<br><input type="text" class="long-input" data-answer="the train had already left.|the train had already left"></div>
+                <div class="question">32. the / time / By / arrived / I / he / had / eaten / .<br><input type="text" class="long-input" data-answer="by the time i arrived he had eaten.|he had eaten by the time i arrived.|by the time i arrived, he had eaten."></div>
+                <div class="question">33. finished / had / She / her / homework / .<br><input type="text" class="long-input" data-answer="she had finished her homework.|she had finished her homework"></div>
+                <div class="question">34. never / seen / I / had / that / movie / before / .<br><input type="text" class="long-input" data-answer="i had never seen that movie before.|i had never seen that movie before"></div>
+                <div class="question">35. When / woke / up / I / they / had / gone / .<br><input type="text" class="long-input" data-answer="when i woke up they had gone.|they had gone when i woke up.|when i woke up, they had gone."></div>
+                <div class="question">36. locked / had / the / door / Ivan / .<br><input type="text" class="long-input" data-answer="ivan had locked the door.|ivan had locked the door"></div>
+                <div class="question">37. We / sad / were / because / we / had / lost / .<br><input type="text" class="long-input" data-answer="we were sad because we had lost.|we were sad because we had lost"></div>
+                <div class="question">38. had / already / started / class / The / .<br><input type="text" class="long-input" data-answer="the class had already started.|the class had already started"></div>
+                <div class="question">39. forgotten / had / my / keys / I / .<br><input type="text" class="long-input" data-answer="i had forgotten my keys.|i had forgotten my keys"></div>
+                <div class="question">40. hadn't / He / studied / test / for / the / .<br><input type="text" class="long-input" data-answer="he hadn't studied for the test.|he had not studied for the test."></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence uses the WRONG tense or has a structural error. Rewrite the full sentence correctly using Past Simple and Past Perfect.</p>
+
+            <div class="grid-2">
+                <div class="question">41. I have already finished when she arrived.<br><input type="text" class="long-input" data-answer="i had already finished when she arrived.|i had already finished when she arrived"></div>
+                <div class="question">42. By the time he come, I had eaten.<br><input type="text" class="long-input" data-answer="by the time he came, i had eaten.|by the time he came i had eaten."></div>
+                <div class="question">43. She was angry because he has forgotten her birthday.<br><input type="text" class="long-input" data-answer="she was angry because he had forgotten her birthday.|she was angry because he had forgotten her birthday"></div>
+                <div class="question">44. After I had eat, I went to sleep.<br><input type="text" class="long-input" data-answer="after i had eaten, i went to sleep.|after i had eaten i went to sleep."></div>
+                <div class="question">45. They had already left before I arrive.<br><input type="text" class="long-input" data-answer="they had already left before i arrived.|they had already left before i arrived"></div>
+                <div class="question">46. Had you ever saw that before?<br><input type="text" class="long-input" data-answer="had you ever seen that before?|had you ever seen that before"></div>
+                <div class="question">47. When I got to the station, the train had already leave.<br><input type="text" class="long-input" data-answer="when i got to the station, the train had already left.|when i got to the station the train had already left."></div>
+                <div class="question">48. We didn't played because it had rained.<br><input type="text" class="long-input" data-answer="we didn't play because it had rained.|we did not play because it had rained."></div>
+                <div class="question">49. He had never go to China before 2020.<br><input type="text" class="long-input" data-answer="he had never gone to china before 2020.|he had never gone to china before 2020"></div>
+                <div class="question">50. By the time I wake up, he had made breakfast.<br><input type="text" class="long-input" data-answer="by the time i woke up, he had made breakfast.|by the time i woke up he had made breakfast."></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Bad Luck Story (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about a time you were late or had bad luck. Use the <strong>Past Perfect</strong> to explain what <em>had happened</em> before you arrived. (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="Yesterday, I had a very bad morning. By the time I arrived at school, the teacher had already started the class. Also, I realized that I had forgotten..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter Logic
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Exam Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                // Clean up user input
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Flexible punctuation matching for question marks and commas
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans.replace(/,/g, ''); 
+                });
+                
+                // Clean user answer similarly
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                let cleanUserAnswer = userAnswer.replace(/,/g, '');
+
+                if ((correctAnswers.includes(cleanUserAnswer) || correctAnswers.includes(userAnswer)) && cleanUserAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Tienes un dominio total del "pasado del pasado". ¡Impecable!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes la lógica temporal. Revisa los verbos irregulares marcados en rojo.`;
+                color = "var(--naranja-vibrante)";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "var(--naranja-vibrante)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: La primera acción es Past Perfect (had + V3), la segunda acción es Past Simple.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

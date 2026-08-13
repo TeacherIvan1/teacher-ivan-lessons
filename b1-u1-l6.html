@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: Have you ever been to...? - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #009688; 
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--teal-b1); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--teal-b1); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3); }
+        .btn-check:hover { background-color: #00796B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Have you ever been to...?</h1>
+            <p>Level B1 | Unit 1 - Lesson 6 | Been vs Gone</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">✈️</div>
+            <div class="grammar-content">
+                <h2>Been or Gone?</h2>
+                <p>Both are past participles of the verb <strong>"go"</strong>, but they have very different meanings in the Present Perfect tense.</p>
+                
+                <div class="grammar-rule">
+                    <h4>BEEN (Went and came back)</h4>
+                    <p>Use <strong>been</strong> to say that someone visited a place, but they are no longer there (they returned). It is a life experience.<br>
+                    <em>"I have <strong>been</strong> to Paris three times."</em> (I am not in Paris now).</p>
+                </div>
+                
+                <div class="grammar-rule">
+                    <h4>GONE (Went and is still there)</h4>
+                    <p>Use <strong>gone</strong> to say that someone traveled to a place and has not returned yet.<br>
+                    <em>"Where is Leonardo? He has <strong>gone</strong> to China."</em> (He is in China right now).</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Preposition Rule:</strong><br>
+                    With "been" and "gone", we always use the preposition <strong>to</strong>, never "in".<br>
+                    ❌ <s>I have been in Miami.</s> ➔ ✔️ <strong>I have been to Miami.</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> The Basic Rule (10 pts)</h3>
+            <p class="instructions">Read the context and type <strong>been</strong> or <strong>gone</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. Tatiana is at home now, but she has <input type="text" class="short-input" data-answer="been"> to the gym today.</div>
+                <div class="question">2. I can't find Santiago. I think he has <input type="text" class="short-input" data-answer="gone"> to the store.</div>
+                <div class="question">3. Have you ever <input type="text" class="short-input" data-answer="been"> to Sucre? It's beautiful.</div>
+                <div class="question">4. My parents are not here. They have <input type="text" class="short-input" data-answer="gone"> on vacation.</div>
+                <div class="question">5. Leonardo has <input type="text" class="short-input" data-answer="been"> to China many times for business.</div>
+                <div class="question">6. Where is El Michi? He has <input type="text" class="short-input" data-answer="gone"> outside.</div>
+                <div class="question">7. I know La Paz very well. I have <input type="text" class="short-input" data-answer="been"> there twice.</div>
+                <div class="question">8. Teacher Ivan isn't in the classroom. He has <input type="text" class="short-input" data-answer="gone"> to the office.</div>
+                <div class="question">9. She is very tanned. She has <input type="text" class="short-input" data-answer="been"> to the beach.</div>
+                <div class="question">10. We can't visit them. They have <input type="text" class="short-input" data-answer="gone"> to sleep.</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> Everyday Dialogues (10 pts)</h3>
+            <p class="instructions">Complete the dialogues using <strong>been</strong> or <strong>gone</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">
+                    11. <strong>A:</strong> Is your brother at home?<br>
+                    <strong>B:</strong> No, he's <input type="text" class="short-input" data-answer="gone"> to university.
+                </div>
+                <div class="question">
+                    12. <strong>A:</strong> Have you <input type="text" class="short-input" data-answer="been"> to that new restaurant?<br>
+                    <strong>B:</strong> Yes, the food is amazing!
+                </div>
+                <div class="question">
+                    13. <strong>A:</strong> You look relaxed!<br>
+                    <strong>B:</strong> Yes, I've just <input type="text" class="short-input" data-answer="been"> on a holiday.
+                </div>
+                <div class="question">
+                    14. <strong>A:</strong> Can I speak to the manager?<br>
+                    <strong>B:</strong> I'm sorry, she has <input type="text" class="short-input" data-answer="gone"> out for lunch.
+                </div>
+                <div class="question">
+                    15. <strong>A:</strong> I have never <input type="text" class="short-input" data-answer="been"> to Europe.<br>
+                    <strong>B:</strong> Really? You should go!
+                </div>
+                <div class="question">
+                    16. <strong>A:</strong> Where are my keys?<br>
+                    <strong>B:</strong> I don't know, they've <input type="text" class="short-input" data-answer="gone"> missing!
+                </div>
+                <div class="question">
+                    17. <strong>A:</strong> Have you <input type="text" class="short-input" data-answer="been"> to the bank yet?<br>
+                    <strong>B:</strong> Yes, I went this morning.
+                </div>
+                <div class="question">
+                    18. <strong>A:</strong> Is Luis coming to the party?<br>
+                    <strong>B:</strong> No, he has <input type="text" class="short-input" data-answer="gone"> to sleep.
+                </div>
+                <div class="question">
+                    19. <strong>A:</strong> Have you ever <input type="text" class="short-input" data-answer="been"> on TV?<br>
+                    <strong>B:</strong> Yes, once when I was a kid.
+                </div>
+                <div class="question">
+                    20. <strong>A:</strong> Let's go to Ivan's house.<br>
+                    <strong>B:</strong> We can't. He has <input type="text" class="short-input" data-answer="gone"> to the gym.
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Absent Students (10 pts)</h3>
+            <p class="instructions">Read the story. Complete the gaps using <strong>has/have been</strong> or <strong>has/have gone</strong>. Pay attention to the auxiliary verb!</p>
+            
+            <div class="reading-box">
+                Today, the classroom is very empty. Teacher Ivan is asking about his students. "Where is Santiago?" he asks. Tatiana replies, "He 21. <input type="text" class="medium-input" data-answer="has gone|'s gone"> to the hospital because he injured his arm." Ivan nods. "And what about Leonardo?" Another student says, "He 22. <input type="text" class="medium-input" data-answer="has gone|'s gone"> to the airport to travel to China." <br><br>
+                Teacher Ivan smiles, "Well, Leonardo 23. <input type="text" class="medium-input" data-answer="has been|'s been"> to China before, so he will be fine." Suddenly, Luis enters the classroom. "Sorry I'm late!" Luis says, "I 24. <input type="text" class="medium-input" data-answer="have been|'ve been"> to the principal's office to get a paper." Ivan says, "Okay, sit down. Some students 25. <input type="text" class="medium-input" data-answer="have gone|'ve gone"> home already because they felt sick, but we will start the lesson now." <br><br>
+                Tatiana raises her hand. "Teacher, 26. <input type="text" class="medium-input" data-answer="have you been"> to London?" Ivan smiles, "Yes, I 27. <input type="text" class="medium-input" data-answer="have been|'ve been"> there many times. In fact, my brother 28. <input type="text" class="medium-input" data-answer="has gone|'s gone"> there right now to study. He left yesterday! I 29. <input type="text" class="medium-input" data-answer="have been|'ve been"> to many places, but I 30. <input type="text" class="medium-input" data-answer="have never been|'ve never been"> to Asia. Maybe Leonardo can take me next time!"
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form Present Perfect sentences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. ever / you / to / Have / been / Mexico / ?<br><input type="text" class="long-input" data-answer="have you ever been to mexico?|have you ever been to mexico"></div>
+                <div class="question">32. has / to / supermarket / He / gone / the / .<br><input type="text" class="long-input" data-answer="he has gone to the supermarket.|he has gone to the supermarket"></div>
+                <div class="question">33. been / we / to / twice / have / Paris / .<br><input type="text" class="long-input" data-answer="we have been to paris twice.|we have been to paris twice"></div>
+                <div class="question">34. gone / They / on / vacation / have / .<br><input type="text" class="long-input" data-answer="they have gone on vacation.|they have gone on vacation"></div>
+                <div class="question">35. never / I / been / have / to / China / .<br><input type="text" class="long-input" data-answer="i have never been to china.|i have never been to china"></div>
+                <div class="question">36. she / to / Has / gone / work / ?<br><input type="text" class="long-input" data-answer="has she gone to work?|has she gone to work"></div>
+                <div class="question">37. been / has / He / to / bank / the / .<br><input type="text" class="long-input" data-answer="he has been to the bank.|he has been to the bank"></div>
+                <div class="question">38. Where / they / gone / have / ?<br><input type="text" class="long-input" data-answer="where have they gone?|where have they gone"></div>
+                <div class="question">39. Ivan / been / to / Sucre / has / .<br><input type="text" class="long-input" data-answer="ivan has been to sucre.|ivan has been to sucre"></div>
+                <div class="question">40. have / gone / They / to / sleep / .<br><input type="text" class="long-input" data-answer="they have gone to sleep.|they have gone to sleep"></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence uses the WRONG participle or the WRONG preposition. Rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. I have gone to Miami three times in my life.<br><em>(I am in Bolivia right now)</em><br><input type="text" class="long-input" data-answer="i have been to miami three times in my life.|i have been to miami three times in my life"></div>
+                <div class="question">42. Where is Luis? He has been to the gym.<br><em>(He is not here)</em><br><input type="text" class="long-input" data-answer="where is luis? he has gone to the gym.|where is luis? he's gone to the gym."></div>
+                <div class="question">43. Have you ever gone to Colombia?<br><em>(Asking about a life experience)</em><br><input type="text" class="long-input" data-answer="have you ever been to colombia?|have you ever been to colombia"></div>
+                <div class="question">44. I have been in Paris.<br><em>(Wrong preposition)</em><br><input type="text" class="long-input" data-answer="i have been to paris.|i have been to paris"></div>
+                <div class="question">45. She is not answering. She has been to sleep.<br><em>(She is sleeping now)</em><br><input type="text" class="long-input" data-answer="she is not answering. she has gone to sleep.|she's not answering. she has gone to sleep."></div>
+                <div class="question">46. Teacher Ivan has gone to Sucre many times.<br><em>(He is here with us now)</em><br><input type="text" class="long-input" data-answer="teacher ivan has been to sucre many times.|teacher ivan has been to sucre many times"></div>
+                <div class="question">47. They have gone in Brazil before.<br><em>(Wrong participle and preposition)</em><br><input type="text" class="long-input" data-answer="they have been to brazil before.|they have been to brazil before"></div>
+                <div class="question">48. Has he ever gone to a concert?<br><em>(Asking about a life experience)</em><br><input type="text" class="long-input" data-answer="has he ever been to a concert?|has he ever been to a concert"></div>
+                <div class="question">49. I can't find my keys. They have been missing.<br><em>(They are still lost)</em><br><input type="text" class="long-input" data-answer="i can't find my keys. they have gone missing.|i can't find my keys. they've gone missing."></div>
+                <div class="question">50. We have been in that restaurant last year.<br><em>(Wrong preposition, present perfect experience)</em><br><input type="text" class="long-input" data-answer="we have been to that restaurant.|we have been to that restaurant before."></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Travel Status (1 pt)</h3>
+            <p class="instructions">Write a short paragraph. Mention one place you have <strong>been</strong> to in your life, and mention someone you know who has <strong>gone</strong> somewhere recently (and is still there). (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="I love traveling. I have been to... Recently, my brother has gone to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter Logic
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Exam Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                // Clean up user input
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Flexible punctuation matching for question marks and commas
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans.replace(/,/g, ''); 
+                });
+                
+                // Clean user answer similarly
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+                let cleanUserAnswer = userAnswer.replace(/,/g, '');
+
+                if ((correctAnswers.includes(cleanUserAnswer) || correctAnswers.includes(userAnswer)) && cleanUserAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! You clearly know the difference. Has dominado el uso de "been" y "gone" a la perfección.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes la lógica. Revisa los errores marcados en rojo para perfeccionar el contexto.`;
+                color = "var(--naranja-vibrante)";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "var(--naranja-vibrante)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda la regla de oro: Been = fue y volvió (experiencia). Gone = fue y sigue allí.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

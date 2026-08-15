@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: A Healthy Mind - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #009688; 
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--teal-b1); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--teal-b1); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        
+        .short-input { width: 130px; text-align: center; }
+        .medium-input { width: 190px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3); }
+        .btn-check:hover { background-color: #00796B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>A Healthy Mind</h1>
+            <p>Level B1 | Unit 1 - Lesson 7 | Modals of Advice & Obligation</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🧘‍♂️</div>
+            <div class="grammar-content">
+                <h2>Mind your Modals</h2>
+                <p>Mental health is very important. To give advice or state rules about well-being, we use Modal Verbs. They show the "attitude" of the speaker.</p>
+                
+                <div class="grammar-rule">
+                    <h4>1. Advice (Good Ideas)</h4>
+                    <p><strong>Should / Shouldn't:</strong> Used to give recommendations or say what is a good/bad idea.<br>
+                    <em>"You are stressed. You <strong>should</strong> relax."</em></p>
+                </div>
+                
+                <div class="grammar-rule">
+                    <h4>2. Obligation vs No Obligation</h4>
+                    <p><strong>Have to / Must:</strong> 100% necessary. A strict rule.<br>
+                    <strong>Don't have to:</strong> 0% obligation. It is completely optional.<br>
+                    <strong>Mustn't:</strong> 100% Prohibited. Do not do it!</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Grammar Alert:</strong><br>
+                    Never use "to" after <em>should</em>, <em>must</em>, or <em>mustn't</em>.<br>
+                    ❌ <s>You should to sleep.</s> ➔ ✔️ <strong>You should sleep.</strong><br>
+                    However, <em>have to</em> and <em>don't have to</em> ALWAYS include "to".
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>A</span> Advice vs Obligation (10 pts)</h3>
+            <p class="instructions">Read the context and choose the best modal: <strong>should</strong>, <strong>shouldn't</strong>, <strong>have to</strong>, or <strong>mustn't</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I have a terrible headache. I <input type="text" class="short-input" data-answer="should"> see a doctor. (Advice)</div>
+                <div class="question">2. In this hospital, you <input type="text" class="short-input" data-answer="mustn't"> smoke. It is illegal!</div>
+                <div class="question">3. You are studying too much. You <input type="text" class="short-input" data-answer="should"> take a break.</div>
+                <div class="question">4. To pass the B1 level, you <input type="text" class="short-input" data-answer="have to"> pass the final exam. (Rule)</div>
+                <div class="question">5. Santiago is injured. He <input type="text" class="short-input" data-answer="shouldn't"> lift heavy weights today.</div>
+                <div class="question">6. You <input type="text" class="short-input" data-answer="mustn't"> use your phone during the English test.</div>
+                <div class="question">7. Leonardo is stressed about his business in China. He <input type="text" class="short-input" data-answer="should"> meditate.</div>
+                <div class="question">8. If you want to sleep well, you <input type="text" class="short-input" data-answer="shouldn't"> drink coffee at night.</div>
+                <div class="question">9. We <input type="text" class="short-input" data-answer="have to"> be quiet in the library. (Rule)</div>
+                <div class="question">10. Your eyes are red. You <input type="text" class="short-input" data-answer="should"> stop looking at the screen.</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>B</span> The Stress-Free Guide (10 pts)</h3>
+            <p class="instructions">Sometimes, the best advice is knowing what is optional. Complete with <strong>have to</strong>, <strong>has to</strong>, <strong>don't have to</strong>, or <strong>doesn't have to</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">11. Today is Sunday! I <input type="text" class="medium-input" data-answer="don't have to|do not have to"> wake up early.</div>
+                <div class="question">12. Tatiana <input type="text" class="medium-input" data-answer="has to"> finish her homework before 8 PM.</div>
+                <div class="question">13. El Michi is a cat. He <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> work or pay rent!</div>
+                <div class="question">14. We have plenty of time. We <input type="text" class="medium-input" data-answer="don't have to|do not have to"> hurry.</div>
+                <div class="question">15. A pilot <input type="text" class="medium-input" data-answer="has to"> wear a uniform at work.</div>
+                <div class="question">16. The seminar is optional. You <input type="text" class="medium-input" data-answer="don't have to|do not have to"> attend if you are busy.</div>
+                <div class="question">17. Teacher Ivan <input type="text" class="medium-input" data-answer="has to"> correct 50 exams this weekend.</div>
+                <div class="question">18. You <input type="text" class="medium-input" data-answer="don't have to|do not have to"> be perfect, just try your best.</div>
+                <div class="question">19. If she feels sick, she <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> go to the gym.</div>
+                <div class="question">20. I <input type="text" class="medium-input" data-answer="have to"> drink more water, the doctor said it's necessary.</div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>C</span> The Mental Health Retreat (10 pts)</h3>
+            <p class="instructions">Read the story. Complete the gaps using <strong>should, shouldn't, must, mustn't, have to, or don't have to</strong> based on the context.</p>
+            
+            <div class="reading-box">
+                Santiago and Tatiana are feeling very stressed because of their final B1 exams. Teacher Ivan noticed this and gave them some advice: "You 21. <input type="text" class="short-input" data-answer="should"> relax your mind. You 22. <input type="text" class="short-input" data-answer="shouldn't"> study for 10 hours straight without a break. It is bad for your brain."<br><br>
+                He told them about a meditation retreat in Sucre. "In the retreat, you 23. <input type="text" class="short-input" data-answer="mustn't"> bring your cellphones. It is strictly prohibited! Also, you 24. <input type="text" class="medium-input" data-answer="don't have to"> wake up early if you don't want to; the morning activities are completely optional. However, everyone 25. <input type="text" class="short-input" data-answer="has to"> drink herbal tea at breakfast, it is a rule of the house."<br><br>
+                Tatiana asked, "Do we 26. <input type="text" class="medium-input" data-answer="have to"> pay for the food?" Ivan replied, "No, you 27. <input type="text" class="medium-input" data-answer="don't have to"> pay extra. The food is included." Santiago said, "I think we 28. <input type="text" class="short-input" data-answer="should"> go. My shoulders are very tense from CrossFit." Ivan agreed, "Yes, you 29. <input type="text" class="short-input" data-answer="must"> take care of your body, it is an obligation to yourself. You 30. <input type="text" class="short-input" data-answer="shouldn't"> ignore your mental health."
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form advice or rules.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. more / sleep / You / should / .<br><input type="text" class="long-input" data-answer="you should sleep more.|you should sleep more"></div>
+                <div class="question">32. have / She / work / to / doesn't / .<br><input type="text" class="long-input" data-answer="she doesn't have to work.|she does not have to work.|she doesn't have to work"></div>
+                <div class="question">33. mustn't / the / run / We / in / library / .<br><input type="text" class="long-input" data-answer="we mustn't run in the library.|we must not run in the library.|we mustn't run in the library"></div>
+                <div class="question">34. a / see / therapist / He / should / .<br><input type="text" class="long-input" data-answer="he should see a therapist.|he should see a therapist"></div>
+                <div class="question">35. don't / be / You / perfect / to / have / .<br><input type="text" class="long-input" data-answer="you don't have to be perfect.|you do not have to be perfect.|you don't have to be perfect"></div>
+                <div class="question">36. coffee / much / shouldn't / drink / They / .<br><input type="text" class="long-input" data-answer="they shouldn't drink much coffee.|they should not drink much coffee.|they shouldn't drink much coffee"></div>
+                <div class="question">37. must / my / I / mental / health / protect / .<br><input type="text" class="long-input" data-answer="i must protect my mental health.|i must protect my mental health"></div>
+                <div class="question">38. early / Ivan / to / up / wake / has / .<br><input type="text" class="long-input" data-answer="ivan has to wake up early.|ivan has to wake up early"></div>
+                <div class="question">39. stress / shouldn't / We / about / exams / .<br><input type="text" class="long-input" data-answer="we shouldn't stress about exams.|we should not stress about exams.|we shouldn't stress about exams"></div>
+                <div class="question">40. have / you / to / Do / today / study / ?<br><input type="text" class="long-input" data-answer="do you have to study today?|do you have to study today"></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence contains a grammar mistake related to Modals. Rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. You should to breathe deeply.<br><input type="text" class="long-input" data-answer="you should breathe deeply.|you should breathe deeply"></div>
+                <div class="question">42. She don't have to worry.<br><input type="text" class="long-input" data-answer="she doesn't have to worry.|she does not have to worry.|she doesn't have to worry"></div>
+                <div class="question">43. He musts take a break.<br><input type="text" class="long-input" data-answer="he must take a break.|he must take a break"></div>
+                <div class="question">44. We mustn't to panic.<br><input type="text" class="long-input" data-answer="we mustn't panic.|we must not panic.|we mustn't panic"></div>
+                <div class="question">45. Do you should see a doctor?<br><input type="text" class="long-input" data-answer="should you see a doctor?|should you see a doctor"></div>
+                <div class="question">46. Tatiana shouldn't works so hard.<br><input type="text" class="long-input" data-answer="tatiana shouldn't work so hard.|tatiana should not work so hard.|tatiana shouldn't work so hard"></div>
+                <div class="question">47. I doesn't have to wake up early.<br><input type="text" class="long-input" data-answer="i don't have to wake up early.|i do not have to wake up early.|i don't have to wake up early"></div>
+                <div class="question">48. You should drinking water.<br><input type="text" class="long-input" data-answer="you should drink water.|you should drink water"></div>
+                <div class="question">49. They hasn't to go to the gym.<br><input type="text" class="long-input" data-answer="they don't have to go to the gym.|they do not have to go to the gym.|they don't have to go to the gym"></div>
+                <div class="question">50. She must to relax her mind.<br><input type="text" class="long-input" data-answer="she must relax her mind.|she must relax her mind"></div>
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: The Life Coach (1 pt)</h3>
+            <p class="instructions">A friend of yours is very stressed because they work 12 hours a day and sleep very little. Write a short message giving them advice. Use <strong>should</strong>, <strong>shouldn't</strong>, and <strong>don't have to</strong>. (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="Hi friend! I see you are very stressed. You should... Also, you shouldn't... Remember that you don't have to..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter Logic
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Exam Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                // Clean up user input
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Flexible punctuation matching for question marks and commas
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                // Clean user answer similarly
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un experto en dar consejos y entender reglas. Tu dominio de los Modals es de nivel B1.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes la diferencia, pero revisa los errores en rojo para no caer en la "trampa del TO".`;
+                color = "var(--naranja-vibrante)";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "var(--naranja-vibrante)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: Should y Must NO llevan "to". Repasa bien cuándo usar "don't have to" (opcional).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

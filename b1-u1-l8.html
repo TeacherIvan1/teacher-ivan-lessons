@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: The History of the Olympics - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --olympic-blue: #1976D2; 
+            --olympic-gold: #FFC107;
+            --olympic-light: #E3F2FD;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(25, 118, 210, 0.15);
+            border-top: 8px solid var(--olympic-blue);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--olympic-blue); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--olympic-blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--olympic-light);
+            border-left: 5px solid var(--olympic-blue);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #BBDEFB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--olympic-blue); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--olympic-gold); color: var(--azul-primario); min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; font-weight: 800;}
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--olympic-gold); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--olympic-blue); box-shadow: 0 0 5px rgba(25, 118, 210, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--olympic-blue); box-shadow: 0 0 5px rgba(25, 118, 210, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--olympic-blue); color: white; box-shadow: 0 4px 10px rgba(25, 118, 210, 0.3); }
+        .btn-check:hover { background-color: #1565C0; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>The History of the Olympics</h1>
+            <p>Level B1 | Unit 1 - Lesson 8 | The Passive Voice</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏛️</div>
+            <div class="grammar-content">
+                <h2>The Passive Voice (Past Simple)</h2>
+                <p>When we talk about history, inventions, or facts, we often use the <strong>Passive Voice</strong>. We use it when the *action* or the *object* is more important than "who" did it.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Formula:</h4>
+                    <p><code>Object + was / were + Past Participle (V3)</code></p>
+                    <p><em>Active:</em> The Greeks invented the Olympics.<br>
+                    <em>Passive:</em> The Olympics <strong>were invented</strong> by the Greeks.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Singular vs. Plural:</strong><br>
+                    Use <strong>was</strong> for I/He/She/It (e.g., The stadium <em>was</em> built).<br>
+                    Use <strong>were</strong> for You/We/They (e.g., The medals <em>were</em> given).
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Participles (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Verbs of History (10 pts)</h3>
+            <p class="instructions">Write the <strong>Past Participle (V3)</strong> of these common verbs used in historical facts.</p>
+            
+            <div class="grid-3">
+                <div class="question">1. build ➔ <input type="text" class="short-input" data-answer="built"></div>
+                <div class="question">2. hold ➔ <input type="text" class="short-input" data-answer="held"></div>
+                <div class="question">3. discover ➔ <input type="text" class="short-input" data-answer="discovered"></div>
+                <div class="question">4. invent ➔ <input type="text" class="short-input" data-answer="invented"></div>
+                <div class="question">5. write ➔ <input type="text" class="short-input" data-answer="written"></div>
+                <div class="question">6. paint ➔ <input type="text" class="short-input" data-answer="painted"></div>
+                <div class="question">7. light ➔ <input type="text" class="short-input" data-answer="lit"></div>
+                <div class="question">8. give ➔ <input type="text" class="short-input" data-answer="given"></div>
+                <div class="question">9. play ➔ <input type="text" class="short-input" data-answer="played"></div>
+                <div class="question">10. choose ➔ <input type="text" class="short-input" data-answer="chosen"></div>
+            </div>
+        </div>
+
+        <!-- Section B: Was or Were? (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> The Olympic Rules (10 pts)</h3>
+            <p class="instructions">Complete the facts by typing <strong>was</strong> or <strong>were</strong>. Pay attention to singular or plural subjects!</p>
+            
+            <div class="grid-2">
+                <div class="question">11. The first ancient games <input type="text" class="short-input" data-answer="were"> held in Greece.</div>
+                <div class="question">12. The Olympic torch <input type="text" class="short-input" data-answer="was"> lit yesterday.</div>
+                <div class="question">13. Gold medals <input type="text" class="short-input" data-answer="were"> given to the winners.</div>
+                <div class="question">14. The huge stadium <input type="text" class="short-input" data-answer="was"> built in 2012.</div>
+                <div class="question">15. The marathon <input type="text" class="short-input" data-answer="was"> run in the morning.</div>
+                <div class="question">16. The original rules <input type="text" class="short-input" data-answer="were"> written in stone.</div>
+                <div class="question">17. Five rings <input type="text" class="short-input" data-answer="were"> chosen for the logo.</div>
+                <div class="question">18. The athlete <input type="text" class="short-input" data-answer="was"> trained by an expert.</div>
+                <div class="question">19. New sports <input type="text" class="short-input" data-answer="were"> added to the games.</div>
+                <div class="question">20. The first prize <input type="text" class="short-input" data-answer="was"> awarded to Tatiana.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Gap Fill (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> The Modern Era (10 pts)</h3>
+            <p class="instructions">Read about the Olympics. Complete the gaps using the Passive Voice (<strong>was / were + Past Participle</strong>) of the verb in brackets.</p>
+            
+            <div class="reading-box">
+                The first modern Olympic Games 21. <input type="text" class="medium-input" data-answer="were held"> (hold) in Athens in 1896. At first, women couldn't participate, but finally, women 22. <input type="text" class="medium-input" data-answer="were allowed"> (allow) to compete in 1900. The famous Olympic rings 23. <input type="text" class="medium-input" data-answer="were designed"> (design) in 1913 to represent the five continents. Later, the tradition of the Olympic flame 24. <input type="text" class="medium-input" data-answer="was lit|was started|was created"> (light) in Amsterdam in 1928.<br><br>
+                For many years, professional athletes 25. <input type="text" class="medium-input" data-answer="were banned"> (ban) from the games; only amateurs could compete. Eventually, the first Winter Olympics 26. <input type="text" class="medium-input" data-answer="were organized"> (organize) in France for snow sports. In ancient times, gold medals didn't exist; a crown of olive leaves 27. <input type="text" class="medium-input" data-answer="was given"> (give) to the champion. <br><br>
+                During the last Olympics, the games 28. <input type="text" class="medium-input" data-answer="were watched"> (watch) by millions of people on TV around the world. Many world records 29. <input type="text" class="medium-input" data-answer="were broken"> (break) by incredible athletes, like Santiago! Next, the city of Rio 30. <input type="text" class="medium-input" data-answer="was chosen"> (choose) for the 2016 Olympics, a historic moment for South America.
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Historical Architect (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to build Passive Voice sentences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. built / The / in 2012 / was / stadium / .<br><input type="text" class="long-input" data-answer="the stadium was built in 2012.|the stadium was built in 2012"></div>
+                <div class="question">32. invented / The / Greeks / the Olympics / by / were / .<br><input type="text" class="long-input" data-answer="the olympics were invented by the greeks.|the olympics were invented by the greeks"></div>
+                <div class="question">33. won / medal / The / was / Tatiana / by / .<br><input type="text" class="long-input" data-answer="the medal was won by tatiana.|the medal was won by tatiana"></div>
+                <div class="question">34. lit / The / torch / was / .<br><input type="text" class="long-input" data-answer="the torch was lit.|the torch was lit"></div>
+                <div class="question">35. played / first / The / game / was / in 1896 / .<br><input type="text" class="long-input" data-answer="the first game was played in 1896.|the first game was played in 1896"></div>
+                <div class="question">36. were / by / The / written / Teacher Ivan / rules / .<br><input type="text" class="long-input" data-answer="the rules were written by teacher ivan.|the rules were written by teacher ivan"></div>
+                <div class="question">37. broken / was / The / record / Santiago / by / .<br><input type="text" class="long-input" data-answer="the record was broken by santiago.|the record was broken by santiago"></div>
+                <div class="question">38. games / The / canceled / were / in 1940 / .<br><input type="text" class="long-input" data-answer="the games were canceled in 1940.|the games were canceled in 1940"></div>
+                <div class="question">39. given / was / A / prize / winner / the / to / .<br><input type="text" class="long-input" data-answer="a prize was given to the winner.|a prize was given to the winner"></div>
+                <div class="question">40. watched / The / by / millions / event / was / .<br><input type="text" class="long-input" data-answer="the event was watched by millions.|the event was watched by millions"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence has a grammar mistake related to the Passive Voice. Rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. The games was played in Greece.<br><input type="text" class="long-input" data-answer="the games were played in greece.|the games were played in greece"></div>
+                <div class="question">42. The torch were lit yesterday.<br><input type="text" class="long-input" data-answer="the torch was lit yesterday.|the torch was lit yesterday"></div>
+                <div class="question">43. The stadium was builded fast.<br><input type="text" class="long-input" data-answer="the stadium was built fast.|the stadium was built fast"></div>
+                <div class="question">44. The medals was given to the athletes.<br><input type="text" class="long-input" data-answer="the medals were given to the athletes.|the medals were given to the athletes"></div>
+                <div class="question">45. The Olympics were invent by Greeks.<br><input type="text" class="long-input" data-answer="the olympics were invented by greeks.|the olympics were invented by the greeks.|the olympics were invented by greeks"></div>
+                <div class="question">46. The rule was wrote in English.<br><input type="text" class="long-input" data-answer="the rule was written in english.|the rule was written in english"></div>
+                <div class="question">47. The event was organize by Ivan.<br><input type="text" class="long-input" data-answer="the event was organized by ivan.|the event was organized by ivan"></div>
+                <div class="question">48. The sports were play outside.<br><input type="text" class="long-input" data-answer="the sports were played outside.|the sports were played outside"></div>
+                <div class="question">49. The prize were won by a young boy.<br><input type="text" class="long-input" data-answer="the prize was won by a young boy.|the prize was won by a young boy"></div>
+                <div class="question">50. A new record was broke.<br><input type="text" class="long-input" data-answer="a new record was broken.|a new record was broken"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: The Great Invention (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about a historical event or invention you like (e.g., The Internet, The Pyramids, The Telephone). Who was it created by? When was it built or invented? Use the <strong>Passive Voice</strong>. (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="My favorite invention is the telephone. It was invented by... It was created in..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter Logic
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Exam Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Punctuation check
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (1 point if >= 40 words)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un verdadero historiador y tu dominio de la Voz Pasiva es espectacular. ¡Sigue así!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes el concepto principal. Revisa los errores en rojo, especialmente los verbos irregulares.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+                feedback.style.borderColor = "#FF9800";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: Was para singular, Were para plural, y siempre usar la tercera columna del verbo (Participio Pasado).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

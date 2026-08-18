@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Unit 1 Final Exam - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --b1-purple: #673AB7; 
+            --b1-gold: #FFC107;
+            --b1-light: #EDE7F6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--b1-purple); }
+
+        .worksheet-container {
+            max-width: 1050px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(103, 58, 183, 0.2);
+            border-top: 8px solid var(--b1-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 30px; right: -60px; background: var(--b1-gold);
+            color: var(--b1-purple); padding: 8px 60px; font-weight: 900; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 4px 6px rgba(0,0,0,0.3); font-size: 1rem; letter-spacing: 1px;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid var(--gris-claro); }
+        .header img { max-width: 100%; height: 70px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--b1-purple); }
+        .header p { color: #555; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--b1-purple); color: var(--b1-gold); padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; font-weight: 800; display: inline-block; margin-top: 10px; border: 2px solid var(--b1-gold); }
+
+        /* General Grammar Banner */
+        .grammar-banner {
+            background: linear-gradient(135deg, var(--b1-purple), #512DA8);
+            color: white; padding: 25px; border-radius: 8px; margin-bottom: 40px; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .grammar-banner h2 { color: var(--b1-gold); margin-top: 0; }
+        .grammar-banner p { margin: 0; font-size: 1.05rem; }
+
+        /* Exercises Sections */
+        .exercise-section { margin-bottom: 40px; background: #fafafa; padding: 25px; border-radius: 8px; border: 2px solid var(--gris-claro); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--b1-purple); border-bottom: 2px solid var(--b1-gold); padding-bottom: 10px; }
+        .exercise-section h3 span { background: var(--b1-gold); color: var(--b1-purple); min-width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1.1rem; font-weight: 900; }
+        
+        .hint-box { background: #fff8e1; border-left: 4px solid var(--b1-gold); padding: 10px 15px; margin-bottom: 20px; font-size: 0.9rem; color: #555; font-style: italic; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; font-weight: 600; color: #444; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: var(--b1-purple);
+            font-weight: 700;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--b1-gold); box-shadow: 0 0 8px rgba(255, 193, 7, 0.5); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 200px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 150px; font-family: 'Open Sans', sans-serif; font-size: 1.05rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none; line-height: 1.6;
+        }
+        textarea:focus { border-color: var(--b1-gold); box-shadow: 0 0 5px rgba(255, 193, 7, 0.4); }
+        .word-counter { font-size: 0.95rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 40px; border-top: 3px solid var(--gris-claro); padding-top: 30px; }
+        .btn-check { background-color: var(--b1-purple); color: var(--b1-gold); padding: 18px 50px; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; font-weight: 900; border: 2px solid var(--b1-gold); border-radius: 8px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; width: 100%; max-width: 500px; box-shadow: 0 5px 15px rgba(103, 58, 183, 0.4); }
+        .btn-check:hover { background-color: var(--b1-gold); color: var(--b1-purple); border-color: var(--b1-purple); transform: translateY(-3px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 30px; font-size: 1.5rem; padding: 25px; border-radius: 8px; border: 3px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 15px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+            .header h1 { font-size: 1.6rem; }
+            .exercise-section { padding: 15px; }
+            .btn-check { width: 100%; max-width: none; font-size: 1.1rem; }
+            .ribbon { right: -75px; font-size: 0.8rem; padding: 5px 50px; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { border: none; padding: 0; margin-bottom: 20px; }
+            .actions, .btn-check, #feedback-message, .ribbon, .grammar-banner { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <div class="ribbon">B1 FINAL EXAM</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Unit 1 Final Exam</h1>
+            <p>Level B1 | Master Evaluation</p>
+            <span class="difficulty-badge">🏆 Target Score: 100 Points</span>
+        </div>
+
+        <div class="grammar-banner">
+            <h2>The Unit 1 Challenge</h2>
+            <p>Bienvenido al examen final de la Unidad 1. Aquí evaluarás tu conocimiento sobre el Present Perfect vs Past Simple, For/Since, Been/Gone, Past Perfect, Voz Pasiva y Modal Verbs. ¡Concéntrate y da lo mejor de ti!</p>
+        </div>
+
+        <!-- Section A: Present Perfect vs Past Simple -->
+        <div class="exercise-section">
+            <h3><span>A</span> Present Perfect vs Past Simple (10 pts)</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Use <em>Past Simple</em> for finished time (yesterday, in 2020) and <em>Present Perfect</em> for unfinished time or general experiences (today, ever/never).</div>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="medium-input" data-answer="went"> (go) to China last year.</div>
+                <div class="question">2. I <input type="text" class="medium-input" data-answer="have never eaten|'ve never eaten"> (never / eat) sushi in my life.</div>
+                <div class="question">3. She <input type="text" class="medium-input" data-answer="has run|'s run"> (run) 5 kilometers today.</div>
+                <div class="question">4. We <input type="text" class="medium-input" data-answer="watched"> (watch) a great movie yesterday.</div>
+                <div class="question">5. <input type="text" class="medium-input" data-answer="have you ever tried"> (you / ever / try) CrossFit?</div>
+                <div class="question">6. Leonardo <input type="text" class="medium-input" data-answer="traveled|travelled"> (travel) to Sucre in 2025.</div>
+                <div class="question">7. Tatiana <input type="text" class="medium-input" data-answer="has already finished|'s already finished"> (already / finish) the test.</div>
+                <div class="question">8. They <input type="text" class="medium-input" data-answer="haven't seen|have not seen"> (not / see) Ivan this week.</div>
+                <div class="question">9. <input type="text" class="medium-input" data-answer="have you seen"> (you / see) my keys? I lost them!</div>
+                <div class="question">10. He <input type="text" class="medium-input" data-answer="built"> (build) the app two months ago.</div>
+            </div>
+        </div>
+
+        <!-- Section B: For / Since & Been / Gone -->
+        <div class="exercise-section">
+            <h3><span>B</span> Time & Travel: For, Since, Been, Gone (10 pts)</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> <em>For</em> (duration), <em>Since</em> (starting point). <em>Been</em> (went and returned), <em>Gone</em> (went and hasn't returned).</div>
+            
+            <div class="grid-2">
+                <div class="question">11. I have lived in La Paz <input type="text" class="short-input" data-answer="since"> 2010.</div>
+                <div class="question">12. She has practiced yoga <input type="text" class="short-input" data-answer="for"> three years.</div>
+                <div class="question">13. He isn't here. He has <input type="text" class="short-input" data-answer="gone"> to the gym.</div>
+                <div class="question">14. I have <input type="text" class="short-input" data-answer="been"> to Europe twice. I loved it!</div>
+                <div class="question">15. We have studied HTML <input type="text" class="short-input" data-answer="since"> January.</div>
+                <div class="question">16. They have worked on the app <input type="text" class="short-input" data-answer="for"> five months.</div>
+                <div class="question">17. El Michi has <input type="text" class="short-input" data-answer="been"> missing since yesterday.</div>
+                <div class="question">18. Santiago has <input type="text" class="short-input" data-answer="gone"> to the store; he'll be back soon.</div>
+                <div class="question">19. Have you ever <input type="text" class="short-input" data-answer="been"> to a CrossFit class?</div>
+                <div class="question">20. I haven't eaten anything <input type="text" class="short-input" data-answer="since"> this morning.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Past Perfect -->
+        <div class="exercise-section">
+            <h3><span>C</span> The Past Perfect (10 pts)</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Use the Past Perfect (had + V3) to talk about "the past of the past" (an action that happened before another past action).</div>
+            
+            <div class="grid-2">
+                <div class="question">21. When I arrived, the class <input type="text" class="medium-input" data-answer="had already started|'d already started"> (already / start).</div>
+                <div class="question">22. She <input type="text" class="medium-input" data-answer="had never seen|'d never seen"> (never / see) snow before she went to Russia.</div>
+                <div class="question">23. By the time he woke up, I <input type="text" class="medium-input" data-answer="had finished|'d finished"> (finish) the report.</div>
+                <div class="question">24. They <input type="text" class="medium-input" data-answer="had eaten|'d eaten"> (eat) before they went to the gym.</div>
+                <div class="question">25. I couldn't open the door because I <input type="text" class="medium-input" data-answer="had lost|'d lost"> (lose) my keys.</div>
+                <div class="question">26. He <input type="text" class="medium-input" data-answer="hadn't studied|had not studied"> (not / study) before he took the test.</div>
+                <div class="question">27. <input type="text" class="medium-input" data-answer="had you traveled|had you travelled"> (you / travel) to Asia before that trip?</div>
+                <div class="question">28. The app crashed because he <input type="text" class="medium-input" data-answer="had made|'d made"> (make) a mistake.</div>
+                <div class="question">29. Teacher Ivan <input type="text" class="medium-input" data-answer="had graded|'d graded"> (grade) the exams by 10 PM.</div>
+                <div class="question">30. We were tired because we <input type="text" class="medium-input" data-answer="had run|'d run"> (run) 10 kilometers.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Modals -->
+        <div class="exercise-section">
+            <h3><span>D</span> Modals of Advice & Obligation (10 pts)</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Choose between <em>should, shouldn't, must, mustn't, have to, don't/doesn't have to, has to</em> based on the meaning.</div>
+            
+            <div class="grid-2">
+                <div class="question">31. You <input type="text" class="medium-input" data-answer="mustn't|must not"> smoke in the hospital! (Prohibition)</div>
+                <div class="question">32. She has a headache. She <input type="text" class="medium-input" data-answer="should"> rest. (Advice)</div>
+                <div class="question">33. Tomorrow is Sunday. We <input type="text" class="medium-input" data-answer="don't have to|do not have to"> wake up early. (0% obligation)</div>
+                <div class="question">34. Students <input type="text" class="medium-input" data-answer="must|have to"> wear a uniform at Fielding. (Strict Rule)</div>
+                <div class="question">35. He is an expert in HTML. He <input type="text" class="medium-input" data-answer="doesn't have to|does not have to"> take the beginner class.</div>
+                <div class="question">36. I <input type="text" class="medium-input" data-answer="have to"> grade the exams tonight. (My daily obligation)</div>
+                <div class="question">37. You <input type="text" class="medium-input" data-answer="mustn't|must not"> drink dirty water. It's dangerous.</div>
+                <div class="question">38. What <input type="text" class="medium-input" data-answer="should"> I do to learn English faster? (Asking advice)</div>
+                <div class="question">39. Teacher Ivan <input type="text" class="medium-input" data-answer="has to"> plan his lessons. (His daily obligation)</div>
+                <div class="question">40. You <input type="text" class="medium-input" data-answer="shouldn't|should not"> eat so much junk food. (Negative advice)</div>
+            </div>
+        </div>
+
+        <!-- Section E: Passive Voice -->
+        <div class="exercise-section">
+            <h3><span>E</span> The Passive Voice (10 pts)</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Transform active ideas into the past passive using <em>was / were + Past Participle</em>.</div>
+            
+            <div class="grid-2">
+                <div class="question">41. The Fielding App <input type="text" class="medium-input" data-answer="was built"> (build) in 2026.</div>
+                <div class="question">42. The gold medals <input type="text" class="medium-input" data-answer="were given"> (give) to the athletes.</div>
+                <div class="question">43. The first Olympics <input type="text" class="medium-input" data-answer="were held"> (hold) in Greece.</div>
+                <div class="question">44. The exam <input type="text" class="medium-input" data-answer="was written"> (write) by Teacher Ivan.</div>
+                <div class="question">45. A new record <input type="text" class="medium-input" data-answer="was broken"> (break) by Santiago.</div>
+                <div class="question">46. The rules <input type="text" class="medium-input" data-answer="were explained"> (explain) yesterday.</div>
+                <div class="question">47. The Olympic torch <input type="text" class="medium-input" data-answer="was lit"> (light) in the stadium.</div>
+                <div class="question">48. The class <input type="text" class="medium-input" data-answer="was canceled|was cancelled"> (cancel) because of the rain.</div>
+                <div class="question">49. The laptops <input type="text" class="medium-input" data-answer="were bought"> (buy) for the students.</div>
+                <div class="question">50. The game <input type="text" class="medium-input" data-answer="was played"> (play) by millions of people.</div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing Project -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: The Travel Experience (1 pt)</h3>
+            <p class="instructions">Write a paragraph about a past travel experience. Use <strong>Past Simple</strong> for details, <strong>Present Perfect</strong> for general experiences (e.g., I have been to...), and <strong>Past Perfect</strong> to describe what had happened before you arrived. Include at least one piece of advice (<strong>should/must</strong>) for someone traveling there. (Minimum 50 words).</p>
+            
+            <textarea id="writing-section" placeholder="I have been to Madrid twice. Last year, I traveled there with my family. Before we arrived, we had booked a nice hotel. If you visit Madrid, you must..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 50 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkExam()">🏁 SUBMIT FINAL EXAM</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 50) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading System
+        let examSubmitted = false;
+
+        function checkExam() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalItems = 51; // 50 questions + 1 writing prompt
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Allow optional punctuation check
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            let writingApproved = false;
+            
+            if(writingWords >= 50) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+                writingApproved = true;
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            // Calculate Percentage
+            const percentage = Math.round((score / totalItems) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90 && writingApproved) {
+                message = `🏆 OUTSTANDING! Eres un experto en el nivel B1. Has superado la Unidad 1 con honores. ¡Listo para la Unidad 2!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (percentage >= 70 && writingApproved) {
+                message = `👍 GREAT JOB! Has aprobado la Unidad 1. Revisa los recuadros rojos para entender y pulir tus errores.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else if (!writingApproved) {
+                message = `⚠️ INCOMPLETE PROJECT. Tu gramática puede estar bien, pero tu Writing no alcanzó las 50 palabras (escribiste ${writingWords}). Es un requisito obligatorio.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            } else {
+                message = `⚠️ NEEDS WORK. Repasa los temas de la Unidad 1 (Past Perfect, Passive Voice, Present Perfect) y vuelve a intentarlo.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: ${score} / ${totalItems} ➜ <span style="font-size: 2rem;">${percentage}%</span><br><br><span style="font-size: 1.1rem; color: #333; font-weight: 600;">${message}</span>`;
+            
+            // Scroll to bottom smoothly
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Project: My Fitness Journey - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --teal-b1: #009688; 
+            --naranja-acento: #FF9800;
+            --teal-claro: #E0F2F1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.15);
+            border-top: 8px solid var(--teal-b1);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2rem; text-transform: uppercase; color: var(--teal-b1); }
+        .header p { color: #666; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--teal-b1); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; display: inline-block; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* Project Intro Box */
+        .grammar-box {
+            background-color: var(--teal-claro);
+            border-left: 5px solid var(--teal-b1);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B2DFDB; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--teal-b1); font-size: 1.1rem; }
+
+        /* Project Sections */
+        .project-section { margin-bottom: 40px; background: #fafafa; padding: 30px; border-radius: 8px; border: 1px solid #eee; }
+        .project-section h3 { display: flex; align-items: center; gap: 12px; font-size: 1.4rem; margin-top: 0; color: var(--azul-primario); border-bottom: 2px solid var(--teal-b1); padding-bottom: 10px;}
+        .project-section h3 span { background: var(--teal-b1); color: white; min-width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1.1rem; font-weight: 800;}
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; font-size: 1rem; }
+
+        /* Journey Milestones (Inputs) */
+        .milestone-container { display: flex; flex-direction: column; gap: 15px; }
+        .milestone { background: white; padding: 15px; border-left: 4px solid var(--naranja-acento); border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .milestone label { font-weight: 700; color: var(--azul-primario); display: block; margin-bottom: 8px; font-size: 0.95rem; }
+        .milestone input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Open Sans', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; }
+        .milestone input[type="text"]:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.3); }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 220px; font-family: 'Open Sans', sans-serif; font-size: 1.05rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none; line-height: 1.6;
+        }
+        textarea:focus { border-color: var(--teal-b1); box-shadow: 0 0 5px rgba(0, 150, 136, 0.3); }
+        .word-counter { font-size: 1rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Recording Instructions */
+        .record-box { background: #fff3e0; border: 2px dashed var(--naranja-acento); padding: 20px; border-radius: 8px; text-align: center; }
+        .record-box h4 { color: #E65100; margin-top: 0; font-size: 1.3rem; margin-bottom: 10px;}
+        .record-box p { margin-bottom: 0; font-size: 1.05rem; color: #E65100;}
+        .record-icon { font-size: 3rem; margin-bottom: 10px; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 40px; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--teal-b1); color: white; box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3); }
+        .btn-check:hover { background-color: #00796B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.2rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .header h1 { font-size: 1.6rem; }
+            .project-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .project-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message, .record-box { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { border: 1px solid black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Project: My Fitness Journey</h1>
+            <p>Level B1 | Unit 1 - Lesson 10 | Final Speaking Task</p>
+            <span class="difficulty-badge">🎯 Objective: Present your health & wellness evolution</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 4rem;">📈</div>
+            <div class="grammar-content">
+                <h2>Document your evolution!</h2>
+                <p>In this B1 Project, you will document a healthy habit you have developed (e.g., doing CrossFit, drinking more water, using a fitness app). You must structure your story using the grammar from Unit 1.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Checklist - You must include:</h4>
+                    <p>✔️ <strong>Present Perfect:</strong> To talk about experiences ("I have been to...", "I have used...").<br>
+                    ✔️ <strong>Past Perfect:</strong> For the "past of the past" ("Before I started, I had never...").<br>
+                    ✔️ <strong>Modals:</strong> Advice or rules you learned ("You must stretch...", "You should...").</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Milestones -->
+        <div class="project-section">
+            <h3><span>1</span> Journey Milestones</h3>
+            <p class="instructions">Plan your story by answering these key questions. These notes will help you build your final script.</p>
+            
+            <div class="milestone-container">
+                <div class="milestone">
+                    <label>1. What is the healthy habit or activity you have started?</label>
+                    <input type="text" class="milestone-input" placeholder="e.g., I have started using the 'Teacher Ivan Lifestyle' app for my workouts.">
+                </div>
+                <div class="milestone">
+                    <label>2. What had you tried before starting this new habit? (Use Past Perfect)</label>
+                    <input type="text" class="milestone-input" placeholder="e.g., Before that, I had never done CrossFit and I had tried running, but I hated it.">
+                </div>
+                <div class="milestone">
+                    <label>3. How long have you done it? (Use For or Since)</label>
+                    <input type="text" class="milestone-input" placeholder="e.g., I have trained with my classmates at Fielding School since January.">
+                </div>
+                <div class="milestone">
+                    <label>4. What advice do you have for others? (Use Should or Must)</label>
+                    <input type="text" class="milestone-input" placeholder="e.g., If you are a beginner like Leonardo, you should start slow and you mustn't skip rest days.">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: The Script -->
+        <div class="project-section">
+            <h3><span>2</span> Write Your Script</h3>
+            <p class="instructions">Connect your milestones into a fluid, natural speech. Introduce yourself, tell your story, and end with a strong piece of advice. <strong>(Minimum 60 words for B1 Level)</strong>.</p>
+            
+            <textarea id="writing-section" placeholder="Hello everyone! Today I want to talk about my fitness journey. For the last six months, I have... Before I started this, I had never..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 60 minimum</div>
+        </div>
+
+        <!-- Step 3: Action -->
+        <div class="project-section">
+            <h3><span>3</span> Lights, Camera, Action!</h3>
+            <div class="record-box">
+                <div class="record-icon">📱 🎬</div>
+                <h4>Time to Record</h4>
+                <p>Once your script is validated, practice your pronunciation. When you feel confident, record a video of yourself telling your fitness journey story. Send the final video file to Teacher Ivan to complete Unit 1!</p>
+            </div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkProject()">✅ Validate My Journey</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 60) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Project Validation Logic ---
+        function checkProject() {
+            const milestoneInputs = document.querySelectorAll('.milestone-input');
+            let filledMilestones = 0;
+
+            milestoneInputs.forEach(input => {
+                if(input.value.trim() !== "") {
+                    filledMilestones++;
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                }
+            });
+
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            let scriptApproved = false;
+
+            // B1 requirement is higher (60 words)
+            if(writingWords >= 60) {
+                scriptApproved = true;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const feedback = document.getElementById('feedback-message');
+            feedback.style.display = 'block';
+
+            if (filledMilestones === 4 && scriptApproved) {
+                feedback.style.color = "var(--verde-correcto)";
+                feedback.style.borderColor = "var(--verde-correcto)";
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.innerHTML = `🎉 OUTSTANDING WORK! <br><br><span style="font-size: 1rem; font-weight: normal; color: #333;">Your milestones are set and your B1 script has ${writingWords} words. You are ready! Practice your delivery, record your journey, and send the video to Teacher Ivan.</span>`;
+                
+                // Change button text
+                document.getElementById('submit-btn').innerHTML = "Project Approved! 🏆";
+                document.getElementById('submit-btn').style.backgroundColor = "var(--verde-correcto)";
+                document.getElementById('submit-btn').style.pointerEvents = "none";
+
+            } else {
+                feedback.style.color = "var(--rojo-error)";
+                feedback.style.borderColor = "var(--rojo-error)";
+                feedback.style.backgroundColor = "#ffebee";
+                
+                let errorMsg = "⚠️ PROJECT INCOMPLETE. <br><br><span style='font-size: 1rem; font-weight: normal; color: #333;'>";
+                if(filledMilestones < 4) {
+                    errorMsg += `- You must answer all 4 milestone questions to plan your speech. (You answered ${filledMilestones}/4).<br>`;
+                }
+                if(!scriptApproved) {
+                    errorMsg += `- Your B1 script must have at least 60 words. (You wrote ${writingWords} words).`;
+                }
+                errorMsg += "</span>";
+
+                feedback.innerHTML = errorMsg;
+            }
+
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: While I was running... - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --u2-indigo: #3F51B5; 
+            --u2-pink: #E91E63;
+            --u2-light: #E8EAF6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(63, 81, 181, 0.15);
+            border-top: 8px solid var(--u2-indigo);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--u2-indigo); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--u2-indigo); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--u2-light);
+            border-left: 5px solid var(--u2-indigo);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #C5CAE9; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--u2-indigo); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--u2-pink); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--u2-pink); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--u2-indigo); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--u2-pink); box-shadow: 0 0 5px rgba(233, 30, 99, 0.4); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--u2-pink); box-shadow: 0 0 5px rgba(233, 30, 99, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--u2-indigo); color: white; box-shadow: 0 4px 10px rgba(63, 81, 181, 0.3); }
+        .btn-check:hover { background-color: #303F9F; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>While I was running...</h1>
+            <p>Level B1 | Unit 2 - Lesson 1 | Interrupted Actions</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🏃‍♂️</div>
+            <div class="grammar-content">
+                <h2>Past Continuous vs Past Simple</h2>
+                <p>Welcome to Unit 2! We often use these two tenses together to show that a <strong>longer action</strong> in the past was interrupted by a <strong>shorter action</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Long Action (Past Continuous)</h4>
+                    <p>Uses <strong>was/were + verb(-ing)</strong>. It sets the background scene.<br>
+                    <em>I <strong>was running</strong> in the park...</em></p>
+                    
+                    <h4>The Interruption (Past Simple)</h4>
+                    <p>Uses the <strong>2nd column (V2)</strong>. It is the sudden event.<br>
+                    <em>...when I <strong>fell</strong>.</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ When vs While:</strong><br>
+                    We usually use <strong>While</strong> before the Past Continuous (the long action).<br>
+                    We usually use <strong>When</strong> before the Past Simple (the short interruption).
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Was or Were? (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Setting the Scene (10 pts)</h3>
+            <p class="instructions">Complete the Past Continuous sentences by writing <strong>was</strong> or <strong>were</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="short-input" data-answer="was"> running.</div>
+                <div class="question">2. We <input type="text" class="short-input" data-answer="were"> doing CrossFit.</div>
+                <div class="question">3. Leonardo <input type="text" class="short-input" data-answer="was"> reading an English book.</div>
+                <div class="question">4. Tatiana and Santiago <input type="text" class="short-input" data-answer="were"> talking.</div>
+                <div class="question">5. El Michi <input type="text" class="short-input" data-answer="was"> sleeping on my laptop.</div>
+                <div class="question">6. You <input type="text" class="short-input" data-answer="were"> coding the HTML worksheet.</div>
+                <div class="question">7. The app <input type="text" class="short-input" data-answer="was"> loading slowly.</div>
+                <div class="question">8. Teacher Ivan <input type="text" class="short-input" data-answer="was"> explaining the grammar.</div>
+                <div class="question">9. They <input type="text" class="short-input" data-answer="were"> traveling to China.</div>
+                <div class="question">10. She <input type="text" class="short-input" data-answer="was"> lifting heavy weights.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Concept Check (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> The Interruption (10 pts)</h3>
+            <p class="instructions">Read the sentence and conjugate the verb in brackets into the <strong>Past Simple</strong> (the interruption) OR <strong>Past Continuous</strong> (the long action).</p>
+            
+            <div class="grid-2">
+                <div class="question">11. While I was running, I <input type="text" class="medium-input" data-answer="fell"> (fall).</div>
+                <div class="question">12. We were studying when the phone <input type="text" class="medium-input" data-answer="rang"> (ring).</div>
+                <div class="question">13. He <input type="text" class="medium-input" data-answer="was doing"> (do) CrossFit when he hurt his knee.</div>
+                <div class="question">14. They <input type="text" class="medium-input" data-answer="were playing"> (play) tennis when it started to rain.</div>
+                <div class="question">15. When Teacher Ivan <input type="text" class="medium-input" data-answer="arrived"> (arrive), the students were talking.</div>
+                <div class="question">16. I <input type="text" class="medium-input" data-answer="was sleeping"> (sleep) when El Michi jumped on me.</div>
+                <div class="question">17. Leonardo <input type="text" class="medium-input" data-answer="broke"> (break) his laptop while he was programming.</div>
+                <div class="question">18. Tatiana was reading a history book when Santiago <input type="text" class="medium-input" data-answer="called"> (call).</div>
+                <div class="question">19. She found a coin while she <input type="text" class="medium-input" data-answer="was walking"> (walk) to Fielding School.</div>
+                <div class="question">20. The lights <input type="text" class="medium-input" data-answer="went"> (go) out while we were watching TV.</div>
+            </div>
+        </div>
+
+        <!-- Section C: When or While (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> When vs While (10 pts)</h3>
+            <p class="instructions">Complete the sentences with <strong>when</strong> or <strong>while</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. <input type="text" class="short-input" data-answer="while"> Teacher Ivan was teaching, the bell rang.</div>
+                <div class="question">22. I was drinking water <input type="text" class="short-input" data-answer="when"> the alarm sounded.</div>
+                <div class="question">23. <input type="text" class="short-input" data-answer="when"> the class finished, we were still writing.</div>
+                <div class="question">24. <input type="text" class="short-input" data-answer="while"> Santiago was running 5k, he felt a pain.</div>
+                <div class="question">25. Leonardo was using the app <input type="text" class="short-input" data-answer="when"> it crashed.</div>
+                <div class="question">26. <input type="text" class="short-input" data-answer="while"> they were doing yoga, someone knocked.</div>
+                <div class="question">27. I saw Tatiana <input type="text" class="short-input" data-answer="while"> I was waiting for the bus.</div>
+                <div class="question">28. We were practicing English <input type="text" class="short-input" data-answer="when"> it suddenly rained.</div>
+                <div class="question">29. <input type="text" class="short-input" data-answer="when"> I opened the door, El Michi was eating my food.</div>
+                <div class="question">30. She broke her leg <input type="text" class="short-input" data-answer="while"> she was doing CrossFit.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Mixed Verbs (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Verb Challenge (10 pts)</h3>
+            <p class="instructions">Conjugate the verb in brackets correctly (Past Simple or Past Continuous) based on the context.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. I was running when I <input type="text" class="medium-input" data-answer="saw"> (see) the accident.</div>
+                <div class="question">32. While we <input type="text" class="medium-input" data-answer="were training"> (train), we got very thirsty.</div>
+                <div class="question">33. He <input type="text" class="medium-input" data-answer="was sleeping"> (sleep) when the alarm rang.</div>
+                <div class="question">34. They found a wallet while they <input type="text" class="medium-input" data-answer="were running"> (run).</div>
+                <div class="question">35. When I <input type="text" class="medium-input" data-answer="called"> (call) Leonardo, he was studying.</div>
+                <div class="question">36. Tatiana <input type="text" class="medium-input" data-answer="dropped"> (drop) her phone while she was walking.</div>
+                <div class="question">37. While Teacher Ivan <input type="text" class="medium-input" data-answer="was grading"> (grade) exams, his coffee spilled.</div>
+                <div class="question">38. The students were listening when the bell <input type="text" class="medium-input" data-answer="rang"> (ring).</div>
+                <div class="question">39. I <input type="text" class="medium-input" data-answer="was not looking|wasn't looking"> (not / look) when he scored the goal!</div>
+                <div class="question">40. Santiago <input type="text" class="medium-input" data-answer="hurt"> (hurt) his foot while he was playing soccer.</div>
+            </div>
+        </div>
+
+        <!-- Section E: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to make interrupted action sentences.</p>
+
+            <div class="grid-2">
+                <div class="question">41. running / I / when / fell / I / was / .<br><input type="text" class="long-input" data-answer="i was running when i fell.|i was running when i fell"></div>
+                <div class="question">42. when / raining / started / We / were / playing / it / .<br><input type="text" class="long-input" data-answer="we were playing when it started raining.|we were playing when it started raining"></div>
+                <div class="question">43. sleeping / Michi / El / I / working / while / was / was / .<br><input type="text" class="long-input" data-answer="el michi was sleeping while i was working.|i was working while el michi was sleeping.|el michi was sleeping while i was working|i was working while el michi was sleeping"></div>
+                <div class="question">44. rang / Teacher Ivan / when / explaining / was / the phone / .<br><input type="text" class="long-input" data-answer="teacher ivan was explaining when the phone rang.|teacher ivan was explaining when the phone rang"></div>
+                <div class="question">45. while / She / listening / driving / was / to music / she / was / .<br><input type="text" class="long-input" data-answer="she was listening to music while she was driving.|she was listening to music while she was driving"></div>
+                <div class="question">46. called / watching / TV / you / I / when / was / .<br><input type="text" class="long-input" data-answer="i was watching tv when you called.|i was watching tv when you called"></div>
+                <div class="question">47. a / saw / dog / Leonardo / walking / while / he / was / .<br><input type="text" class="long-input" data-answer="leonardo saw a dog while he was walking.|leonardo saw a dog while he was walking"></div>
+                <div class="question">48. power / The / went / were / coding / we / when / out / .<br><input type="text" class="long-input" data-answer="the power went out when we were coding.|we were coding when the power went out.|the power went out when we were coding|we were coding when the power went out"></div>
+                <div class="question">49. they / arrived / while / cooking / I / was / .<br><input type="text" class="long-input" data-answer="they arrived while i was cooking.|they arrived while i was cooking"></div>
+                <div class="question">50. dropped / doing / CrossFit / weight / the / while / He / he / was / .<br><input type="text" class="long-input" data-answer="he dropped the weight while he was doing crossfit.|he dropped the weight while he was doing crossfit"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: The Crazy Interruption (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about a time when you were doing something normal, and something crazy or surprising interrupted you. Use <strong>Past Continuous</strong> and <strong>Past Simple</strong>. (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="Yesterday, I was walking to school when suddenly..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Has dominado a la perfección las acciones interrumpidas del pasado. ¡Gran comienzo para la Unidad 2!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Has superado la lección. Revisa las conjugaciones en rojo para no volver a fallar.`;
+                color = "var(--u2-pink)";
+                bgColor = "#FCE4EC";
+                feedback.style.borderColor = "var(--u2-pink)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: La acción larga (was/were + -ing) suele ir después de "While". La acción corta (verbo en pasado) suele ir después de "When".`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

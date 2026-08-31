@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: A Scene from Peaky Blinders - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --u2-indigo: #3F51B5; 
+            --u2-pink: #E91E63;
+            --u2-light: #E8EAF6;
+            --peaky-dark: #212121;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(63, 81, 181, 0.15);
+            border-top: 8px solid var(--peaky-dark);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--peaky-dark); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--peaky-dark); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: #FAFAFA;
+            border-left: 5px solid var(--peaky-dark);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #E0E0E0; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--peaky-dark); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--u2-pink); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--peaky-dark); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--u2-indigo); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--u2-indigo); box-shadow: 0 0 5px rgba(63, 81, 181, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--u2-indigo); box-shadow: 0 0 5px rgba(63, 81, 181, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--peaky-dark); color: white; box-shadow: 0 4px 10px rgba(33, 33, 33, 0.3); }
+        .btn-check:hover { background-color: #000; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>A Scene from Peaky Blinders</h1>
+            <p>Level B1 | Unit 2 - Lesson 5 | Narrative Tenses</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">🎬</div>
+            <div class="grammar-content">
+                <h2>The Art of Storytelling</h2>
+                <p>To tell a dramatic story or describe a movie scene, we must combine the three narrative tenses correctly.</p>
+                
+                <div class="grammar-rule">
+                    <h4>1. Past Continuous (The Scene)</h4>
+                    <p>Sets the background atmosphere.<br>
+                    <em>It <strong>was raining</strong> heavily. Tommy <strong>was smoking</strong> a cigarette.</em></p>
+                    
+                    <h4>2. Past Perfect (The Backstory)</h4>
+                    <p>Explains what happened before the scene started.<br>
+                    <em>Before he arrived, the police <strong>had searched</strong> the pub.</em></p>
+
+                    <h4>3. Past Simple (The Action)</h4>
+                    <p>Describes the main sequence of events or interruptions.<br>
+                    <em>Suddenly, the door <strong>opened</strong> and a man <strong>walked</strong> in.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Verb Check (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Dramatic Verbs (10 pts)</h3>
+            <p class="instructions">Write the requested form of the verb. Pay attention to whether it asks for <strong>V2 (Past Simple)</strong> or <strong>V3 (Past Participle)</strong>.</p>
+            
+            <div class="grid-3">
+                <div class="question">1. steal (V2) ➔ <input type="text" class="short-input" data-answer="stole"></div>
+                <div class="question">2. hide (V3) ➔ <input type="text" class="short-input" data-answer="hidden"></div>
+                <div class="question">3. fight (V2) ➔ <input type="text" class="short-input" data-answer="fought"></div>
+                <div class="question">4. wear (V3) ➔ <input type="text" class="short-input" data-answer="worn"></div>
+                <div class="question">5. catch (V2) ➔ <input type="text" class="short-input" data-answer="caught"></div>
+                <div class="question">6. shoot (V3) ➔ <input type="text" class="short-input" data-answer="shot"></div>
+                <div class="question">7. freeze (V2) ➔ <input type="text" class="short-input" data-answer="froze"></div>
+                <div class="question">8. bleed (V3) ➔ <input type="text" class="short-input" data-answer="bled"></div>
+                <div class="question">9. ring (V2) ➔ <input type="text" class="short-input" data-answer="rang"></div>
+                <div class="question">10. leave (V3) ➔ <input type="text" class="short-input" data-answer="left"></div>
+            </div>
+        </div>
+
+        <!-- Section B: Past Continuous vs Past Simple (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> Setting the Scene (10 pts)</h3>
+            <p class="instructions">Conjugate the verb in brackets into the <strong>Past Simple</strong> (short action) or <strong>Past Continuous</strong> (long background action).</p>
+            
+            <div class="grid-2">
+                <div class="question">11. Tommy <input type="text" class="medium-input" data-answer="was walking"> (walk) down the street when...</div>
+                <div class="question">12. ...he suddenly <input type="text" class="medium-input" data-answer="saw"> (see) a police officer.</div>
+                <div class="question">13. While Arthur <input type="text" class="medium-input" data-answer="was drinking"> (drink) his whiskey,</div>
+                <div class="question">14. someone <input type="text" class="medium-input" data-answer="broke"> (break) the window.</div>
+                <div class="question">15. They <input type="text" class="medium-input" data-answer="were having"> (have) a secret meeting when...</div>
+                <div class="question">16. ...the pub's phone <input type="text" class="medium-input" data-answer="rang"> (ring).</div>
+                <div class="question">17. Tatiana <input type="text" class="medium-input" data-answer="was watching"> (watch) Peaky Blinders when...</div>
+                <div class="question">18. ...El Michi <input type="text" class="medium-input" data-answer="jumped"> (jump) on her lap!</div>
+                <div class="question">19. Santiago <input type="text" class="medium-input" data-answer="was sleeping"> (sleep) soundly when...</div>
+                <div class="question">20. ...Leonardo <input type="text" class="medium-input" data-answer="knocked"> (knock) on the classroom door.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Past Simple vs Past Perfect (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> The Backstory (10 pts)</h3>
+            <p class="instructions">Read the context and complete the sentences with the <strong>Past Perfect (had + V3)</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. When he arrived, the train <input type="text" class="medium-input" data-answer="had already left|'d already left"> (already / leave).</div>
+                <div class="question">22. I didn't watch the episode because I <input type="text" class="medium-input" data-answer="had seen|'d seen"> (see) it before.</div>
+                <div class="question">23. He <input type="text" class="medium-input" data-answer="had hidden|'d hidden"> (hide) the money before the cops came.</div>
+                <div class="question">24. By the time they reached the pub, it <input type="text" class="medium-input" data-answer="had closed|'d closed"> (close).</div>
+                <div class="question">25. We were shocked! We <input type="text" class="medium-input" data-answer="had never seen|'d never seen"> (never / see) such drama.</div>
+                <div class="question">26. Tommy <input type="text" class="medium-input" data-answer="had just lit|'d just lit"> (just / light) a cigarette when she entered.</div>
+                <div class="question">27. They <input type="text" class="medium-input" data-answer="had not eaten|hadn't eaten"> (not / eat) anything before the big fight.</div>
+                <div class="question">28. Before he taught at Fielding School, Ivan <input type="text" class="medium-input" data-answer="had lived|'d lived"> (live) in Sucre for years.</div>
+                <div class="question">29. The police arrested the man because he <input type="text" class="medium-input" data-answer="had stolen|'d stolen"> (steal) a car.</div>
+                <div class="question">30. He reached into his pocket and realized he <input type="text" class="medium-input" data-answer="had forgotten|'d forgotten"> (forget) his gun.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Mixed Narrative Tenses (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Director's Cut (10 pts)</h3>
+            <p class="instructions">Analyze the full scene. Decide if the verb needs to be in <strong>Past Simple, Past Continuous, or Past Perfect</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. Tommy <input type="text" class="medium-input" data-answer="was wearing"> (wear) a dark coat when he entered.</div>
+                <div class="question">32. He walked to the bar and <input type="text" class="medium-input" data-answer="ordered"> (order) a drink.</div>
+                <div class="question">33. Before he arrived, his enemies <input type="text" class="medium-input" data-answer="had planned"> (plan) a trap.</div>
+                <div class="question">34. While he <input type="text" class="medium-input" data-answer="was smoking"> (smoke), a strange man approached him.</div>
+                <div class="question">35. The man pulled out a weapon, but Tommy <input type="text" class="medium-input" data-answer="had already seen"> (already / see) him in the mirror.</div>
+                <div class="question">36. Suddenly, Teacher Ivan <input type="text" class="medium-input" data-answer="paused"> (pause) the video to explain the grammar.</div>
+                <div class="question">37. Leonardo <input type="text" class="medium-input" data-answer="was taking"> (take) notes while Ivan was speaking.</div>
+                <div class="question">38. By the time the class ended, they <input type="text" class="medium-input" data-answer="had analyzed"> (analyze) the entire scene.</div>
+                <div class="question">39. Tatiana <input type="text" class="medium-input" data-answer="did not understand|didn't understand"> (not / understand) the British accent at first.</div>
+                <div class="question">40. However, she loved the show because she <input type="text" class="medium-input" data-answer="had read"> (read) about the history before.</div>
+            </div>
+        </div>
+
+        <!-- Section E: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Script Writer (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to build perfect narrative sentences.</p>
+
+            <div class="grid-2">
+                <div class="question">41. walking / Tommy / was / down / the / street / .<br><input type="text" class="long-input" data-answer="tommy was walking down the street.|tommy was walking down the street"></div>
+                <div class="question">42. already / The / started / had / meeting / .<br><input type="text" class="long-input" data-answer="the meeting had already started.|the meeting had already started"></div>
+                <div class="question">43. rang / watching / We / the show / were / when / the phone / .<br><input type="text" class="long-input" data-answer="we were watching the show when the phone rang.|we were watching the show when the phone rang"></div>
+                <div class="question">44. had / hidden / before / the cops / the money / He / arrived / .<br><input type="text" class="long-input" data-answer="he had hidden the money before the cops arrived.|he had hidden the money before the cops arrived"></div>
+                <div class="question">45. playing / Michi / El / sleeping / was / Ivan / was / while / .<br><input type="text" class="long-input" data-answer="ivan was sleeping while el michi was playing.|el michi was playing while ivan was sleeping.|ivan was sleeping while el michi was playing|el michi was playing while ivan was sleeping"></div>
+                <div class="question">46. had / never / seen / I / episode / that / .<br><input type="text" class="long-input" data-answer="i had never seen that episode.|i had never seen that episode"></div>
+                <div class="question">47. a / gun / wearing / He / a / coat / was / and / holding / .<br><input type="text" class="long-input" data-answer="he was wearing a coat and holding a gun.|he was wearing a coat and holding a gun"></div>
+                <div class="question">48. finished / by the time / had / the / homework / She / he / called / .<br><input type="text" class="long-input" data-answer="she had finished the homework by the time he called.|she had finished the homework by the time he called"></div>
+                <div class="question">49. knocked / when / they / talking / someone / were / .<br><input type="text" class="long-input" data-answer="they were talking when someone knocked.|they were talking when someone knocked"></div>
+                <div class="question">50. arrested / him / because / stolen / the / police / he / had / a / car / .<br><input type="text" class="long-input" data-answer="the police arrested him because he had stolen a car.|the police arrested him because he had stolen a car"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Your Cinematic Scene (1 pt)</h3>
+            <p class="instructions">Write a short paragraph describing a dramatic scene from a movie, a show, or your real life. You MUST use at least one sentence in <strong>Past Continuous</strong> (background), one in <strong>Past Simple</strong> (action), and one in <strong>Past Perfect</strong> (backstory). (Minimum 50 words).</p>
+            
+            <textarea id="writing-section" placeholder="It was raining heavily and I was walking to Fielding School. Before I left my house, I had checked my bag, but suddenly I realized I forgot my laptop..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 50 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🎬 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Word Counter Logic ---
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 50) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // --- Exam Grading Logic ---
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; // 50 inputs + 1 writing
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 50) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 MASTER STORYTELLER! Has combinado los tres tiempos narrativos con la precisión de un guionista profesional.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GREAT JOB! Has superado la lección. Revisa las conjugaciones en rojo para afinar tu narrativa.`;
+                color = "var(--u2-indigo)";
+                bgColor = "var(--u2-light)";
+                feedback.style.borderColor = "var(--u2-indigo)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda la fórmula: Continuous para el fondo, Perfect para el pasado del pasado, y Simple para la acción principal.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll smoothly to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

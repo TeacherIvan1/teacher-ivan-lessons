@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: Historical Events in Bolivia - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --u2-indigo: #3F51B5; 
+            --u2-pink: #E91E63;
+            --u2-light: #E8EAF6;
+            --history-gold: #D4AF37;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(63, 81, 181, 0.15);
+            border-top: 8px solid var(--u2-indigo);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--u2-indigo); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--u2-indigo); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--u2-light);
+            border-left: 5px solid var(--u2-indigo);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #C5CAE9; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--u2-indigo); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--u2-pink); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--u2-pink); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--u2-indigo); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--u2-pink); box-shadow: 0 0 5px rgba(233, 30, 99, 0.4); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 160px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .reading-box {
+            line-height: 2.2;
+            font-size: 1.05rem;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--u2-pink); box-shadow: 0 0 5px rgba(233, 30, 99, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--u2-indigo); color: white; box-shadow: 0 4px 10px rgba(63, 81, 181, 0.3); }
+        .btn-check:hover { background-color: #303F9F; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Historical Events in Bolivia</h1>
+            <p>Level B1 | Unit 2 - Lesson 6 | History & Narrative Tenses</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">📜</div>
+            <div class="grammar-content">
+                <h2>Narrating History</h2>
+                <p>To talk about historical events, we must master <strong>Narrative Tenses</strong> and <strong>Time Prepositions</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>Time Prepositions:</h4>
+                    <p>✔️ <strong>IN:</strong> Years, months, centuries (<em>in 1825, in August, in the 19th century</em>).<br>
+                    ✔️ <strong>ON:</strong> Specific dates and days (<em>on August 6th, on Monday</em>).<br>
+                    ✔️ <strong>AT:</strong> Precise times (<em>at midnight, at 3:00 PM</em>).<br>
+                    ✔️ <strong>DURING:</strong> A period of time (<em>during the Chaco War</em>).<br>
+                    ✔️ <strong>BY:</strong> Not later than a specific time (<em>by 1935, they had finished</em>).</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Don't forget the Tenses!</strong><br>
+                    Combine these prepositions with <strong>Past Simple</strong> (facts), <strong>Past Continuous</strong> (background), and <strong>Past Perfect</strong> (events before other past events).
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Prepositions of Time (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> Historical Prepositions (10 pts)</h3>
+            <p class="instructions">Complete the sentences about Bolivian history with the correct preposition: <strong>in, on, at, during, by, for, until</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. Bolivia declared its independence <input type="text" class="short-input" data-answer="in"> 1825.</div>
+                <div class="question">2. The battle started exactly <input type="text" class="short-input" data-answer="on"> August 6th.</div>
+                <div class="question">3. <input type="text" class="short-input" data-answer="during"> the Chaco War, many soldiers suffered from thirst.</div>
+                <div class="question">4. The peace treaty was signed <input type="text" class="short-input" data-answer="in"> the morning.</div>
+                <div class="question">5. The soldiers had to march <input type="text" class="short-input" data-answer="at"> midnight.</div>
+                <div class="question">6. Sucre became a very important city <input type="text" class="short-input" data-answer="in"> the 19th century.</div>
+                <div class="question">7. The president gave his famous speech <input type="text" class="short-input" data-answer="at"> noon.</div>
+                <div class="question">8. The conflict continued <input type="text" class="short-input" data-answer="for"> three long years.</div>
+                <div class="question">9. <input type="text" class="short-input" data-answer="by"> 1938, they had finally signed the definitive peace treaty.</div>
+                <div class="question">10. The soldiers didn't surrender <input type="text" class="short-input" data-answer="until"> the war officially ended.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Narrative Tenses in History (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> The Actions of the Past (10 pts)</h3>
+            <p class="instructions">Conjugate the verb in brackets into the correct narrative tense (Past Simple, Past Continuous, or Past Perfect).</p>
+            
+            <div class="grid-2">
+                <div class="question">11. Simón Bolívar <input type="text" class="medium-input" data-answer="liberated"> (liberate) many countries in South America.</div>
+                <div class="question">12. While the army <input type="text" class="medium-input" data-answer="was marching"> (march), a terrible storm started.</div>
+                <div class="question">13. Before the battle began, the generals <input type="text" class="medium-input" data-answer="had prepared|'d prepared"> (prepare) a strategy.</div>
+                <div class="question">14. The soldiers <input type="text" class="medium-input" data-answer="were sleeping"> (sleep) when the enemy suddenly attacked.</div>
+                <div class="question">15. Antonio José de Sucre <input type="text" class="medium-input" data-answer="won"> (win) the Battle of Ayacucho.</div>
+                <div class="question">16. By the time the news arrived in the capital, the war <input type="text" class="medium-input" data-answer="had ended"> (end).</div>
+                <div class="question">17. People <input type="text" class="medium-input" data-answer="were celebrating"> (celebrate) in the streets when the hero returned.</div>
+                <div class="question">18. Eduardo Abaroa <input type="text" class="medium-input" data-answer="defended"> (defend) the bridge bravely.</div>
+                <div class="question">19. Bolivia lost a territory that it <input type="text" class="medium-input" data-answer="had protected"> (protect) for many years.</div>
+                <div class="question">20. Teacher Ivan <input type="text" class="medium-input" data-answer="was explaining"> (explain) the Chaco War when the bell rang.</div>
+            </div>
+        </div>
+
+        <!-- Section C: The History Class (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> A History Class at Fielding School (10 pts)</h3>
+            <p class="instructions">Read the story about Teacher Ivan's class. Fill in the blanks with the correct past tense of the verbs in brackets.</p>
+            
+            <div class="reading-box">
+                Yesterday morning, Teacher Ivan 21. <input type="text" class="medium-input" data-answer="was teaching"> (teach) a History class in English at Colegio Fielding. Before the students arrived, he 22. <input type="text" class="medium-input" data-answer="had already prepared"> (already / prepare) a presentation about the foundation of Bolivia in 1825. While he 23. <input type="text" class="medium-input" data-answer="was speaking"> (speak) about Simón Bolívar, Leonardo 24. <input type="text" class="medium-input" data-answer="raised"> (raise) his hand to ask a question. Leonardo was very prepared because he 25. <input type="text" class="medium-input" data-answer="had read"> (read) a book about Antonio José de Sucre the night before. <br><br>
+                On the other side of the room, Tatiana 26. <input type="text" class="medium-input" data-answer="was taking"> (take) notes carefully because she 27. <input type="text" class="medium-input" data-answer="wanted"> (want) to get a perfect score on the next exam. Suddenly, El Michi 28. <input type="text" class="medium-input" data-answer="jumped"> (jump) onto Ivan's desk! The cat 29. <input type="text" class="medium-input" data-answer="was sleeping"> (sleep) peacefully in the corner, but Santiago's loud sneeze woke him up. Everyone 30. <input type="text" class="medium-input" data-answer="laughed"> (laugh), and the history lesson became unforgettable.
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form historical sentences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. independence / in / Bolivia / 1825 / declared / .<br><input type="text" class="long-input" data-answer="bolivia declared independence in 1825.|bolivia declared independence in 1825"></div>
+                <div class="question">32. was / studying / I / history / when / called / you / .<br><input type="text" class="long-input" data-answer="i was studying history when you called.|i was studying history when you called"></div>
+                <div class="question">33. had / ended / By / the war / 1935 / .<br><input type="text" class="long-input" data-answer="by 1935 the war had ended.|by 1935, the war had ended."></div>
+                <div class="question">34. during / Many / died / soldiers / the / war / .<br><input type="text" class="long-input" data-answer="many soldiers died during the war.|many soldiers died during the war"></div>
+                <div class="question">35. the / bridge / Abaroa / Eduardo / defended / bravely / .<br><input type="text" class="long-input" data-answer="eduardo abaroa defended the bridge bravely.|eduardo abaroa defended the bridge bravely"></div>
+                <div class="question">36. arrived / they / Before / signed / had / the / treaty / they / .<br><input type="text" class="long-input" data-answer="before they arrived they had signed the treaty.|before they arrived, they had signed the treaty.|they had signed the treaty before they arrived.|they had signed the treaty before they arrived"></div>
+                <div class="question">37. Ivan / teaching / was / history / when / jumped / Michi / El / .<br><input type="text" class="long-input" data-answer="ivan was teaching history when el michi jumped.|ivan was teaching history when el michi jumped"></div>
+                <div class="question">38. the / capital / Sucre / became / in / 19th / century / the / .<br><input type="text" class="long-input" data-answer="sucre became the capital in the 19th century.|sucre became the capital in the 19th century"></div>
+                <div class="question">39. living / They / were / in / La Paz / time / that / at / .<br><input type="text" class="long-input" data-answer="they were living in la paz at that time.|they were living in la paz at that time"></div>
+                <div class="question">40. had / never / read / I / that / book / before / history / .<br><input type="text" class="long-input" data-answer="i had never read that history book before.|i had never read that history book before"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence has ONE mistake (a preposition or a tense). Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. Bolivia declared independence on 1825.<br><input type="text" class="long-input" data-answer="bolivia declared independence in 1825.|bolivia declared independence in 1825"></div>
+                <div class="question">42. He was sleeping during the bell rang.<br><input type="text" class="long-input" data-answer="he was sleeping when the bell rang.|he was sleeping when the bell rang"></div>
+                <div class="question">43. By the time I arrived, the war has ended.<br><input type="text" class="long-input" data-answer="by the time i arrived the war had ended.|by the time i arrived, the war had ended."></div>
+                <div class="question">44. We studied history in Monday.<br><input type="text" class="long-input" data-answer="we studied history on monday.|we studied history on monday"></div>
+                <div class="question">45. They fought since three years.<br><input type="text" class="long-input" data-answer="they fought for three years.|they fought for three years"></div>
+                <div class="question">46. While he marched, he found a coin.<br><input type="text" class="long-input" data-answer="while he was marching he found a coin.|while he was marching, he found a coin."></div>
+                <div class="question">47. Teacher Ivan teach history yesterday.<br><input type="text" class="long-input" data-answer="teacher ivan taught history yesterday.|teacher ivan taught history yesterday"></div>
+                <div class="question">48. El Michi jump on the desk while we were studying.<br><input type="text" class="long-input" data-answer="el michi jumped on the desk while we were studying.|el michi jumped on the desk while we were studying"></div>
+                <div class="question">49. The peace treaty was signed at the morning.<br><input type="text" class="long-input" data-answer="the peace treaty was signed in the morning.|the peace treaty was signed in the morning"></div>
+                <div class="question">50. Before 1900, they have lost the territory.<br><input type="text" class="long-input" data-answer="before 1900 they had lost the territory.|before 1900, they had lost the territory."></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: The Historian (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about an important historical event in Bolivia or the world. Use at least two time prepositions (in, on, during) and at least two narrative tenses (Past Simple, Past Continuous, Past Perfect). (Minimum 50 words).</p>
+            
+            <textarea id="writing-section" placeholder="In 1825, Bolivia became independent. Before that day, many brave soldiers had fought during long battles..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 50 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">📜 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 50) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; 
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 50) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Eres un verdadero historiador. Dominas los tiempos narrativos y las preposiciones a la perfección.`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes la secuencia de los eventos históricos. Revisa tus fallos en rojo para mejorar los detalles de las preposiciones.`;
+                color = "var(--u2-indigo)";
+                bgColor = "var(--u2-light)";
+                feedback.style.borderColor = "var(--u2-indigo)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: IN (años/meses), ON (días exactos). Y no olvides usar Past Perfect (had + v3) para eventos que ocurrieron antes de otro evento pasado.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

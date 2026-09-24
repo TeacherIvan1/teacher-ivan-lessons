@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Unit 2 Review Test - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --u2-dark: #303F9F; 
+            --u2-gold: #FFC107;
+            --u2-light: #E8EAF6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--u2-dark); }
+
+        .worksheet-container {
+            max-width: 1050px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(48, 63, 159, 0.2);
+            border-top: 8px solid var(--u2-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 30px; right: -60px; background: var(--u2-gold);
+            color: var(--u2-dark); padding: 8px 60px; font-weight: 900; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 4px 6px rgba(0,0,0,0.3); font-size: 1rem; letter-spacing: 1px;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid var(--gris-claro); }
+        .header img { max-width: 100%; height: 70px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; color: var(--u2-dark); }
+        .header p { color: #555; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--u2-dark); color: var(--u2-gold); padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; font-weight: 800; display: inline-block; margin-top: 10px; border: 2px solid var(--u2-gold); }
+
+        /* General Grammar Banner */
+        .grammar-banner {
+            background: linear-gradient(135deg, var(--u2-dark), #3F51B5);
+            color: white; padding: 25px; border-radius: 8px; margin-bottom: 40px; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .grammar-banner h2 { color: var(--u2-gold); margin-top: 0; }
+        .grammar-banner p { margin: 0; font-size: 1.05rem; }
+
+        /* Exercises Sections */
+        .exercise-section { margin-bottom: 40px; background: #fafafa; padding: 25px; border-radius: 8px; border: 2px solid var(--gris-claro); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--u2-dark); border-bottom: 2px solid var(--u2-gold); padding-bottom: 10px; }
+        .exercise-section h3 span { background: var(--u2-gold); color: var(--u2-dark); min-width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1.1rem; font-weight: 900; }
+        
+        .hint-box { background: #fff8e1; border-left: 4px solid var(--u2-gold); padding: 10px 15px; margin-bottom: 20px; font-size: 0.9rem; color: #555; font-style: italic; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; font-weight: 600; color: #444; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: var(--u2-dark);
+            font-weight: 700;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--u2-gold); box-shadow: 0 0 8px rgba(255, 193, 7, 0.5); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 160px; font-family: 'Open Sans', sans-serif; font-size: 1.05rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none; line-height: 1.6;
+        }
+        textarea:focus { border-color: var(--u2-gold); box-shadow: 0 0 5px rgba(255, 193, 7, 0.4); }
+        .word-counter { font-size: 0.95rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+        .points-badge { float: right; background: var(--u2-gold); color: var(--u2-dark); padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 40px; border-top: 3px solid var(--gris-claro); padding-top: 30px; }
+        .btn-check { background-color: var(--u2-dark); color: var(--u2-gold); padding: 18px 50px; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; font-weight: 900; border: 2px solid var(--u2-gold); border-radius: 8px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; width: 100%; max-width: 500px; box-shadow: 0 5px 15px rgba(48, 63, 159, 0.4); }
+        .btn-check:hover { background-color: var(--u2-gold); color: var(--u2-dark); border-color: var(--u2-dark); transform: translateY(-3px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 30px; font-size: 1.5rem; padding: 25px; border-radius: 8px; border: 3px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 15px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+            .header h1 { font-size: 1.6rem; }
+            .exercise-section { padding: 15px; }
+            .btn-check { width: 100%; max-width: none; font-size: 1.1rem; }
+            .ribbon { right: -75px; font-size: 0.8rem; padding: 5px 50px; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { border: none; padding: 0; margin-bottom: 20px; }
+            .actions, .btn-check, #feedback-message, .ribbon, .grammar-banner { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <div class="ribbon">REVIEW TEST</div>
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Unit 2 Review Test</h1>
+            <p>Level B1 | Storytelling & Anecdotes</p>
+            <span class="difficulty-badge">🏆 Total Score: 100 Points</span>
+        </div>
+
+        <div class="grammar-banner">
+            <h2>The Storyteller Challenge</h2>
+            <p>Es el momento de demostrar que puedes estructurar una anécdota perfecta. Evalúa tu uso de las acciones interrumpidas (Past Continuous), la causa y efecto (So/Because), el pasado del pasado (Past Perfect) y los conectores de tiempo.</p>
+        </div>
+
+        <!-- Section A: Past Continuous vs Past Simple -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>A</span> The Interrupted Actions</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Conjugate the verbs to form a long action interrupted by a short action. Use <strong>was/were + ing</strong> or the <strong>Past Simple</strong>.</div>
+            
+            <div class="grid-2">
+                <div class="question">1. I <input type="text" class="medium-input" data-answer="was walking"> (walk) when it started to rain.</div>
+                <div class="question">2. She fell while she <input type="text" class="medium-input" data-answer="was running"> (run).</div>
+                <div class="question">3. They <input type="text" class="medium-input" data-answer="were studying"> (study) when the lights went out.</div>
+                <div class="question">4. Leonardo <input type="text" class="medium-input" data-answer="broke"> (break) his laptop while he was coding.</div>
+                <div class="question">5. Teacher Ivan was explaining when El Michi <input type="text" class="medium-input" data-answer="jumped"> (jump) on the desk.</div>
+                <div class="question">6. What <input type="text" class="medium-input" data-answer="were you doing"> (you / do) when I called?</div>
+                <div class="question">7. I was eating lunch when Santiago <input type="text" class="medium-input" data-answer="arrived"> (arrive).</div>
+                <div class="question">8. Tatiana <input type="text" class="medium-input" data-answer="found"> (find) a coin while she was walking.</div>
+                <div class="question">9. We <input type="text" class="medium-input" data-answer="were watching"> (watch) a movie when he knocked.</div>
+                <div class="question">10. The phone <input type="text" class="medium-input" data-answer="rang"> (ring) while I was sleeping.</div>
+            </div>
+        </div>
+
+        <!-- Section B: So vs Because -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>B</span> Cause and Effect</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Complete the sentences with <strong>so</strong> (result) or <strong>because</strong> (reason).</div>
+            
+            <div class="grid-2">
+                <div class="question">11. I was extremely tired, <input type="text" class="short-input" data-answer="so"> I went to sleep.</div>
+                <div class="question">12. He passed the exam <input type="text" class="short-input" data-answer="because"> he studied hard.</div>
+                <div class="question">13. It was very cold outside, <input type="text" class="short-input" data-answer="so"> I closed the window.</div>
+                <div class="question">14. We stayed home <input type="text" class="short-input" data-answer="because"> it was raining.</div>
+                <div class="question">15. El Michi was sick, <input type="text" class="short-input" data-answer="so"> Ivan took him to the vet.</div>
+                <div class="question">16. She cried a lot <input type="text" class="short-input" data-answer="because"> she lost her phone.</div>
+                <div class="question">17. The app crashed, <input type="text" class="short-input" data-answer="so"> Leonardo fixed the code.</div>
+                <div class="question">18. I drank a lot of water <input type="text" class="short-input" data-answer="because"> I was thirsty.</div>
+                <div class="question">19. Ivan had exams to grade, <input type="text" class="short-input" data-answer="so"> he stayed up late.</div>
+                <div class="question">20. They were late to class <input type="text" class="short-input" data-answer="because"> of the heavy traffic.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Past Perfect -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>C</span> The Past of the Past</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Use the <strong>Past Perfect</strong> (had + V3) to describe actions that happened <em>before</em> another past action.</div>
+            
+            <div class="grid-2">
+                <div class="question">21. By the time I arrived, he <input type="text" class="medium-input" data-answer="had left|'d left"> (leave).</div>
+                <div class="question">22. I <input type="text" class="medium-input" data-answer="had never seen|'d never seen"> (never / see) snow before that trip.</div>
+                <div class="question">23. She passed the exam because she <input type="text" class="medium-input" data-answer="had studied|'d studied"> (study).</div>
+                <div class="question">24. We didn't eat because we <input type="text" class="medium-input" data-answer="had already eaten|'d already eaten"> (already / eat).</div>
+                <div class="question">25. The class <input type="text" class="medium-input" data-answer="had started"> (start) before I got to Fielding.</div>
+                <div class="question">26. He realized he <input type="text" class="medium-input" data-answer="had forgotten|'d forgotten"> (forget) his keys.</div>
+                <div class="question">27. They <input type="text" class="medium-input" data-answer="had finished|'d finished"> (finish) the project by Monday.</div>
+                <div class="question">28. I <input type="text" class="medium-input" data-answer="had just arrived|'d just arrived"> (just / arrive) when the power went out.</div>
+                <div class="question">29. El Michi ate the food that Ivan <input type="text" class="medium-input" data-answer="had prepared|'d prepared"> (prepare).</div>
+                <div class="question">30. I couldn't enter because I <input type="text" class="medium-input" data-answer="had lost|'d lost"> (lose) the key.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Time Connectors -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>D</span> Making it Flow</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Complete the sentences with <strong>until, as soon as, meanwhile, eventually</strong>.</div>
+            
+            <div class="grid-2">
+                <div class="question">31. I waited at the station <input type="text" class="short-input" data-answer="until"> 8:00 PM.</div>
+                <div class="question">32. <input type="text" class="short-input" data-answer="as soon as"> I saw him, I said hello.</div>
+                <div class="question">33. She was cooking dinner; <input type="text" class="short-input" data-answer="meanwhile">, I was cleaning the house.</div>
+                <div class="question">34. We tried for hours and <input type="text" class="short-input" data-answer="eventually"> fixed the problem.</div>
+                <div class="question">35. Please don't leave <input type="text" class="short-input" data-answer="until"> the school bell rings.</div>
+                <div class="question">36. <input type="text" class="short-input" data-answer="as soon as"> the movie ended, we left the cinema.</div>
+                <div class="question">37. He was lifting weights. <input type="text" class="short-input" data-answer="meanwhile">, she was doing yoga.</div>
+                <div class="question">38. They argued, but <input type="text" class="short-input" data-answer="eventually"> they agreed on the design.</div>
+                <div class="question">39. Keep walking straight <input type="text" class="short-input" data-answer="until"> you see the park.</div>
+                <div class="question">40. I will call you <input type="text" class="short-input" data-answer="as soon as"> I arrive at the hotel.</div>
+            </div>
+        </div>
+
+        <!-- Section E: Sentence Builder -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>E</span> Narrative Sentence Builder</h3>
+            <div class="hint-box">💡 <strong>Hint:</strong> Put the words in the correct order to form perfect narrative sentences.</div>
+
+            <div class="grid-2">
+                <div class="question">41. was / running / I / when / fell / I / .<br><input type="text" class="long-input" data-answer="i was running when i fell.|i was running when i fell"></div>
+                <div class="question">42. hungry / was / I / so / ordered / pizza / I / .<br><input type="text" class="long-input" data-answer="i was hungry so i ordered pizza.|i was hungry, so i ordered pizza."></div>
+                <div class="question">43. had / already / left / He / .<br><input type="text" class="long-input" data-answer="he had already left.|he had already left"></div>
+                <div class="question">44. waited / until / arrived / We / he / .<br><input type="text" class="long-input" data-answer="we waited until he arrived.|we waited until he arrived"></div>
+                <div class="question">45. watching / TV / was / She / meanwhile / sleeping / he / was / .<br><input type="text" class="long-input" data-answer="she was watching tv meanwhile he was sleeping.|he was sleeping meanwhile she was watching tv."></div>
+                <div class="question">46. had / never / been / to / Sucre / I / .<br><input type="text" class="long-input" data-answer="i had never been to sucre.|i had never been to sucre"></div>
+                <div class="question">47. rang / phone / The / while / studying / was / I / .<br><input type="text" class="long-input" data-answer="the phone rang while i was studying.|the phone rang while i was studying"></div>
+                <div class="question">48. tired / was / he / because / worked / he / hard / .<br><input type="text" class="long-input" data-answer="he was tired because he worked hard.|he was tired because he worked hard"></div>
+                <div class="question">49. eventually / They / found / the / keys / .<br><input type="text" class="long-input" data-answer="they eventually found the keys.|they eventually found the keys"></div>
+                <div class="question">50. As soon as / woke up / I / checked / my / phone / I / .<br><input type="text" class="long-input" data-answer="as soon as i woke up i checked my phone.|as soon as i woke up, i checked my phone."></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing Project -->
+        <div class="exercise-section">
+            <span class="points-badge">50 Points</span>
+            <h3><span>F</span> Master Anecdote (Writing)</h3>
+            <p class="instructions">Write a complete anecdote (a real or invented story from your past). You must use <strong>Past Continuous</strong> (to set the scene), <strong>Past Perfect</strong> (for backstory), <strong>So/Because</strong>, and at least one <strong>Time Connector</strong> (until, eventually, etc.). <strong>(Minimum 50 words)</strong>.</p>
+            
+            <textarea id="writing-section" placeholder="Last year, I had a crazy experience. The sun was shining and I was walking to the park. Before I left my house, I had checked my bag, but..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 50 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkExam()">🏁 SUBMIT REVIEW TEST</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 50) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading System
+        let examSubmitted = false;
+
+        function checkExam() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalPoints = 100; 
+
+            // Part 1: Check 50 Inputs (1 point each)
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score += 1; // 1 point per question
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Part 2: Check Writing section (50 points)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            let writingApproved = false;
+            
+            if(writingWords >= 50) {
+                score += 50; // 50 points for the writing!
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+                writingApproved = true;
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (score >= 90 && writingApproved) {
+                message = `🏆 OUTSTANDING! Tienes un dominio total de los tiempos narrativos y la estructura de anécdotas. ¡Estás listo para el nivel final!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (score >= 70 && writingApproved) {
+                message = `👍 GREAT JOB! Has estructurado muy bien tu historia. Revisa los recuadros rojos para pulir tu gramática.`;
+                color = "#FF9800";
+                bgColor = "#fff3e0";
+            } else if (!writingApproved) {
+                message = `⚠️ INCOMPLETE ANECDOTE. Tu gramática puede estar bien, pero perdiste los 50 puntos del Writing por no alcanzar las 50 palabras (escribiste ${writingWords}).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            } else {
+                message = `⚠️ NEEDS WORK. Repasa las diferencias entre Past Continuous, Past Perfect y los conectores. La anécdota es clave para el nivel B1.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: <span style="font-size: 2.5rem; color: var(--u2-dark);">${score} / 100</span><br><br><span style="font-size: 1.1rem; color: #333; font-weight: 600;">${message}</span>`;
+            
+            // Scroll to bottom smoothly
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Lesson: If we use the HUB... - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --u3-blue: #0277BD; 
+            --u3-cyan: #00ACC1;
+            --u3-light: #E1F5FE;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1000px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(2, 119, 189, 0.15);
+            border-top: 8px solid var(--u3-blue);
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed #ccc; }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--u3-blue); }
+        .header p { color: #666; font-size: 1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--u3-blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--u3-light);
+            border-left: 5px solid var(--u3-blue);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #B3E5FC; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--u3-blue); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 35px; background: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-top: 0; color: var(--azul-primario); }
+        .exercise-section h3 span { background: var(--u3-cyan); color: white; min-width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1rem; }
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--u3-cyan); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 4px 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--u3-cyan); box-shadow: 0 0 5px rgba(0, 172, 193, 0.4); }
+        
+        .short-input { width: 100px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 120px; font-family: 'Open Sans', sans-serif; font-size: 1rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none;
+        }
+        textarea:focus { border-color: var(--u3-cyan); box-shadow: 0 0 5px rgba(0, 172, 193, 0.4); }
+        .word-counter { font-size: 0.9rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 30px; border-top: 2px solid #eee; padding-top: 25px; gap: 15px; }
+        .btn-action { padding: 15px 30px; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, background 0.3s; text-transform: uppercase; width: 100%; max-width: 400px;}
+        .btn-check { background-color: var(--u3-blue); color: white; box-shadow: 0 4px 10px rgba(2, 119, 189, 0.3); }
+        .btn-check:hover { background-color: #01579B; transform: translateY(-2px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 20px; font-size: 1.3rem; padding: 20px; border-radius: 8px; border: 2px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 20px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .exercise-section { padding: 15px; }
+            .grammar-box { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            .actions { flex-direction: column; align-items: center; }
+            .btn-action { width: 100%; max-width: none; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { background: transparent; border: none; padding: 0; }
+            .actions, .btn-action, #feedback-message { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>If we use the HUB...</h1>
+            <p>Level B1 | Unit 3 - Lesson 1 | The First Conditional</p>
+            <span class="difficulty-badge">🏆 Score Challenge: 51 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">💻</div>
+            <div class="grammar-content">
+                <h2>The First Conditional</h2>
+                <p>We use the First Conditional to talk about <strong>real or highly possible situations</strong> in the future.</p>
+                
+                <div class="grammar-rule">
+                    <h4>The Formula:</h4>
+                    <p><strong>IF + Present Simple</strong> (The Condition), <strong>WILL + Verb</strong> (The Result)</p>
+                    <p><em>Example: <strong>If</strong> we <strong>use</strong> the HUB today, we <strong>will finish</strong> the app faster.</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Grammar Alert:</strong><br>
+                    - Never put "will" inside the IF part! (❌ <em>If I will go...</em>) ➔ (✔️ <em>If I go...</em>)<br>
+                    - Remember the 3rd person "S" in Present Simple (He, She, It): <em>If she study ➔ If she <strong>studies</strong>.</em><br>
+                    - Negative: don't/doesn't (Condition) and won't (Result).
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Condition (10 items) -->
+        <div class="exercise-section">
+            <h3><span>A</span> The Condition (Present Simple) (10 pts)</h3>
+            <p class="instructions">Conjugate the verb in brackets in the <strong>Present Simple</strong> to form the condition clause.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. If Leonardo <input type="text" class="medium-input" data-answer="uses"> (use) the new software...</div>
+                <div class="question">2. If we <input type="text" class="medium-input" data-answer="study"> (study) at the HUB...</div>
+                <div class="question">3. If Tatiana <input type="text" class="medium-input" data-answer="doesn't come|does not come"> (not / come) to class...</div>
+                <div class="question">4. If El Michi <input type="text" class="medium-input" data-answer="sleeps"> (sleep) on the keyboard...</div>
+                <div class="question">5. If they <input type="text" class="medium-input" data-answer="don't finish|do not finish"> (not / finish) the code...</div>
+                <div class="question">6. If Teacher Ivan <input type="text" class="medium-input" data-answer="gives"> (give) us an exam...</div>
+                <div class="question">7. If you <input type="text" class="medium-input" data-answer="practice"> (practice) every day...</div>
+                <div class="question">8. If the computer <input type="text" class="medium-input" data-answer="crashes"> (crash)...</div>
+                <div class="question">9. If Santiago <input type="text" class="medium-input" data-answer="trains"> (train) for the marathon...</div>
+                <div class="question">10. If I <input type="text" class="medium-input" data-answer="don't pass|do not pass"> (not / pass) the test...</div>
+            </div>
+        </div>
+
+        <!-- Section B: Result (10 items) -->
+        <div class="exercise-section">
+            <h3><span>B</span> The Result (Will / Won't) (10 pts)</h3>
+            <p class="instructions">Conjugate the verb in brackets using <strong>will</strong> or <strong>won't</strong> + base verb to form the result clause.</p>
+            
+            <div class="grid-2">
+                <div class="question">11. ...we <input type="text" class="medium-input" data-answer="will build|'ll build"> (build) an amazing app.</div>
+                <div class="question">12. ...Teacher Ivan <input type="text" class="medium-input" data-answer="will be|'ll be"> (be) very proud.</div>
+                <div class="question">13. ...she <input type="text" class="medium-input" data-answer="won't learn|will not learn"> (not / learn) the new grammar.</div>
+                <div class="question">14. ...the program <input type="text" class="medium-input" data-answer="will close|'ll close"> (close) unexpectedly.</div>
+                <div class="question">15. ...they <input type="text" class="medium-input" data-answer="won't win|will not win"> (not / win) the competition.</div>
+                <div class="question">16. ...we <input type="text" class="medium-input" data-answer="will study|'ll study"> (study) all night.</div>
+                <div class="question">17. ...your English <input type="text" class="medium-input" data-answer="will improve|'ll improve"> (improve) quickly.</div>
+                <div class="question">18. ...you <input type="text" class="medium-input" data-answer="will lose|'ll lose"> (lose) your unsaved work.</div>
+                <div class="question">19. ...he <input type="text" class="medium-input" data-answer="will get|'ll get"> (get) very strong.</div>
+                <div class="question">20. ...I <input type="text" class="medium-input" data-answer="will try|'ll try"> (try) again tomorrow.</div>
+            </div>
+        </div>
+
+        <!-- Section C: Full Sentences (10 items) -->
+        <div class="exercise-section">
+            <h3><span>C</span> Mix and Match (10 pts)</h3>
+            <p class="instructions">Complete the full sentences. Remember: IF gets Present Simple, the other side gets WILL.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. If it <input type="text" class="short-input" data-answer="rains"> (rain) tomorrow, we <input type="text" class="short-input" data-answer="will stay|'ll stay"> (stay) at the HUB.</div>
+                <div class="question">22. They <input type="text" class="short-input" data-answer="will pass|'ll pass"> (pass) if they <input type="text" class="short-input" data-answer="study"> (study) hard.</div>
+                <div class="question">23. If she <input type="text" class="short-input" data-answer="doesn't hurry|does not hurry"> (not / hurry), she <input type="text" class="short-input" data-answer="will miss|'ll miss"> (miss) the class.</div>
+                <div class="question">24. I <input type="text" class="short-input" data-answer="will call|'ll call"> (call) you if I <input type="text" class="short-input" data-answer="need"> (need) help with the code.</div>
+                <div class="question">25. If El Michi <input type="text" class="short-input" data-answer="eats"> (eat) that, he <input type="text" class="short-input" data-answer="will be|'ll be"> (be) sick.</div>
+                <div class="question">26. You <input type="text" class="short-input" data-answer="won't learn|will not learn"> (not / learn) if you <input type="text" class="short-input" data-answer="don't practice|do not practice"> (not / practice).</div>
+                <div class="question">27. If Leonardo <input type="text" class="short-input" data-answer="designs"> (design) the UI, the app <input type="text" class="short-input" data-answer="will look|'ll look"> (look) great.</div>
+                <div class="question">28. We <input type="text" class="short-input" data-answer="will go|'ll go"> (go) to the park if the weather <input type="text" class="short-input" data-answer="is"> (be) good.</div>
+                <div class="question">29. If the internet <input type="text" class="short-input" data-answer="disconnects"> (disconnect), we <input type="text" class="short-input" data-answer="won't finish|will not finish"> (not / finish) the test.</div>
+                <div class="question">30. He <input type="text" class="short-input" data-answer="will win|'ll win"> (win) the race if he <input type="text" class="short-input" data-answer="runs"> (run) fast.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 items) -->
+        <div class="exercise-section">
+            <h3><span>D</span> Sentence Builder (10 pts)</h3>
+            <p class="instructions">Put the words in the correct order to form First Conditional sentences.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. we / If / the / use / we / HUB / learn / will / fast / .<br><input type="text" class="long-input" data-answer="if we use the hub we will learn fast.|if we use the hub, we will learn fast."></div>
+                <div class="question">32. will / angry / Ivan / be / don't / we / if / study / .<br><input type="text" class="long-input" data-answer="ivan will be angry if we don't study.|ivan will be angry if we do not study."></div>
+                <div class="question">33. If / rains / it / won't / play / they / tennis / .<br><input type="text" class="long-input" data-answer="if it rains they won't play tennis.|if it rains, they won't play tennis."></div>
+                <div class="question">34. she / call / I / will / comes / her / if / .<br><input type="text" class="long-input" data-answer="i will call her if she comes.|i will call her if she comes"></div>
+                <div class="question">35. passes / he / If / the exam / be / he / happy / will / .<br><input type="text" class="long-input" data-answer="if he passes the exam he will be happy.|if he passes the exam, he will be happy."></div>
+                <div class="question">36. help / you / will / you / I / me / ask / if / .<br><input type="text" class="long-input" data-answer="i will help you if you ask me.|i will help you if you ask me"></div>
+                <div class="question">37. If / late / are / we / miss / the bus / we / will / .<br><input type="text" class="long-input" data-answer="if we are late we will miss the bus.|if we are late, we will miss the bus."></div>
+                <div class="question">38. won't / work / It / you / don't / it / plug / if / in / .<br><input type="text" class="long-input" data-answer="it won't work if you don't plug it in.|it won't work if you don't plug it in"></div>
+                <div class="question">39. sleeps / Michi / here / If / El / work / we / won't / .<br><input type="text" class="long-input" data-answer="if el michi sleeps here we won't work.|if el michi sleeps here, we won't work."></div>
+                <div class="question">40. will / you / What / do / rains / if / it / ?<br><input type="text" class="long-input" data-answer="what will you do if it rains?|what will you do if it rains"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 items) -->
+        <div class="exercise-section">
+            <h3><span>E</span> Spot the Grammar Bug (10 pts)</h3>
+            <p class="instructions">Each sentence has ONE mistake. It could be using 'will' in the IF clause, missing an 's', or bad negatives. Rewrite the sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. If I will go to the HUB, I will study.<br><input type="text" class="long-input" data-answer="if i go to the hub i will study.|if i go to the hub, i will study."></div>
+                <div class="question">42. If Leonardo build the app, it will be great.<br><input type="text" class="long-input" data-answer="if leonardo builds the app it will be great.|if leonardo builds the app, it will be great."></div>
+                <div class="question">43. We will fail if we doesn't practice.<br><input type="text" class="long-input" data-answer="we will fail if we don't practice.|we will fail if we do not practice."></div>
+                <div class="question">44. If it rain, we won't go out.<br><input type="text" class="long-input" data-answer="if it rains we won't go out.|if it rains, we won't go out."></div>
+                <div class="question">45. She will be happy if she will pass the test.<br><input type="text" class="long-input" data-answer="she will be happy if she passes the test.|she will be happy if she passes the test"></div>
+                <div class="question">46. If El Michi eat that, he will get sick.<br><input type="text" class="long-input" data-answer="if el michi eats that he will get sick.|if el michi eats that, he will get sick."></div>
+                <div class="question">47. I will not help you if you won't listen.<br><input type="text" class="long-input" data-answer="i will not help you if you don't listen.|i won't help you if you don't listen."></div>
+                <div class="question">48. If they uses the computer, they will finish.<br><input type="text" class="long-input" data-answer="if they use the computer they will finish.|if they use the computer, they will finish."></div>
+                <div class="question">49. What do you do if you fail the exam?<br><input type="text" class="long-input" data-answer="what will you do if you fail the exam?|what will you do if you fail the exam"></div>
+                <div class="question">50. If Teacher Ivan is late, we will waiting.<br><input type="text" class="long-input" data-answer="if teacher ivan is late we will wait.|if teacher ivan is late, we will wait."></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing (1 pt) -->
+        <div class="exercise-section">
+            <h3><span>F</span> Writing: Future Plans (1 pt)</h3>
+            <p class="instructions">Write a short paragraph about your plans for this weekend. Use at least <strong>THREE First Conditional sentences</strong>. (e.g., "If it is sunny, I will... But if it rains, I will..."). (Minimum 40 words).</p>
+            
+            <textarea id="writing-section" placeholder="This weekend, I have many plans. If the weather is nice, I will..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-action btn-check" id="submit-btn" onclick="checkAnswers()">🏁 Submit Worksheet</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading Logic
+        let examSubmitted = false;
+
+        function checkAnswers() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalMax = 51; 
+
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/[\.,!]$/, '').replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) return ans.replace(/[\.,!]$/, '');
+                    return ans;
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score++;
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            if(writingWords >= 40) {
+                score++;
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const percentage = Math.round((score / totalMax) * 100);
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (percentage >= 90) {
+                message = `🏆 EXCELLENT! Tienes un control absoluto sobre el Primer Condicional. ¡Si sigues así, aprobarás el nivel B1 muy pronto!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+                feedback.style.borderColor = "var(--verde-correcto)";
+            } else if (percentage >= 70) {
+                message = `👍 GOOD JOB! Entiendes cómo funciona. Revisa tus fallos en rojo, especialmente en la tercera persona (He/She/It) del Present Simple.`;
+                color = "var(--u3-cyan)";
+                bgColor = "var(--u3-light)";
+                feedback.style.borderColor = "var(--u3-cyan)";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda la regla de oro: NUNCA pongas "will" junto al "If". El lado del "If" siempre lleva Present Simple.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+                feedback.style.borderColor = "var(--rojo-error)";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.innerHTML = `SCORE: ${score} / ${totalMax} (${percentage}%)<br><br><span style="font-size: 1rem; color: #333; font-weight: 400;">${message}</span>`;
+            
+            // Scroll to feedback
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

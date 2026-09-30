@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Lesson: Comparing Historic Eras - Teacher Ivan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --blanco-nieve: #FAFAF0; 
+            --gris-claro: #f0f4f8;
+            --verde-correcto: #4CAF50; 
+            --rojo-error: #F44336;
+            --naranja-claro: #FFF3E0;
+            --oro-a2: #FFB300;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--blanco-nieve);
+            color: #333;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-primario); }
+
+        .worksheet-container {
+            max-width: 1050px;
+            margin: 40px auto; 
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(245, 110, 30, 0.2);
+            border-top: 8px solid var(--naranja-vibrante);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute; top: 30px; right: -60px; background: var(--oro-a2);
+            color: #333; padding: 8px 60px; font-weight: 900; font-family: 'Montserrat';
+            transform: rotate(45deg); box-shadow: 0 4px 6px rgba(0,0,0,0.3); font-size: 1rem; letter-spacing: 1px;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px dashed var(--gris-claro); }
+        .header img { max-width: 100%; height: 60px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 2rem; text-transform: uppercase; color: var(--naranja-vibrante); }
+        .header p { color: #555; font-size: 1.1rem; margin-top: 5px; font-weight: bold; }
+        .difficulty-badge { background: var(--naranja-vibrante); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; font-weight: 800; display: inline-block; margin-top: 10px; border: 2px solid var(--oro-a2); }
+
+        /* Grammar Box */
+        .grammar-box {
+            background-color: var(--naranja-claro);
+            border-left: 5px solid var(--naranja-vibrante);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grammar-content { flex: 1; }
+        .grammar-rule { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #FFE0B2; }
+        .grammar-rule h4 { margin: 0 0 10px 0; color: var(--naranja-vibrante); font-size: 1.1rem; }
+        
+        .warning-box { background: #ffebee; padding: 12px 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--rojo-error); font-size: 0.95rem; }
+
+        /* Exercises */
+        .exercise-section { margin-bottom: 40px; background: #fafafa; padding: 25px; border-radius: 8px; border: 2px solid var(--gris-claro); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .exercise-section h3 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; margin-top: 0; color: var(--azul-primario); border-bottom: 2px solid var(--oro-a2); padding-bottom: 10px; }
+        .exercise-section h3 span { background: var(--naranja-vibrante); color: white; min-width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 1.1rem; font-weight: 900; }
+        
+        .instructions { font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--naranja-vibrante); padding-left: 10px; font-size: 0.95rem; }
+
+        .question { margin-bottom: 15px; font-size: 1rem; line-height: 1.8; font-weight: 600; color: #444; }
+        
+        input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+            background-color: white;
+            color: var(--azul-primario);
+            font-weight: 700;
+            display: inline-block;
+        }
+        input[type="text"]:focus { border-color: var(--naranja-vibrante); box-shadow: 0 0 8px rgba(245, 110, 30, 0.4); }
+        
+        .short-input { width: 120px; text-align: center; }
+        .medium-input { width: 180px; text-align: center; }
+        .long-input { width: 100%; display: block; margin-top: 5px; font-style: italic; font-weight: 600;}
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        /* Writing Section */
+        textarea {
+            width: 100%; height: 160px; font-family: 'Open Sans', sans-serif; font-size: 1.05rem; padding: 15px;
+            border: 2px solid #ccc; border-radius: 5px; resize: vertical; outline: none; line-height: 1.6;
+        }
+        textarea:focus { border-color: var(--naranja-vibrante); box-shadow: 0 0 5px rgba(245, 110, 30, 0.4); }
+        .word-counter { font-size: 0.95rem; color: #666; text-align: right; margin-top: 5px; font-weight: bold; }
+        .points-badge { float: right; background: var(--naranja-vibrante); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
+
+        /* Action Buttons */
+        .actions { display: flex; justify-content: center; margin-top: 40px; border-top: 3px solid var(--gris-claro); padding-top: 30px; }
+        .btn-check { background-color: var(--naranja-vibrante); color: white; padding: 18px 50px; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; font-weight: 900; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; width: 100%; max-width: 500px; box-shadow: 0 5px 15px rgba(245, 110, 30, 0.4); }
+        .btn-check:hover { background-color: #d85c14; transform: translateY(-3px); }
+
+        #feedback-message { display: none; text-align: center; font-weight: bold; margin-top: 30px; font-size: 1.5rem; padding: 25px; border-radius: 8px; border: 3px solid; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .worksheet-container { margin: 15px 10px; padding: 20px 15px; border-radius: 8px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 12px; }
+            .header h1 { font-size: 1.6rem; }
+            .exercise-section { padding: 15px; }
+            .btn-check { width: 100%; max-width: none; font-size: 1.1rem; }
+            .ribbon { right: -75px; font-size: 0.8rem; padding: 5px 50px; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .worksheet-container { box-shadow: none; margin: 0; padding: 0; border: none; }
+            .exercise-section { border: none; padding: 0; margin-bottom: 20px; }
+            .actions, .btn-check, #feedback-message, .ribbon { display: none !important; }
+            input[type="text"] { border: none; border-bottom: 1px solid black; border-radius: 0; background: transparent; }
+            textarea { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <div class="ribbon">EVALUATION</div>
+
+        <div class="header">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo">
+            <h1>Comparing Historic Eras</h1>
+            <p>Level A2 | Unit 4 - Lesson 7 | Past To Be & Comparatives</p>
+            <span class="difficulty-badge">🏆 Total Score: 100 Points</span>
+        </div>
+
+        <div class="grammar-box">
+            <div style="font-size: 3.5rem;">⏳</div>
+            <div class="grammar-content">
+                <h2>Life in the Past vs. Present</h2>
+                <p>When we want to compare how things used to be, we combine the past tense of "To Be" (<strong>was / were</strong>) with <strong>Comparative Adjectives</strong>.</p>
+                
+                <div class="grammar-rule">
+                    <h4>1. Was or Were?</h4>
+                    <p>Use <strong>Was</strong> for singular (I, He, She, It). Use <strong>Were</strong> for plural (You, We, They).<br>
+                    <em>Life <strong>was</strong> simpler. / Cities <strong>were</strong> smaller.</em></p>
+                    
+                    <h4>2. Comparatives</h4>
+                    <p>Short words add <strong>-er</strong> (older, faster). Long words use <strong>more</strong> (more expensive).<br>
+                    <em>Traveling was <strong>slower</strong>. / Cars were <strong>more expensive</strong>.</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Irregular Adjectives:</strong><br>
+                    Good ➔ Better <br>
+                    Bad ➔ Worse <br>
+                    Far ➔ Farther
+                </div>
+            </div>
+        </div>
+
+        <!-- Section A: Was / Were (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>A</span> Past Reality</h3>
+            <p class="instructions">Complete the sentences about the past using <strong>was</strong> or <strong>were</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">1. Life in the past <input type="text" class="short-input" data-answer="was"> simpler.</div>
+                <div class="question">2. The streets in 1800 <input type="text" class="short-input" data-answer="were"> quieter.</div>
+                <div class="question">3. My grandfather <input type="text" class="short-input" data-answer="was"> very tall.</div>
+                <div class="question">4. Cars in 1950 <input type="text" class="short-input" data-answer="were"> slower.</div>
+                <div class="question">5. The first computer <input type="text" class="short-input" data-answer="was"> huge.</div>
+                <div class="question">6. Books <input type="text" class="short-input" data-answer="were"> very expensive.</div>
+                <div class="question">7. History <input type="text" class="short-input" data-answer="was"> my favorite subject.</div>
+                <div class="question">8. The ancient Romans <input type="text" class="short-input" data-answer="were"> brave.</div>
+                <div class="question">9. The city <input type="text" class="short-input" data-answer="was"> smaller before.</div>
+                <div class="question">10. People <input type="text" class="short-input" data-answer="were"> healthier in the past.</div>
+            </div>
+        </div>
+
+        <!-- Section B: Forming Comparatives (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>B</span> Making Comparisons</h3>
+            <p class="instructions">Write the comparative form of the adjective in brackets (e.g., older, more difficult).</p>
+            
+            <div class="grid-3">
+                <div class="question">11. old ➔ <input type="text" class="short-input" data-answer="older"></div>
+                <div class="question">12. big ➔ <input type="text" class="short-input" data-answer="bigger"></div>
+                <div class="question">13. easy ➔ <input type="text" class="short-input" data-answer="easier"></div>
+                <div class="question">14. difficult ➔ <input type="text" class="short-input" data-answer="more difficult"></div>
+                <div class="question">15. good ➔ <input type="text" class="short-input" data-answer="better"></div>
+                <div class="question">16. bad ➔ <input type="text" class="short-input" data-answer="worse"></div>
+                <div class="question">17. heavy ➔ <input type="text" class="short-input" data-answer="heavier"></div>
+                <div class="question">18. fast ➔ <input type="text" class="short-input" data-answer="faster"></div>
+                <div class="question">19. modern ➔ <input type="text" class="short-input" data-answer="more modern"></div>
+                <div class="question">20. dirty ➔ <input type="text" class="short-input" data-answer="dirtier"></div>
+            </div>
+        </div>
+
+        <!-- Section C: Full Combinations (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>C</span> Combining Concepts</h3>
+            <p class="instructions">Complete the sentences. You must write BOTH <strong>was/were</strong> AND the <strong>comparative adjective</strong>.</p>
+            
+            <div class="grid-2">
+                <div class="question">21. The old car <input type="text" class="medium-input" data-answer="was slower"> (slow) than the new car.</div>
+                <div class="question">22. In the past, letters <input type="text" class="medium-input" data-answer="were better"> (good) than emails.</div>
+                <div class="question">23. The 19th century <input type="text" class="medium-input" data-answer="was more dangerous"> (dangerous) than the 20th.</div>
+                <div class="question">24. Life <input type="text" class="medium-input" data-answer="was harder"> (hard) 100 years ago.</div>
+                <div class="question">25. Cities <input type="text" class="medium-input" data-answer="were dirtier"> (dirty) in 1850.</div>
+                <div class="question">26. Traveling <input type="text" class="medium-input" data-answer="was more difficult"> (difficult) before airplanes.</div>
+                <div class="question">27. My old laptop <input type="text" class="medium-input" data-answer="was worse"> (bad) than my new one.</div>
+                <div class="question">28. Castles <input type="text" class="medium-input" data-answer="were bigger"> (big) than normal houses.</div>
+                <div class="question">29. The history test <input type="text" class="medium-input" data-answer="was easier"> (easy) than I thought.</div>
+                <div class="question">30. Clothes <input type="text" class="medium-input" data-answer="were cheaper"> (cheap) in the past.</div>
+            </div>
+        </div>
+
+        <!-- Section D: Unscramble (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>D</span> Historical Sentence Builder</h3>
+            <p class="instructions">Put the words in the correct order to form comparative sentences about the past.</p>
+            
+            <div class="grid-2">
+                <div class="question">31. life / past / simpler / was / the / in / .<br><input type="text" class="long-input" data-answer="life was simpler in the past.|life was simpler in the past"></div>
+                <div class="question">32. old / was / better / phone / My / .<br><input type="text" class="long-input" data-answer="my old phone was better.|my old phone was better"></div>
+                <div class="question">33. slower / cars / were / Horses / than / .<br><input type="text" class="long-input" data-answer="horses were slower than cars.|horses were slower than cars"></div>
+                <div class="question">34. more / expensive / was / It / .<br><input type="text" class="long-input" data-answer="it was more expensive.|it was more expensive"></div>
+                <div class="question">35. Michi / happier / was / El / .<br><input type="text" class="long-input" data-answer="el michi was happier.|el michi was happier"></div>
+                <div class="question">36. smaller / cities / past / were / the / in / .<br><input type="text" class="long-input" data-answer="cities were smaller in the past.|cities were smaller in the past"></div>
+                <div class="question">37. math / easier / history / was / than / .<br><input type="text" class="long-input" data-answer="history was easier than math.|history was easier than math"></div>
+                <div class="question">38. computers / bigger / were / 80s / the / in / .<br><input type="text" class="long-input" data-answer="computers were bigger in the 80s.|computers were bigger in the 80s"></div>
+                <div class="question">39. worse / the / weather / was / yesterday / .<br><input type="text" class="long-input" data-answer="the weather was worse yesterday.|the weather was worse yesterday"></div>
+                <div class="question">40. dangerous / was / Traveling / more / .<br><input type="text" class="long-input" data-answer="traveling was more dangerous.|traveling was more dangerous"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>E</span> Spot the Grammar Bug</h3>
+            <p class="instructions">Each sentence has a mistake. It could be using 'was' instead of 'were', or a bad comparative adjective. Rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. The car was more fast.<br><input type="text" class="long-input" data-answer="the car was faster.|the car was faster"></div>
+                <div class="question">42. People was healthier.<br><input type="text" class="long-input" data-answer="people were healthier.|people were healthier"></div>
+                <div class="question">43. It were more difficult.<br><input type="text" class="long-input" data-answer="it was more difficult.|it was more difficult"></div>
+                <div class="question">44. Books were expensiver.<br><input type="text" class="long-input" data-answer="books were more expensive.|books were more expensive"></div>
+                <div class="question">45. He was gooder than me.<br><input type="text" class="long-input" data-answer="he was better than me.|he was better than me"></div>
+                <div class="question">46. The streets was dirtier.<br><input type="text" class="long-input" data-answer="the streets were dirtier.|the streets were dirtier"></div>
+                <div class="question">47. Life was more easy.<br><input type="text" class="long-input" data-answer="life was easier.|life was easier"></div>
+                <div class="question">48. Traveling were slower.<br><input type="text" class="long-input" data-answer="traveling was slower.|traveling was slower"></div>
+                <div class="question">49. My grandfather was tall than my father.<br><input type="text" class="long-input" data-answer="my grandfather was taller than my father.|my grandfather was taller than my father"></div>
+                <div class="question">50. The test was bader.<br><input type="text" class="long-input" data-answer="the test was worse.|the test was worse"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing Project -->
+        <div class="exercise-section">
+            <span class="points-badge">50 Points</span>
+            <h3><span>F</span> Master Writing: 100 Years Ago</h3>
+            <p class="instructions">Write a short paragraph comparing life 100 years ago with life today. Use <strong>was/were</strong> and at least three <strong>comparative adjectives</strong> (e.g. Life was simpler. Cars were slower). <strong>(Minimum 40 words)</strong>.</p>
+            
+            <textarea id="writing-section" placeholder="Life 100 years ago was very different. The cities were..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkExam()">🏁 SUBMIT TEST</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading System
+        let examSubmitted = false;
+
+        function checkExam() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalPoints = 100; 
+
+            // Check 50 Inputs (1 point each)
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score += 1; // 1 point per question
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (50 points)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            let writingApproved = false;
+            
+            if(writingWords >= 40) {
+                score += 50; // 50 points for the writing!
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+                writingApproved = true;
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (score >= 90 && writingApproved) {
+                message = `🏆 OUTSTANDING! Tienes un dominio total del Was/Were y los Comparativos. ¡Excelente nivel A2!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (score >= 70 && writingApproved) {
+                message = `👍 GREAT JOB! Entiendes bien cómo comparar el pasado. Revisa los recuadros rojos para pulir tu ortografía en los adjetivos.`;
+                color = "var(--oro-a2)";
+                bgColor = "#FFF8E1";
+            } else if (!writingApproved) {
+                message = `⚠️ INCOMPLETE WRITING. Tu gramática puede estar bien, pero perdiste los 50 puntos del Writing por no alcanzar las 40 palabras (escribiste ${writingWords}).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            } else {
+                message = `⚠️ NEEDS WORK. Repasa las reglas de los comparativos (terminación -er vs "more").`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: <span style="font-size: 2.5rem; color: var(--azul-primario);">${score} / 100</span><br><br><span style="font-size: 1.1rem; color: #333; font-weight: 600;">${message}</span>`;
+            
+            // Scroll to bottom smoothly
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

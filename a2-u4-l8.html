@@ -243,4 +243,161 @@
                 <div class="question">31. best / the / He / student / is / .<br><input type="text" class="long-input" data-answer="he is the best student.|he is the best student"></div>
                 <div class="question">32. worse / the / Today / is / weather / .<br><input type="text" class="long-input" data-answer="today the weather is worse.|the weather is worse today.|today, the weather is worse."></div>
                 <div class="question">33. friend / Tatiana / best / my / is / .<br><input type="text" class="long-input" data-answer="tatiana is my best friend.|tatiana is my best friend"></div>
-                <div class="question">34. farther / is / house / His / .<br><input type="text" class="long-input"
+                <div class="question">34. farther / is / house / His / .<br><input type="text" class="long-input" data-answer="his house is farther.|his house is farther"></div>
+                <div class="question">35. worst / This / the / day / is / .<br><input type="text" class="long-input" data-answer="this is the worst day.|this is the worst day"></div>
+                <div class="question">36. better / English / My / is / now / .<br><input type="text" class="long-input" data-answer="my english is better now.|my english is better now"></div>
+                <div class="question">37. the / ran / Santiago / farthest / .<br><input type="text" class="long-input" data-answer="santiago ran the farthest.|santiago ran the farthest"></div>
+                <div class="question">38. better / El Michi / feeling / is / .<br><input type="text" class="long-input" data-answer="el michi is feeling better.|el michi is feeling better"></div>
+                <div class="question">39. is / the / Ivan / best / teacher / .<br><input type="text" class="long-input" data-answer="ivan is the best teacher.|ivan is the best teacher"></div>
+                <div class="question">40. worse / pizza / That / is / .<br><input type="text" class="long-input" data-answer="that pizza is worse.|that pizza is worse"></div>
+            </div>
+        </div>
+
+        <!-- Section E: Debug (10 pts) -->
+        <div class="exercise-section">
+            <span class="points-badge">10 Points</span>
+            <h3><span>E</span> Spot the Grammar Bug</h3>
+            <p class="instructions">Find the "invented" or incorrect adjective in each sentence and rewrite the full sentence correctly.</p>
+
+            <div class="grid-2">
+                <div class="question">41. He is more good than me.<br><input type="text" class="long-input" data-answer="he is better than me.|he is better than me"></div>
+                <div class="question">42. This is the baddest day.<br><input type="text" class="long-input" data-answer="this is the worst day.|this is the worst day"></div>
+                <div class="question">43. She is the bestest friend.<br><input type="text" class="long-input" data-answer="she is the best friend.|she is my best friend."></div>
+                <div class="question">44. Sucre is more far than La Paz.<br><input type="text" class="long-input" data-answer="sucre is farther than la paz.|sucre is farther than la paz"></div>
+                <div class="question">45. My grade is badder than yours.<br><input type="text" class="long-input" data-answer="my grade is worse than yours.|my grade is worse than yours"></div>
+                <div class="question">46. He is the goodest player.<br><input type="text" class="long-input" data-answer="he is the best player.|he is the best player"></div>
+                <div class="question">47. The weather is more bad today.<br><input type="text" class="long-input" data-answer="the weather is worse today.|the weather is worse today"></div>
+                <div class="question">48. I ran the most far.<br><input type="text" class="long-input" data-answer="i ran the farthest.|i ran the farthest"></div>
+                <div class="question">49. That was the most bad movie.<br><input type="text" class="long-input" data-answer="that was the worst movie.|that was the worst movie"></div>
+                <div class="question">50. This cake is gooder.<br><input type="text" class="long-input" data-answer="this cake is better.|this cake is better"></div>
+            </div>
+        </div>
+
+        <!-- Section F: Writing Project -->
+        <div class="exercise-section">
+            <span class="points-badge">50 Points</span>
+            <h3><span>F</span> Master Writing: The Best and Worst</h3>
+            <p class="instructions">Write a short paragraph about your favorite (the best) and least favorite (the worst) things. E.g., movies, food, subjects in school. You must use "best", "worst", and at least one "better" or "worse". <strong>(Minimum 40 words)</strong>.</p>
+            
+            <textarea id="writing-section" placeholder="The best movie I have ever seen is... but the worst movie is... Also, I think pizza is better than..."></textarea>
+            <div class="word-counter">Words: <span id="word-count">0</span> / 40 minimum</div>
+        </div>
+
+        <div id="feedback-message"></div>
+
+        <div class="actions">
+            <button class="btn-check" id="submit-btn" onclick="checkExam()">🏁 SUBMIT TEST</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Word Counter
+        const textarea = document.getElementById('writing-section');
+        const wordCountDisplay = document.getElementById('word-count');
+
+        textarea.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text === "" ? 0 : text.split(/\s+/).length;
+            wordCountDisplay.innerText = words;
+            if(words >= 40) {
+                wordCountDisplay.style.color = "var(--verde-correcto)";
+            } else {
+                wordCountDisplay.style.color = "#666";
+            }
+        });
+
+        // Grading System
+        let examSubmitted = false;
+
+        function checkExam() {
+            if(examSubmitted) return; 
+            examSubmitted = true;
+
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let score = 0;
+            const totalPoints = 100; 
+
+            // Check 50 Inputs (1 point each)
+            inputs.forEach(input => {
+                input.readOnly = true; 
+
+                let userAnswer = input.value.toLowerCase().trim().replace(/\s+/g, ' ');
+                let correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                correctAnswers = correctAnswers.map(ans => {
+                    if(!ans.includes("?")) ans = ans.replace(/[\.,!]$/, '');
+                    return ans; 
+                });
+                
+                if(!input.getAttribute('data-answer').includes("?")) {
+                    userAnswer = userAnswer.replace(/[\.,!]$/, ''); 
+                }
+
+                if (correctAnswers.includes(userAnswer) && userAnswer !== "") {
+                    input.style.borderColor = "var(--verde-correcto)";
+                    input.style.backgroundColor = "#e8f5e9";
+                    input.style.color = "#2e7d32";
+                    score += 1; // 1 point per question
+                } else {
+                    input.style.borderColor = "var(--rojo-error)";
+                    input.style.backgroundColor = "#ffebee";
+                    input.style.color = "#c62828";
+                    if(userAnswer === "") input.value = "---";
+                }
+            });
+
+            // Check Writing section (50 points)
+            textarea.readOnly = true;
+            const writingWords = textarea.value.trim() === "" ? 0 : textarea.value.trim().split(/\s+/).length;
+            let writingApproved = false;
+            
+            if(writingWords >= 40) {
+                score += 50; // 50 points for the writing!
+                textarea.style.borderColor = "var(--verde-correcto)";
+                textarea.style.backgroundColor = "#e8f5e9";
+                writingApproved = true;
+            } else {
+                textarea.style.borderColor = "var(--rojo-error)";
+                textarea.style.backgroundColor = "#ffebee";
+            }
+
+            const feedback = document.getElementById('feedback-message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedback.style.display = 'block';
+            submitBtn.style.display = 'none'; 
+
+            let message = "";
+            let color = "";
+            let bgColor = "";
+
+            if (score >= 90 && writingApproved) {
+                message = `🏆 OUTSTANDING! Has dominado las excepciones de los adjetivos. ¡No volverás a decir "gooder" o "badder" nunca más!`;
+                color = "var(--verde-correcto)";
+                bgColor = "#e8f5e9";
+            } else if (score >= 70 && writingApproved) {
+                message = `👍 GREAT JOB! Has aprobado el examen. Revisa los recuadros rojos para entender mejor cuándo usar Comparative (Better) o Superlative (Best).`;
+                color = "var(--oro-a2)";
+                bgColor = "#FFF8E1";
+            } else if (!writingApproved) {
+                message = `⚠️ INCOMPLETE WRITING. Tu gramática en la prueba está bien, pero perdiste los 50 puntos del Writing por no alcanzar las 40 palabras requeridas (escribiste ${writingWords}).`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            } else {
+                message = `⚠️ NEEDS WORK. Recuerda: NUNCA inventes palabras agregando "-er". Memoriza: Good/Better/Best, Bad/Worse/Worst, Far/Farther/Farthest.`;
+                color = "var(--rojo-error)";
+                bgColor = "#ffebee";
+            }
+
+            feedback.style.color = color;
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.borderColor = color;
+            feedback.innerHTML = `FINAL SCORE: <span style="font-size: 2.5rem; color: var(--azul-primario);">${score} / 100</span><br><br><span style="font-size: 1.1rem; color: #333; font-weight: 600;">${message}</span>`;
+            
+            // Scroll to bottom smoothly
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
